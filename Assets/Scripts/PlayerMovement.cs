@@ -28,7 +28,6 @@ public class PlayerMovement : MonoBehaviour
     private void HandleJump()
     {
         isJumping = !rb.IsTouchingLayers(LayerMask.GetMask("Ground"));
-        Debug.Log("Is Jumping: " + isJumping);
 
         if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
