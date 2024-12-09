@@ -10,8 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpSpeed = 5f;
     [SerializeField] float slowWhenJump = 0.6f;
     private bool isJumping = false;
-
-
+    private bool isWalking = false;
     Rigidbody2D rb;
 
     private void Start()
@@ -28,7 +27,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleJump()
     {
-        isJumping = rb.velocity.y != 0;
+        isJumping = !rb.IsTouchingLayers(LayerMask.GetMask("Ground"));
+        Debug.Log("Is Jumping: " + isJumping);
+
         if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
             rb.velocity += new Vector2(0f, jumpSpeed);
@@ -38,10 +39,31 @@ public class PlayerMovement : MonoBehaviour
     void HandleMovement()
     {
         var currentSpeed = isJumping ? (moveSpeed * slowWhenJump) : moveSpeed;
-
         float horizontal = Input.GetAxis("Horizontal");
+
         Vector2 pos = transform.position;
         pos.x += horizontal * currentSpeed * Time.deltaTime;
         transform.position = pos;
+
+        isWalking = (horizontal != 0) && !isJumping;
+
+        FlipSprite(horizontal);
+    }
+
+    public bool IsWalking()
+    {
+        return isWalking;
+    }
+
+    private void FlipSprite(float horizontal)
+    {
+        if (horizontal > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0); // Face right
+        }
+        else if (horizontal < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0); // Face left
+        }
     }
 }
