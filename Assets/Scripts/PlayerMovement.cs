@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Burst.Intrinsics;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -9,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float jumpSpeed = 5f;
     [SerializeField] float slowWhenJump = 0.6f;
+    [SerializeField] GameInput gameInput;
     private bool isJumping = false;
     private bool isWalking = false;
     Rigidbody2D rb;
@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     {
         isJumping = !rb.IsTouchingLayers(LayerMask.GetMask("Ground"));
 
-        if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
+        if (gameInput.GetJump() && !isJumping)
         {
             rb.velocity += new Vector2(0f, jumpSpeed);
         }
@@ -37,16 +37,16 @@ public class PlayerMovement : MonoBehaviour
 
     void HandleMovement()
     {
-        var currentSpeed = isJumping ? (moveSpeed * slowWhenJump) : moveSpeed;
-        float horizontal = Input.GetAxis("Horizontal");
+        var playerMoveSpeed = isJumping ? moveSpeed * slowWhenJump : moveSpeed;
 
-        Vector2 pos = transform.position;
-        pos.x += horizontal * currentSpeed * Time.deltaTime;
-        transform.position = pos;
+        Vector2 inputVector = gameInput.GetMovementVector();
+        Vector3 moveDir = new Vector3(inputVector.x, 0f, 0f);
 
-        isWalking = (horizontal != 0) && !isJumping;
+        transform.position += moveDir * playerMoveSpeed * Time.deltaTime;
 
-        FlipSprite(horizontal);
+        isWalking = moveDir != Vector3.zero;
+
+        FlipSprite(inputVector.x);
     }
 
     public bool IsWalking()
