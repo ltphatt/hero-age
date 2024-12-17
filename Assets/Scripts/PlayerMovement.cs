@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isWalking = false;
     Rigidbody2D rb;
 
+
     private void Start()
     {
         isJumping = false;
@@ -58,11 +59,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (horizontal > 0)
         {
-            transform.rotation = Quaternion.Euler(0, 0, 0); // Face right
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else if (horizontal < 0)
         {
-            transform.rotation = Quaternion.Euler(0, 180, 0); // Face left
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
 }

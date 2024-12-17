@@ -25,4 +25,10 @@ public class GameInput : MonoBehaviour
         bool jump = playerInputActions.Player.Jump.triggered;
         return jump;
     }
+
+    public bool GetFire()
+    {
+        bool fire = playerInputActions.Player.Fire.triggered;
+        return fire;
+    }
 }

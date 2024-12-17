@@ -6,7 +6,7 @@ public class PlayerAnimation : MonoBehaviour
 {
     private Animator animator;
     private static string IS_WALKING = "IsWalking";
-    [SerializeField] private PlayerMovement player;
+    [SerializeField] private PlayerMovement playerMovement;
 
     private void Awake()
     {
@@ -16,6 +16,6 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Update()
     {
-        animator.SetBool(IS_WALKING, player.IsWalking());
+        animator.SetBool(IS_WALKING, playerMovement.IsWalking());
     }
 }
