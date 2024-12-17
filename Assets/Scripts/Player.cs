@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     private static string IS_WALKING = "IsWalking";
     private static string FIRE = "Fire";
 
-    // [SerializeField] private int HP = 5;
+    [SerializeField] private int HP = 5;
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] Transform firePoint;
     [SerializeField] GameInput gameInput;
