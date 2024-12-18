@@ -29,6 +29,7 @@ public class DinoBullet : MonoBehaviour
         PlayerController player = other.GetComponent<PlayerController>();
         if (player != null)
         {
+            player.ChangeHealth(-damage);
             Destroy(gameObject);
         }
     }
