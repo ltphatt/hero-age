@@ -120,7 +120,7 @@ public class EnemyController : MonoBehaviour
     public void AttackPlayer()
     {
         GameObject bulletObj = Instantiate(bulletPrefab, transform.position, transform.rotation);
-        Bullet bullet = bulletObj.GetComponent<Bullet>();
+        DinoBullet bullet = bulletObj.GetComponent<DinoBullet>();
         bullet.SetTarget(target);
 
         Debug.Log("Attacking player");

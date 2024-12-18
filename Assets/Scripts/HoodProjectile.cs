@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class HoodProjectile : MonoBehaviour
 {
     Rigidbody2D rb;
     float timer = 0f;
