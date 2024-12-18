@@ -30399,11 +30399,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6930122694965717509, guid: 7f2681b23c23afc4fbb43c6dca9f41f9, type: 3}
   m_PrefabInstance: {fileID: 915797838}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &916853451 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5125579177588958066, guid: 6df832122741d894b921d8ae6a4e9313, type: 3}
-  m_PrefabInstance: {fileID: 4222045871424800988}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &952771230
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48409,6 +48404,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7984299901164649321, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8339744794210354204, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.11
@@ -48710,6 +48709,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 247724447147132883, guid: 6df832122741d894b921d8ae6a4e9313, type: 3}
+      propertyPath: m_FillAmount
+      value: 0.774
+      objectReference: {fileID: 0}
+    - target: {fileID: 247724447147132883, guid: 6df832122741d894b921d8ae6a4e9313, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434114181990213324, guid: 6df832122741d894b921d8ae6a4e9313, type: 3}
+      propertyPath: state
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1434114181990213324, guid: 6df832122741d894b921d8ae6a4e9313, type: 3}
       propertyPath: moveSpeed
       value: 5
@@ -48726,13 +48737,29 @@ PrefabInstance:
       propertyPath: targetingRange
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 3897805058709504939, guid: 6df832122741d894b921d8ae6a4e9313, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4453175041028210448, guid: 6df832122741d894b921d8ae6a4e9313, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5125579177588958066, guid: 6df832122741d894b921d8ae6a4e9313, type: 3}
       propertyPath: m_Name
       value: Dino
       objectReference: {fileID: 0}
+    - target: {fileID: 5930244333276452089, guid: 6df832122741d894b921d8ae6a4e9313, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7522049699280518910, guid: 6df832122741d894b921d8ae6a4e9313, type: 3}
       propertyPath: m_BodyType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9118353808758408554, guid: 6df832122741d894b921d8ae6a4e9313, type: 3}
+      propertyPath: m_FlipX
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -48770,8 +48797,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7de2c2703f77da64b852561689aa66e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 916853451}
   barImage: {fileID: 4222045871424800989}
+  green: {r: 0, g: 1, b: 0, a: 1}
+  yellow: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  red: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -48786,6 +48815,6 @@ SceneRoots:
   - {fileID: 816580895}
   - {fileID: 2032861921}
   - {fileID: 2059594077}
-  - {fileID: 4222045871424800988}
   - {fileID: 377730622}
   - {fileID: 958154578}
+  - {fileID: 4222045871424800988}

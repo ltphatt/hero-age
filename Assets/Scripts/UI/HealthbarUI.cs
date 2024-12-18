@@ -7,15 +7,21 @@ public class HealthbarUI : MonoBehaviour
 {
     EnemyController enemy;
     [SerializeField] Image barImage;
+    Canvas canvas;
+    [SerializeField] Color green = Color.green;
+    [SerializeField] Color yellow = Color.yellow;
+    [SerializeField] Color red = Color.red;
 
     private void Awake()
     {
         enemy = FindObjectOfType<EnemyController>();
+        canvas = GetComponent<Canvas>();
     }
 
     private void Start()
     {
         barImage.fillAmount = 1f;
+        Hide();
     }
 
     private void Update()
@@ -23,17 +29,44 @@ public class HealthbarUI : MonoBehaviour
         if (enemy != null)
         {
             barImage.fillAmount = (float)enemy.GetHP() / enemy.GetMaxHP();
+            UpdateBarColor();
+
+            if (enemy.GetState() == EnemyController.State.OutCombat)
+            {
+                Hide();
+            }
+            else
+            {
+                Show();
+            }
         }
     }
 
     private void Show()
     {
-        gameObject.SetActive(true);
+        canvas.enabled = true;
     }
 
     private void Hide()
     {
-        gameObject.SetActive(false);
+        canvas.enabled = false;
+    }
+
+    void UpdateBarColor()
+    {
+        float fill = barImage.fillAmount;
+        if (fill > 0.7f)
+        {
+            barImage.color = green;
+        }
+        else if (fill > 0.3)
+        {
+            barImage.color = yellow;
+        }
+        else
+        {
+            barImage.color = red;
+        }
     }
 
 }

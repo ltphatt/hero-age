@@ -1,8 +1,15 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    public enum State
+    {
+        InCombat,
+        OutCombat,
+    }
+
     [Header("Enemy movement")]
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] private bool veritcalMovement = true;
@@ -17,6 +24,8 @@ public class EnemyController : MonoBehaviour
     [Header("Enemy Properties")]
     [SerializeField] private int enemyHP = 5;
     [SerializeField] private int enemyMaxHP = 5;
+    [SerializeField] private State state;
+
 
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
@@ -28,6 +37,7 @@ public class EnemyController : MonoBehaviour
     private bool isWalking = true;
     private Transform target = null;
     private float timeUntilFire;
+    float inCombatTimer = 0f;
 
     private void OnDrawGizmosSelected()
     {
@@ -44,6 +54,8 @@ public class EnemyController : MonoBehaviour
         isWalking = true;
         idleTimer = idleDuration;
         timer = moveDuration;
+
+        state = State.OutCombat;
     }
 
     private void Update()
@@ -90,6 +102,7 @@ public class EnemyController : MonoBehaviour
     private void FixedUpdate()
     {
         HandleEnemyMovement();
+        HandleEnemyState();
     }
 
     void HandleEnemyMovement()
@@ -166,5 +179,31 @@ public class EnemyController : MonoBehaviour
     public int GetHP()
     {
         return enemyHP;
+    }
+
+    private void HandleEnemyState()
+    {
+        if (state == State.InCombat)
+        {
+            inCombatTimer += Time.deltaTime;
+            Debug.Log("In Combat timer: " + inCombatTimer);
+        }
+
+        if (inCombatTimer >= 5f)
+        {
+            state = State.OutCombat;
+            inCombatTimer = 0f;
+        }
+    }
+
+    public State GetState()
+    {
+        return state;
+    }
+
+    public void ChangeToInCombatState()
+    {
+        state = State.InCombat;
+        inCombatTimer = 0f;
     }
 }

@@ -180,6 +180,9 @@ MonoBehaviour:
   bulletPrefab: {fileID: 0}
   targetingRange: 5
   bulletPerSec: 2
+  enemyHP: 5
+  enemyMaxHP: 5
+  state: 0
 --- !u!95 &4518531544149114372
 Animator:
   serializedVersion: 5

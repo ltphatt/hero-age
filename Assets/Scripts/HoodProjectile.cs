@@ -35,6 +35,8 @@ public class HoodProjectile : MonoBehaviour
         if (enemy != null)
         {
             enemy.ChangeHealth(-damage);
+            enemy.ChangeToInCombatState();
+
             Destroy(gameObject);
         }
     }
