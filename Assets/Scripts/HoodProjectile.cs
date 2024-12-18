@@ -6,14 +6,15 @@ public class HoodProjectile : MonoBehaviour
     float timer = 0f;
     [SerializeField] float speed = 5f;
     [SerializeField] float timeLife = 5f;
-    PlayerMovement playerMovement;
+    [SerializeField] int damage = 1;
+    PlayerController player;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         timer = 0f;
-        playerMovement = FindObjectOfType<PlayerMovement>();
-        speed = playerMovement.transform.forward.z * speed;
+        player = FindObjectOfType<PlayerController>();
+        speed = player.transform.forward.z * speed;
     }
 
     private void Update()
@@ -33,6 +34,7 @@ public class HoodProjectile : MonoBehaviour
         EnemyController enemy = other.GetComponent<EnemyController>();
         if (enemy != null)
         {
+            enemy.ChangeHealth(-damage);
             Destroy(gameObject);
         }
     }

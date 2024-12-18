@@ -14,7 +14,12 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float targetingRange = 5f;
     [SerializeField] private float bulletPerSec = 2f;
 
+    [Header("Enemy Properties")]
+    [SerializeField] private int enemyHP = 5;
+    [SerializeField] private int enemyMaxHP = 5;
+
     Rigidbody2D rb;
+    SpriteRenderer spriteRenderer;
     float timer = 0f;
     float idleTimer = 0f;
 
@@ -34,6 +39,7 @@ public class EnemyController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         isWalking = true;
         idleTimer = idleDuration;
@@ -109,11 +115,11 @@ public class EnemyController : MonoBehaviour
     {
         if (direction > 0)
         {
-            transform.rotation = Quaternion.Euler(0, 0, 0); // Face right
+            spriteRenderer.flipX = false;
         }
         else if (direction < 0)
         {
-            transform.rotation = Quaternion.Euler(0, 180, 0); // Face left
+            spriteRenderer.flipX = true;
         }
     }
 
@@ -145,5 +151,20 @@ public class EnemyController : MonoBehaviour
         {
             return false;
         }
+    }
+
+    public void ChangeHealth(int value)
+    {
+        enemyHP = Mathf.Clamp(enemyHP + value, 0, enemyMaxHP);
+    }
+
+    public int GetMaxHP()
+    {
+        return enemyMaxHP;
+    }
+
+    public int GetHP()
+    {
+        return enemyHP;
     }
 }
