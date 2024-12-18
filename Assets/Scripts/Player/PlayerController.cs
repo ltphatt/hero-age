@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     private static string IS_WALKING = "IsWalking";
     private static string FIRE = "Fire";
@@ -10,7 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] private int HP = 5;
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] Transform firePoint;
-    [SerializeField] GameInput gameInput;
+    [SerializeField] PlayerInput gameInput;
     [SerializeField] private PlayerMovement playerMovement;
 
     private Animator animator;

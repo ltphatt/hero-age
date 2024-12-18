@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Burst.Intrinsics;
 using UnityEngine;
 
-public class GameInput : MonoBehaviour
+public class PlayerInput : MonoBehaviour
 {
     private PlayerInputActions playerInputActions;
     private void Awake()
