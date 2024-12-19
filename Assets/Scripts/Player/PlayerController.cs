@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [Header("Player Properties")]
     [SerializeField] private int HP = 5;
     [SerializeField] private int maxHP = 5;
+    [SerializeField] private int coin = 0;
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] Transform firePoint;
     [SerializeField] PlayerInput gameInput;
@@ -38,6 +39,22 @@ public class PlayerController : MonoBehaviour
         UpdateHealthBarUI();
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Heal"))
+        {
+            HealController healController = collision.GetComponent<HealController>();
+            healController.HealPlayer(this);
+            healController.DestroySelf();
+        }
+        else if (collision.CompareTag("Coin"))
+        {
+            CoinController coinController = collision.GetComponent<CoinController>();
+            coinController.CollectCoin(this);
+            coinController.DestroySelf();
+        }
+    }
+
     void UpdateHealthBarUI()
     {
         healBar.fillAmount = (float)HP / maxHP;
@@ -52,5 +69,11 @@ public class PlayerController : MonoBehaviour
     {
         HP = Mathf.Clamp(HP + value, 0, maxHP);
         Debug.Log("Current HP: " + HP + "/" + maxHP);
+    }
+
+    public void ChangeCoin(int value)
+    {
+        coin += value;
+        Debug.Log("Current Coin: " + coin);
     }
 }
