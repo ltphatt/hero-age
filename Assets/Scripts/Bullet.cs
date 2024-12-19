@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DinoBullet : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
     [Header("Attributes")]
     [SerializeField] private float bulletSpeed = 10f;
