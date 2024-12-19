@@ -177,12 +177,12 @@ MonoBehaviour:
   veritcalMovement: 0
   idleDuration: 3
   moveDuration: 2
-  bulletPrefab: {fileID: 0}
-  targetingRange: 5
-  bulletPerSec: 2
+  bulletPrefab: {fileID: 709218619336874982, guid: 9994e384cd4b81f469361bcce9fca550, type: 3}
+  targetingRange: 8
+  bulletPerSec: 1
   enemyHP: 5
   enemyMaxHP: 5
-  state: 0
+  state: 1
 --- !u!95 &4518531544149114372
 Animator:
   serializedVersion: 5
@@ -307,6 +307,7 @@ GameObject:
   - component: {fileID: 3897805058709504939}
   - component: {fileID: 4453175041028210448}
   - component: {fileID: 1425612306656151455}
+  - component: {fileID: 494611836262611833}
   m_Layer: 5
   m_Name: HealthbarUI
   m_TagString: Untagged
@@ -398,6 +399,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &494611836262611833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5930244333276452089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7de2c2703f77da64b852561689aa66e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barImage: {fileID: 247724447147132883}
+  green: {r: 0, g: 1, b: 0, a: 1}
+  yellow: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  red: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &8658918323824948128
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,7 +485,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 1
+  m_FillAmount: 0.774
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
