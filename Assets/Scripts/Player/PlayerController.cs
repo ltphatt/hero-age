@@ -53,6 +53,10 @@ public class PlayerController : MonoBehaviour
             coinController.CollectCoin(this);
             coinController.DestroySelf();
         }
+        else
+        {
+            // Do nothing
+        }
     }
 
     void UpdateHealthBarUI()
