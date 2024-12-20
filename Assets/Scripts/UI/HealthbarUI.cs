@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HealthbarUI : MonoBehaviour
 {
-    EnemyController enemy;
+    [SerializeField] EnemyController enemy;
     [SerializeField] Image barImage;
     Canvas canvas;
     [SerializeField] Color green = Color.green;
@@ -14,7 +14,6 @@ public class HealthbarUI : MonoBehaviour
 
     private void Awake()
     {
-        enemy = FindObjectOfType<EnemyController>();
         canvas = GetComponent<Canvas>();
     }
 

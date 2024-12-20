@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEditor;
 using UnityEngine;
 
@@ -26,6 +27,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private int enemyMaxHP = 5;
     [SerializeField] private State state;
 
+    [Header("Effects")]
+    [SerializeField] GameObject enemyDeathPrefab;
 
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
@@ -60,21 +63,7 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
-        timer -= Time.deltaTime;
-        if (timer <= 0f)
-        {
-            isWalking = false;
-
-            idleTimer -= Time.deltaTime;
-            if (idleTimer <= 0f)
-            {
-                direction = direction * -1;
-
-                isWalking = true;
-                timer = moveDuration;
-                idleTimer = idleDuration;
-            }
-        }
+        HandleEnemyDirection();
 
         animator.SetBool("IsWalking", isWalking);
 
@@ -97,6 +86,8 @@ public class EnemyController : MonoBehaviour
                 timeUntilFire = 0f;
             }
         }
+
+        CheckIsAlive();
     }
 
     private void FixedUpdate()
@@ -122,6 +113,25 @@ public class EnemyController : MonoBehaviour
         rb.MovePosition(pos);
 
         FlipSprite(-direction);
+    }
+
+    private void HandleEnemyDirection()
+    {
+        timer -= Time.deltaTime;
+        if (timer <= 0f)
+        {
+            isWalking = false;
+
+            idleTimer -= Time.deltaTime;
+            if (idleTimer <= 0f)
+            {
+                direction = direction * -1;
+
+                isWalking = true;
+                timer = moveDuration;
+                idleTimer = idleDuration;
+            }
+        }
     }
 
     private void FlipSprite(float direction)
@@ -186,7 +196,6 @@ public class EnemyController : MonoBehaviour
         if (state == State.InCombat)
         {
             inCombatTimer += Time.deltaTime;
-            Debug.Log("In Combat timer: " + inCombatTimer);
         }
 
         if (inCombatTimer >= 5f)
@@ -205,5 +214,14 @@ public class EnemyController : MonoBehaviour
     {
         state = State.InCombat;
         inCombatTimer = 0f;
+    }
+
+    private void CheckIsAlive()
+    {
+        if (enemyHP <= 0)
+        {
+            Instantiate(enemyDeathPrefab, transform.position, transform.rotation);
+            Destroy(gameObject);
+        }
     }
 }

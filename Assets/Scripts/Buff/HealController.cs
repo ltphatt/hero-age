@@ -6,18 +6,8 @@ public class HealController : MonoBehaviour
 {
 
     public int healValue = 1;
+    [SerializeField] GameObject itemFeedbackPrefab;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void HealPlayer(PlayerController player)
     {
@@ -26,6 +16,7 @@ public class HealController : MonoBehaviour
 
     public void DestroySelf()
     {
+        Instantiate(itemFeedbackPrefab, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 }

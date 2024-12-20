@@ -183,6 +183,7 @@ MonoBehaviour:
   enemyHP: 5
   enemyMaxHP: 5
   state: 1
+  enemyDeathPrefab: {fileID: 4803176320388565606, guid: e063626fc5a40dd4fb3dd407196fabb1, type: 3}
 --- !u!95 &4518531544149114372
 Animator:
   serializedVersion: 5
@@ -411,6 +412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7de2c2703f77da64b852561689aa66e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 1434114181990213324}
   barImage: {fileID: 247724447147132883}
   green: {r: 0, g: 1, b: 0, a: 1}
   yellow: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
