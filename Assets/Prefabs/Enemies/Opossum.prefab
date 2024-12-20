@@ -400,6 +400,7 @@ MonoBehaviour:
   enemyHP: 5
   enemyMaxHP: 5
   state: 0
+  enemyDeathPrefab: {fileID: 4803176320388565606, guid: e063626fc5a40dd4fb3dd407196fabb1, type: 3}
 --- !u!1 &6256555593375474239
 GameObject:
   m_ObjectHideFlags: 0

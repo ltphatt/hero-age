@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEditor;
 using UnityEngine;
 
@@ -26,6 +27,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private int enemyMaxHP = 5;
     [SerializeField] private State state;
 
+    [Header("Effects")]
+    [SerializeField] GameObject enemyDeathPrefab;
 
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
@@ -213,10 +216,11 @@ public class EnemyController : MonoBehaviour
         inCombatTimer = 0f;
     }
 
-    public void CheckIsAlive()
+    private void CheckIsAlive()
     {
         if (enemyHP <= 0)
         {
+            Instantiate(enemyDeathPrefab, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }

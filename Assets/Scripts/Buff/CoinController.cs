@@ -6,17 +6,7 @@ public class CoinController : MonoBehaviour
 {
 
     public int coinValue = 1;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] GameObject itemFeedbackPrefab;
 
     public void CollectCoin(PlayerController player)
     {
@@ -25,6 +15,7 @@ public class CoinController : MonoBehaviour
 
     public void DestroySelf()
     {
+        Instantiate(itemFeedbackPrefab, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 }
