@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class BossHealth : MonoBehaviour
 {
-    public int health = 200;
-
+    public int health = 10;
+    public int maxHealth = 10;
     Animator animator;
+    [SerializeField] GameObject bossDeathffect;
 
     private void Start()
     {
@@ -24,9 +25,9 @@ public class BossHealth : MonoBehaviour
         }
     }
 
-    public void Die()
+    private void Die()
     {
+        Instantiate(bossDeathffect, transform.position + Vector3.up, transform.rotation);
         Destroy(gameObject);
     }
-
 }
