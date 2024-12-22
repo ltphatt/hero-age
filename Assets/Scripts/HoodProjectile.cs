@@ -39,6 +39,13 @@ public class HoodProjectile : MonoBehaviour
 
             Destroy(gameObject);
         }
+
+        BossHealth boss = other.GetComponent<BossHealth>();
+        if (boss != null)
+        {
+            boss.TakeDamage(-damage);
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)

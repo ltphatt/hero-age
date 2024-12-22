@@ -5,7 +5,14 @@ using UnityEngine;
 public class Boss : MonoBehaviour
 {
     [SerializeField] Transform player;
-    [SerializeField] bool isFlipped = true;
+    public bool isFlipped = true;
+
+    BossAttack bossAttack;
+
+    private void Start()
+    {
+        bossAttack = GetComponent<BossAttack>();
+    }
 
     public void LookAtPlayer()
     {
@@ -24,5 +31,7 @@ public class Boss : MonoBehaviour
             transform.Rotate(0f, 180f, 0f);
             isFlipped = false;
         }
+
+        bossAttack.ChangeAttackOffset();
     }
 }

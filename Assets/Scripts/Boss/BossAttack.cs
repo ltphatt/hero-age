@@ -10,6 +10,12 @@ public class BossAttack : MonoBehaviour
     [SerializeField] Vector3 attackOffset;
     [SerializeField] float attackRange = 1f;
     public LayerMask attackMask;
+    private float attackOffsetX = 0f;
+
+    private void Start()
+    {
+        attackOffsetX = attackOffset.x;
+    }
 
     private void OnDrawGizmosSelected()
     {
@@ -27,6 +33,19 @@ public class BossAttack : MonoBehaviour
         if (colInfo != null)
         {
             colInfo.GetComponent<PlayerController>().ChangeHealth(-attackDamage);
+        }
+    }
+
+    public void ChangeAttackOffset()
+    {
+        // if isFlipped
+        if (GetComponent<Boss>().isFlipped)
+        {
+            attackOffset.x = -attackOffsetX;
+        }
+        else
+        {
+            attackOffset.x = attackOffsetX;
         }
     }
 }

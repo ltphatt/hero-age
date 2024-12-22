@@ -1076,7 +1076,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &310386842
 Transform:
   m_ObjectHideFlags: 0
@@ -49385,6 +49385,7 @@ GameObject:
   - component: {fileID: 1956817960}
   - component: {fileID: 1956817964}
   - component: {fileID: 1956817965}
+  - component: {fileID: 1956817966}
   m_Layer: 8
   m_Name: Mallet
   m_TagString: Untagged
@@ -49439,18 +49440,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.56179047, y: 2.1686952}
+  m_Offset: {x: -0.3806076, y: 1.8121803}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 5.472, y: 4.6}
+    oldSize: {x: 4.56, y: 3.8333333}
     newSize: {x: 6.84, y: 5.75}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.4697723, y: 4.1128697}
+  m_Size: {x: 2.1074066, y: 3.3998404}
   m_EdgeRadius: 0
 --- !u!50 &1956817961
 Rigidbody2D:
@@ -49579,11 +49580,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDamage: 5
-  attackOffset: {x: 1.07, y: 1.12, z: 0}
+  attackOffset: {x: 0.93, y: 1.08, z: 0}
   attackRange: 1
   attackMask:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &1956817966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956817958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37a1a532a35aabd438d87d17da1b239c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 200
 --- !u!4 &1961720567 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6792232376058332067, guid: 4d746ef3a5e90d248a821ae93654c827, type: 3}
