@@ -30253,7 +30253,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 124.52, y: -2.79, z: -10}
+  m_LocalPosition: {x: 124.52, y: -3.4799995, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -32632,7 +32632,7 @@ Transform:
   m_GameObject: {fileID: 1309079147}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 124.52, y: -2.79, z: -10}
+  m_LocalPosition: {x: 124.52, y: -3.4799995, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -49401,7 +49401,7 @@ Transform:
   m_GameObject: {fileID: 1956817958}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 132.27, y: -6.07, z: 0}
+  m_LocalPosition: {x: 135.83, y: -6.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -49578,6 +49578,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd96b7a9ba0e77b449768b5d83121786, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackDamage: 5
+  attackOffset: {x: 1.07, y: 1.12, z: 0}
+  attackRange: 1
+  attackMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!4 &1961720567 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6792232376058332067, guid: 4d746ef3a5e90d248a821ae93654c827, type: 3}
@@ -50107,6 +50113,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3671794411708251651, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
+      propertyPath: HP
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3671794411708251651, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
+      propertyPath: maxHP
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3671794411708251651, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
       propertyPath: healBar
       value: 
       objectReference: {fileID: 1183903869}
@@ -50128,7 +50142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8339744794210354204, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.51
+      value: -6.2
       objectReference: {fileID: 0}
     - target: {fileID: 8339744794210354204, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
       propertyPath: m_LocalPosition.z

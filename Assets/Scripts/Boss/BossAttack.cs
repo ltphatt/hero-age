@@ -1,18 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class BossAttack : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] int attackDamage = 10;
+
+    [SerializeField] Vector3 attackOffset;
+    [SerializeField] float attackRange = 1f;
+    public LayerMask attackMask;
+
+    private void OnDrawGizmosSelected()
     {
-        
+        Handles.color = Color.red;
+        Handles.DrawWireDisc(transform.position + attackOffset, transform.forward, attackRange);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Attack()
     {
-        
+        Vector3 pos = transform.position;
+        pos += transform.right * attackOffset.x;
+        pos += transform.up * attackOffset.y;
+
+        Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
+        if (colInfo != null)
+        {
+            colInfo.GetComponent<PlayerController>().ChangeHealth(-attackDamage);
+        }
     }
 }
