@@ -30253,7 +30253,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.0925722, y: -4.14925, z: -10}
+  m_LocalPosition: {x: 5.655777, y: -4.1444297, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30621,7 +30621,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b6dc04f2884eb5b46b675390b1e75e84, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.049
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -50267,6 +50267,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1279577592}
     m_Modifications:
+    - target: {fileID: -814546393086197683, guid: 6df832122741d894b921d8ae6a4e9313, type: 3}
+      propertyPath: Priority
+      value: 51
+      objectReference: {fileID: 0}
+    - target: {fileID: -814546393086197683, guid: 6df832122741d894b921d8ae6a4e9313, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 217869129717712517, guid: 6df832122741d894b921d8ae6a4e9313, type: 3}
       propertyPath: m_LocalPosition.x
       value: -51.623947
@@ -50311,6 +50319,10 @@ PrefabInstance:
       propertyPath: enemyHP
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1434114181990213324, guid: 6df832122741d894b921d8ae6a4e9313, type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 148b342aa1b1edc408354a3f02d2e991, type: 3}
     - target: {fileID: 1434114181990213324, guid: 6df832122741d894b921d8ae6a4e9313, type: 3}
       propertyPath: enemyMaxHP
       value: 10
