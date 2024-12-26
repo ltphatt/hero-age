@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [Header("Player HUD")]
     [SerializeField] private Image healBar;
 
+    AudioSource audioSource;
 
     private void Awake()
     {
@@ -44,12 +45,14 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("Heal"))
         {
             HealController healController = collision.GetComponent<HealController>();
+            healController.PlayHitSound();
             healController.HealPlayer(this);
             healController.DestroySelf();
         }
         else if (collision.CompareTag("Coin"))
         {
             CoinController coinController = collision.GetComponent<CoinController>();
+            coinController.PlayHitSound();
             coinController.CollectCoin(this);
             coinController.DestroySelf();
         }
