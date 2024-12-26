@@ -1,15 +1,24 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] PlayerInput gameInput;
+    [Header("Movement")]
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float jumpSpeed = 5f;
     [SerializeField] float slowWhenJump = 0.6f;
-    [SerializeField] PlayerInput gameInput;
     private bool isJumping = false;
     private bool isWalking = false;
     Rigidbody2D rb;
 
+    [Header("Dashing")]
+    [SerializeField] bool canDash = true;
+    [SerializeField] bool isDashing;
+    [SerializeField] float dashingPower = 24f;
+    [SerializeField] float dashCooldown = 1f;
+    [SerializeField] float dashDuration = 0.2f;
+    [SerializeField] TrailRenderer trailRenderer;
 
     private void Start()
     {
@@ -19,8 +28,26 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (isDashing)
+        {
+            return;
+        }
+
         HandleMovement();
         HandleJump();
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        {
+            StartCoroutine(Dash());
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (isDashing)
+        {
+            return;
+        }
     }
 
     private void HandleJump()
@@ -62,5 +89,21 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
+    }
+
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+        float originGravity = rb.gravityScale;
+        rb.gravityScale = 0f;
+        rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
+        trailRenderer.emitting = true;
+        yield return new WaitForSeconds(dashDuration);
+        trailRenderer.emitting = false;
+        rb.gravityScale = originGravity;
+        isDashing = false;
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
     }
 }
