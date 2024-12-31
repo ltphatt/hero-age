@@ -6,11 +6,13 @@ using UnityEngine.UI;
 public class HealthbarUI : MonoBehaviour
 {
     [SerializeField] EnemyController enemy;
+    [SerializeField] BossHealth boss;
     [SerializeField] Image barImage;
     Canvas canvas;
     [SerializeField] Color green = Color.green;
     [SerializeField] Color yellow = Color.yellow;
     [SerializeField] Color red = Color.red;
+    [SerializeField] bool isBoss = false;
 
     private void Awake()
     {
@@ -24,6 +26,28 @@ public class HealthbarUI : MonoBehaviour
     }
 
     private void Update()
+    {
+        if (isBoss)
+        {
+            HandleBossHealthChange();
+        }
+        else
+        {
+            HandleEnemyHealthChange();
+        }
+    }
+
+    private void Show()
+    {
+        canvas.enabled = true;
+    }
+
+    private void Hide()
+    {
+        canvas.enabled = false;
+    }
+
+    void HandleEnemyHealthChange()
     {
         if (enemy != null)
         {
@@ -41,14 +65,31 @@ public class HealthbarUI : MonoBehaviour
         }
     }
 
-    private void Show()
+    void HandleBossHealthChange()
     {
-        canvas.enabled = true;
-    }
+        if (boss != null)
+        {
+            if (boss.transform.localScale.z < 0)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+            else
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
 
-    private void Hide()
-    {
-        canvas.enabled = false;
+            barImage.fillAmount = (float)boss.health / boss.maxHealth;
+            UpdateBarColor();
+
+            if (boss.health <= 0)
+            {
+                Hide();
+            }
+            else
+            {
+                Show();
+            }
+        }
     }
 
     void UpdateBarColor()
