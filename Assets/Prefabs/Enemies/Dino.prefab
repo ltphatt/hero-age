@@ -179,10 +179,10 @@ MonoBehaviour:
   idleDuration: 3
   moveDuration: 2
   bulletPrefab: {fileID: 709218619336874982, guid: 9994e384cd4b81f469361bcce9fca550, type: 3}
-  targetingRange: 8
+  targetingRange: 5
   bulletPerSec: 1
-  enemyHP: 5
-  enemyMaxHP: 5
+  enemyHP: 10
+  enemyMaxHP: 10
   state: 1
   enemyDeathPrefab: {fileID: 4803176320388565606, guid: e063626fc5a40dd4fb3dd407196fabb1, type: 3}
   hitSound: {fileID: 8300000, guid: 148b342aa1b1edc408354a3f02d2e991, type: 3}
@@ -218,14 +218,14 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.679
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 51
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

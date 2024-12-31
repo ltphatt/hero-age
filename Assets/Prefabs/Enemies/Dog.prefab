@@ -195,9 +195,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9f8e9a76f6425e409c35c370b7f2235, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 4
   veritcalMovement: 0
-  idleDuration: 3
+  idleDuration: 2
   moveDuration: 3
   bulletPrefab: {fileID: 709218619336874982, guid: 9994e384cd4b81f469361bcce9fca550, type: 3}
   targetingRange: 5

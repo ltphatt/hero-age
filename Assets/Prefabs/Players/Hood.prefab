@@ -294,7 +294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 8
   jumpSpeed: 13
-  slowWhenJump: 0.6
+  slowWhenJump: 0.75
   gameInput: {fileID: 0}
 --- !u!114 &3671794411708251651
 MonoBehaviour:
@@ -308,12 +308,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f9b581888faa0429c91c836ff5fe09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 10
-  maxHP: 10
+  HP: 30
+  maxHP: 30
+  coin: 0
   projectilePrefab: {fileID: 3441420115609852525, guid: c356398c75943524082e80e449f38839, type: 3}
   firePoint: {fileID: 3869559404219195935}
   gameInput: {fileID: 0}
   playerMovement: {fileID: 3719675932938903092}
+  healBar: {fileID: 0}
 --- !u!1 &7706953638781912702
 GameObject:
   m_ObjectHideFlags: 0
