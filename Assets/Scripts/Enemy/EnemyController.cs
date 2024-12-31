@@ -30,6 +30,10 @@ public class EnemyController : MonoBehaviour
     [Header("Effects")]
     [SerializeField] GameObject enemyDeathPrefab;
 
+    [Header("Enemy Sounds")]
+    [SerializeField] private AudioClip hitSound;
+    private AudioSource audioSource;
+
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
     float timer = 0f;
@@ -53,6 +57,7 @@ public class EnemyController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
 
         isWalking = true;
         idleTimer = idleDuration;
@@ -178,6 +183,8 @@ public class EnemyController : MonoBehaviour
 
     public void ChangeHealth(int value)
     {
+        PlayHitSound();
+
         enemyHP = Mathf.Clamp(enemyHP + value, 0, enemyMaxHP);
     }
 
@@ -222,6 +229,14 @@ public class EnemyController : MonoBehaviour
         {
             Instantiate(enemyDeathPrefab, transform.position, transform.rotation);
             Destroy(gameObject);
+        }
+    }
+
+    void PlayHitSound()
+    {
+        if (hitSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(hitSound);
         }
     }
 }

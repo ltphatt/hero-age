@@ -9,7 +9,9 @@ public class Boss_Run : StateMachineBehaviour
     Rigidbody2D rb;
     public float speed = 5f;
     public float attackRange = 2f;
+    public float foundPlayerRange = 3f;
     Boss boss;
+    private bool isFight = false;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -25,7 +27,15 @@ public class Boss_Run : StateMachineBehaviour
         Vector2 target = new Vector2(player.position.x, rb.position.y);
 
         Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
-        rb.MovePosition(newPos);
+        if (Vector2.Distance(player.position, rb.position) <= foundPlayerRange)
+        {
+            isFight = true;
+        }
+
+        if (isFight)
+        {
+            rb.MovePosition(newPos);
+        }
 
         if (Vector2.Distance(player.position, rb.position) <= attackRange)
         {

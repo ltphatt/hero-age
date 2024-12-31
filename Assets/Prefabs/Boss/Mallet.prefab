@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eca36c54cee45324bb3df08f313aa744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 8339744794210354204, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
   isFlipped: 0
 --- !u!114 &6666399064887531393
 MonoBehaviour:
@@ -230,6 +230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   maxHealth: 10
+  enragedHealth: 10
   bossDeathffect: {fileID: 4502285318911443147, guid: 10467fc07ae02d84bba81d1d68208238, type: 3}
 --- !u!1 &6545379182394123124
 GameObject:
