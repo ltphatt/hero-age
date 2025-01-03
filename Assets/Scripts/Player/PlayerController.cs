@@ -14,6 +14,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform firePoint;
     [SerializeField] PlayerInput gameInput;
     [SerializeField] private PlayerMovement playerMovement;
+
+    private bool isBuffed = false;
+    private float buffDuration = 0f;
+    private float buffMultiplier = 1f;
+
+    private int originalHP;
+
     private Animator animator;
 
     [Header("Player HUD")]
@@ -37,6 +44,16 @@ public class PlayerController : MonoBehaviour
 
         animator.SetBool(IS_WALKING, playerMovement.IsWalking());
 
+        if(isBuffed)
+        {
+            buffDuration -= Time.deltaTime;
+            if(buffDuration <= 0)
+            {
+                Debug.Log("Buff duration has ended");
+                RemoveAmuletBuff();
+            }
+        }
+
         UpdateHealthBarUI();
     }
 
@@ -56,7 +73,13 @@ public class PlayerController : MonoBehaviour
             coinController.CollectCoin(this);
             coinController.DestroySelf();
         }
-        else
+        else if (collision.CompareTag("Amulet"))
+        {
+            AmuletController amuletController = collision.GetComponent<AmuletController>();
+            amuletController.PlayHitSound();
+            amuletController.CollectBuff(this);
+            amuletController.DestroySelf();
+        }
         {
             // Do nothing
         }
@@ -82,5 +105,37 @@ public class PlayerController : MonoBehaviour
     {
         coin += value;
         Debug.Log("Current Coin: " + coin);
+    }
+
+    public void ApplyAmuletBuff(float duration, int multiplier)
+    {
+        if(isBuffed)
+        {
+            RemoveAmuletBuff();
+        }
+
+        isBuffed = true;
+        buffDuration = duration;
+        buffMultiplier = multiplier;
+        Debug.Log("Player is buffed for " + duration + " seconds with multiplier " + multiplier);
+
+        originalHP = maxHP;
+
+        maxHP = (int)(maxHP * multiplier);
+
+        int buffHP = maxHP - originalHP;
+        HP += buffHP;
+
+        Debug.Log("Current HP: " + HP + "/" + maxHP);
+    }
+
+    public void RemoveAmuletBuff()
+    {
+        isBuffed = false;
+        maxHP = (int)originalHP;
+        HP = Mathf.Clamp(HP, 0, maxHP);
+        Debug.Log("Player is no longer buffed");
+
+        Debug.Log("Current HP: " + HP + "/" + maxHP);
     }
 }
