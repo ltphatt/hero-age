@@ -186,6 +186,7 @@ MonoBehaviour:
   state: 1
   enemyDeathPrefab: {fileID: 4803176320388565606, guid: e063626fc5a40dd4fb3dd407196fabb1, type: 3}
   hitSound: {fileID: 8300000, guid: 148b342aa1b1edc408354a3f02d2e991, type: 3}
+  soundCooldown: 0.5
 --- !u!95 &4518531544149114372
 Animator:
   serializedVersion: 5
@@ -219,7 +220,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.679
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -511,10 +512,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 1434114181990213324}
+  boss: {fileID: 0}
   barImage: {fileID: 247724447147132883}
   green: {r: 0, g: 1, b: 0, a: 1}
   yellow: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   red: {r: 1, g: 0, b: 0, a: 1}
+  isBoss: 0
 --- !u!1 &8658918323824948128
 GameObject:
   m_ObjectHideFlags: 0
