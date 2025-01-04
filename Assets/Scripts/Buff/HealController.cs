@@ -26,10 +26,14 @@ public class HealController : MonoBehaviour
     }
     public void PlayHitSound()
     {
-        if (hitSound != null && audioSource != null)
+        if (audioSource != null && !audioSource.isPlaying)
         {
-            audioSource.PlayOneShot(hitSound);
+            if (hitSound != null)
+            {
+                audioSource.PlayOneShot(hitSound);
+            }
         }
+
     }
 
 }

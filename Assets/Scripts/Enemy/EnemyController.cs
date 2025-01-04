@@ -33,6 +33,8 @@ public class EnemyController : MonoBehaviour
     [Header("Enemy Sounds")]
     [SerializeField] private AudioClip hitSound;
     private AudioSource audioSource;
+    [SerializeField] public float soundCooldown = 1f;
+    private float lastHitSoundTime = -1f;
 
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
@@ -45,6 +47,7 @@ public class EnemyController : MonoBehaviour
     private Transform target = null;
     private float timeUntilFire;
     float inCombatTimer = 0f;
+
 
     private void OnDrawGizmosSelected()
     {
@@ -234,9 +237,14 @@ public class EnemyController : MonoBehaviour
 
     void PlayHitSound()
     {
-        if (hitSound != null && audioSource != null)
+        if (Time.time - lastHitSoundTime >= soundCooldown && !audioSource.isPlaying)
         {
-            audioSource.PlayOneShot(hitSound);
+            lastHitSoundTime = Time.time;
+            if (hitSound != null)
+            {
+                audioSource.PlayOneShot(hitSound);
+            }
         }
+
     }
 }
