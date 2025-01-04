@@ -48,9 +48,9 @@ TagManager:
   - name: Enemy
     uniqueID: 656781821
     locked: 0
-  - name: Player
-    uniqueID: 4225781181
-    locked: 0
   - name: Prop
     uniqueID: 3679682657
+    locked: 0
+  - name: Player
+    uniqueID: 4225781181
     locked: 0
