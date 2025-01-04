@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 13.02, y: -3.09, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4492232103925645596}
@@ -207,6 +207,7 @@ MonoBehaviour:
   state: 0
   enemyDeathPrefab: {fileID: 4803176320388565606, guid: e063626fc5a40dd4fb3dd407196fabb1, type: 3}
   hitSound: {fileID: 8300000, guid: 1b350a240b1da0a40a93aad79418e976, type: 3}
+  soundCooldown: 1
 --- !u!82 &-7431386350889017593
 AudioSource:
   m_ObjectHideFlags: 0
@@ -586,7 +587,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 7044624240618426833}
+  boss: {fileID: 0}
   barImage: {fileID: 2675773128550689325}
   green: {r: 0, g: 1, b: 0, a: 1}
   yellow: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   red: {r: 1, g: 0, b: 0, a: 1}
+  isBoss: 0

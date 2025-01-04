@@ -6,6 +6,7 @@ public class Crank : MonoBehaviour
 {
     [SerializeField] private GameObject crankUp;
     [SerializeField] private GameObject crankDown;
+    [SerializeField] private GameObject gate;
 
     private void Start()
     {
@@ -20,6 +21,7 @@ public class Crank : MonoBehaviour
         {
             crankUp.SetActive(false);
             crankDown.SetActive(true);
+            gate.SetActive(false);
         }
     }
 }
