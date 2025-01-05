@@ -184,6 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   attackRange: 2
+  foundPlayerRange: 4
 --- !u!1101 &2276429449813403544
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
