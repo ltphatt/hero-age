@@ -147,7 +147,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinValue: 1
   itemFeedbackPrefab: {fileID: 470213316410217550, guid: c4fac06ce109e264eaa5812d134e87d8, type: 3}
-  hitSound: {fileID: 8300000, guid: c5cb2ac29e89dbf43a9b644caaad45e6, type: 3}
 --- !u!95 &8626831639540744884
 Animator:
   serializedVersion: 5
@@ -176,7 +175,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1573472048384723257}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}

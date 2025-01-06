@@ -7,15 +7,18 @@ public class CoinController : MonoBehaviour
 
     public int coinValue = 1;
     [SerializeField] GameObject itemFeedbackPrefab;
-    [Header("Item Sound")]
-    [SerializeField] private AudioClip hitSound;
-    private AudioSource audioSource;
-    private void Start()
+    [Header("Audio Manager")]
+    AudioManager audioManager;
+
+    private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
+
     public void CollectCoin(PlayerController player)
     {
+        // Play SFX when collecting coin
+        audioManager.PlaySFX(audioManager.gem);
         player.ChangeCoin(coinValue);
     }
 
@@ -24,12 +27,5 @@ public class CoinController : MonoBehaviour
 
         Instantiate(itemFeedbackPrefab, transform.position, transform.rotation);
         Destroy(gameObject, 0.7f);
-    }
-    public void PlayHitSound()
-    {
-        if (hitSound != null && audioSource != null)
-        {
-            audioSource.PlayOneShot(hitSound);
-        }
     }
 }

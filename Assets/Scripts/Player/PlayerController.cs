@@ -44,10 +44,10 @@ public class PlayerController : MonoBehaviour
 
         animator.SetBool(IS_WALKING, playerMovement.IsWalking());
 
-        if(isBuffed)
+        if (isBuffed)
         {
             buffDuration -= Time.deltaTime;
-            if(buffDuration <= 0)
+            if (buffDuration <= 0)
             {
                 Debug.Log("Buff duration has ended");
                 RemoveAmuletBuff();
@@ -62,21 +62,18 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("Heal"))
         {
             HealController healController = collision.GetComponent<HealController>();
-            healController.PlayHitSound();
             healController.HealPlayer(this);
             healController.DestroySelf();
         }
         else if (collision.CompareTag("Coin"))
         {
             CoinController coinController = collision.GetComponent<CoinController>();
-            coinController.PlayHitSound();
             coinController.CollectCoin(this);
             coinController.DestroySelf();
         }
         else if (collision.CompareTag("Amulet"))
         {
             AmuletController amuletController = collision.GetComponent<AmuletController>();
-            amuletController.PlayHitSound();
             amuletController.CollectBuff(this);
             amuletController.DestroySelf();
         }
@@ -109,7 +106,7 @@ public class PlayerController : MonoBehaviour
 
     public void ApplyAmuletBuff(float duration, int multiplier)
     {
-        if(isBuffed)
+        if (isBuffed)
         {
             RemoveAmuletBuff();
         }
