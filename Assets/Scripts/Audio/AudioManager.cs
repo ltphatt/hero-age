@@ -7,13 +7,18 @@ public class AudioManager : MonoBehaviour
     [Header("Audio Sources")]
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource SFXSource;
+    [Header("Audio Player Sources")]
+    [SerializeField] AudioSource playerMovementSource;
+    [SerializeField] AudioSource playerAttackSource;
     [SerializeField] AudioSource playerSource;
+
 
     [Header("Audio Clips Background Music")]
     public AudioClip background;
     [Header("Audio Player SFX")]
     public AudioClip death;
     public AudioClip jump;
+    public AudioClip movement;
     public AudioClip attack;
     public AudioClip hit;
     public AudioClip wallTouch;
@@ -74,11 +79,21 @@ public class AudioManager : MonoBehaviour
     }
 
     // Play the Player sound effect function
+    public void PlayPlayerMovementSFX(AudioClip clip)
+    {
+        playerMovementSource.PlayOneShot(clip);
+        // if (!playerMovementSource.isPlaying)
+        // {
+
+        // }
+    }
+
+    // Play the player sound when getting hit
     public void PlayPlayerSFX(AudioClip clip)
     {
         if (!playerSource.isPlaying)
         {
-            playerSource.PlayOneShot(clip);
+            playerSource.PlayOneShot(hit);
         }
     }
 }

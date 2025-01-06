@@ -19,6 +19,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float dashCooldown = 1f;
     [SerializeField] float dashDuration = 0.2f;
     [SerializeField] TrailRenderer trailRenderer;
+    [Header("Audio Manager")]
+    AudioManager audioManager;
+    private float countDownTime;
+    private float lastMovementTime = -1;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        countDownTime = audioManager.movement.length;
+    }
 
     private void Start()
     {
@@ -56,12 +66,15 @@ public class PlayerMovement : MonoBehaviour
 
         if (gameInput.GetJump() && !isJumping)
         {
+            // Sound when jumping
+            audioManager.PlayPlayerMovementSFX(audioManager.jump);
             rb.velocity += new Vector2(0f, jumpSpeed);
         }
     }
 
     void HandleMovement()
     {
+
         var playerMoveSpeed = isJumping ? moveSpeed * slowWhenJump : moveSpeed;
 
         Vector2 inputVector = gameInput.GetMovementVector();
@@ -70,6 +83,17 @@ public class PlayerMovement : MonoBehaviour
         transform.position += moveDir * playerMoveSpeed * Time.deltaTime;
 
         isWalking = moveDir != Vector3.zero;
+
+        if (Time.time - lastMovementTime > countDownTime)
+        {
+            lastMovementTime = Time.time;
+            if (isWalking && !isJumping)
+            {
+                audioManager.PlayPlayerMovementSFX(audioManager.movement);
+            }
+        }
+        // Sound when moving
+
 
         FlipSprite(inputVector.x);
     }
