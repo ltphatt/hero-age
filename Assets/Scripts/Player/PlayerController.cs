@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,6 +29,8 @@ public class PlayerController : MonoBehaviour
 
     AudioSource audioSource;
 
+    public static event Action OnPlayerDied;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -44,10 +47,10 @@ public class PlayerController : MonoBehaviour
 
         animator.SetBool(IS_WALKING, playerMovement.IsWalking());
 
-        if(isBuffed)
+        if (isBuffed)
         {
             buffDuration -= Time.deltaTime;
-            if(buffDuration <= 0)
+            if (buffDuration <= 0)
             {
                 Debug.Log("Buff duration has ended");
                 RemoveAmuletBuff();
@@ -99,6 +102,22 @@ public class PlayerController : MonoBehaviour
     {
         HP = Mathf.Clamp(HP + value, 0, maxHP);
         Debug.Log("Current HP: " + HP + "/" + maxHP);
+
+        if (HP <= 0)
+        {
+            Debug.Log("Player is dead");
+
+            OnPlayerDied?.Invoke();
+
+            if (gameObject != null)
+            {
+                // The game has bug on boss controller when player is null,
+                // I'll just disable the player instead of destroying it
+                // Destroy(gameObject);
+                gameObject.SetActive(false);
+                gameInput.Disable();
+            }
+        }
     }
 
     public void ChangeCoin(int value)
@@ -109,7 +128,7 @@ public class PlayerController : MonoBehaviour
 
     public void ApplyAmuletBuff(float duration, int multiplier)
     {
-        if(isBuffed)
+        if (isBuffed)
         {
             RemoveAmuletBuff();
         }
