@@ -12,15 +12,22 @@ public class BossHealth : MonoBehaviour
     SpriteRenderer spriteRenderer;
     bool isEnraged = false;
 
-    [Header("Boss Sounds")]
-    [SerializeField] private AudioClip hitSound;
-    private AudioSource audioSource;
+    [Header("Audio Manager")]
+    AudioManager audioManager;
+
+    [Header("Enemy Type")]
+    [SerializeField] private string enemyType;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        audioSource = GetComponent<AudioSource>();
     }
 
     public void TakeDamage(int damage)
@@ -28,7 +35,7 @@ public class BossHealth : MonoBehaviour
         health -= damage;
         animator.SetTrigger("Hurt");
 
-        PlayHitSound();
+        audioManager.PlayEnemySFX(enemyType);
 
         if (health == maxHealth / 2 && !isEnraged)
         {
@@ -48,12 +55,5 @@ public class BossHealth : MonoBehaviour
         Instantiate(bossDeathffect, transform.position + Vector3.up, transform.rotation);
         Destroy(gameObject);
     }
-    void PlayHitSound()
-    {
-        if (audioSource != null && !audioSource.isPlaying)
-        {
-            if (hitSound != null)
-                audioSource.PlayOneShot(hitSound);
-        }
-    }
+
 }

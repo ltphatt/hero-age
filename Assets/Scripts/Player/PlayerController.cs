@@ -25,13 +25,14 @@ public class PlayerController : MonoBehaviour
 
     [Header("Player HUD")]
     [SerializeField] private Image healBar;
-
-    AudioSource audioSource;
+    [Header("Player Sounds")]
+    AudioManager audioManager;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         animator.SetBool(IS_WALKING, false);
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     private void Update()
@@ -94,6 +95,11 @@ public class PlayerController : MonoBehaviour
 
     public void ChangeHealth(int value)
     {
+        // Play SFX when taking damage
+        if (value < 0)
+        {
+            audioManager.PlayPlayerSFX(audioManager.hit);
+        }
         HP = Mathf.Clamp(HP + value, 0, maxHP);
         Debug.Log("Current HP: " + HP + "/" + maxHP);
     }
