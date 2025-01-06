@@ -40,7 +40,6 @@ public class Chest : MonoBehaviour
                     Debug.Log("You found a wooden chest!");
                     break;
             }
-            // Destroy(gameObject);
             animator.SetTrigger("Open");
         }
     }
