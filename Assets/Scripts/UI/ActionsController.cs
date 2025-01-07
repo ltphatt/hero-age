@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameStartController : MonoBehaviour
+public class ActionsController : MonoBehaviour
 {
+    public GameObject settingsScreen;
+
     public void OnStartClick()
     {
         SceneManager.LoadScene("Level 1");
@@ -16,5 +16,11 @@ public class GameStartController : MonoBehaviour
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
         Application.Quit();
+    }
+
+    public void OnSettingsClick()
+    {
+        settingsScreen.SetActive(true);
+        gameObject.SetActive(false);
     }
 }

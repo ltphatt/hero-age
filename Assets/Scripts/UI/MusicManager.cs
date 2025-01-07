@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,8 +15,6 @@ public class MusicManager : MonoBehaviour
         {
             instance = this;
             audioSource = GetComponent<AudioSource>();
-            // audioSource.clip = backgroundMusic;
-            // audioSource.Play();
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -43,17 +39,17 @@ public class MusicManager : MonoBehaviour
         instance.audioSource.volume = volume;
     }
 
-    public void PlayBackgroundMusic(bool wantReset, AudioClip audioClip = null)
+    public static void PlayBackgroundMusic(bool wantReset, AudioClip audioClip = null)
     {
-        if (audioClip != null) audioSource.clip = audioClip;
-        if (audioSource.clip == null) return;
-        if (wantReset) audioSource.Stop();
+        if (audioClip != null) instance.audioSource.clip = audioClip;
+        if (instance.audioSource.clip == null) return;
+        if (wantReset) instance.audioSource.Stop();
 
-        audioSource.Play();
+        instance.audioSource.Play();
     }
 
-    public void PauseBackgroundMusic()
+    public static void PauseBackgroundMusic()
     {
-        audioSource.Pause();
+        instance.audioSource.Pause();
     }
 }
