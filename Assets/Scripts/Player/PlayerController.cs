@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,8 +8,8 @@ public class PlayerController : MonoBehaviour
     private static string FIRE = "Fire";
 
     [Header("Player Properties")]
-    [SerializeField] private int HP = 5;
-    [SerializeField] private int maxHP = 5;
+    public int HP = 5;
+    public int maxHP = 5;
     [SerializeField] private int coin = 0;
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] Transform firePoint;
@@ -27,6 +28,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Image healBar;
     [Header("Player Sounds")]
     AudioManager audioManager;
+
+    public static event Action OnPlayerDied;
 
     private void Awake()
     {
@@ -102,6 +105,24 @@ public class PlayerController : MonoBehaviour
         }
         HP = Mathf.Clamp(HP + value, 0, maxHP);
         Debug.Log("Current HP: " + HP + "/" + maxHP);
+        UpdateHealthBarUI();
+
+        if (HP <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        if (gameObject != null)
+        {
+            gameObject.SetActive(false);
+            gameInput.Disable();
+        }
+
+        OnPlayerDied?.Invoke();
+        OnPlayerDied = null;
     }
 
     public void ChangeCoin(int value)

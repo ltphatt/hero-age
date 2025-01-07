@@ -12,6 +12,7 @@ public class VolumeSetting : MonoBehaviour
 
     private void Start()
     {
+        // Check if the player has set the volume before
         if (PlayerPrefs.HasKey("musicVolume"))
         {
             loadVolume();

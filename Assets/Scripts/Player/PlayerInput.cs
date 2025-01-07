@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
     private PlayerInputActions playerInputActions;
+
     private void Awake()
     {
         playerInputActions = new PlayerInputActions();
@@ -27,5 +28,10 @@ public class PlayerInput : MonoBehaviour
     {
         bool fire = playerInputActions.Player.Fire.triggered;
         return fire;
+    }
+
+    public void Disable()
+    {
+        playerInputActions.Player.Disable();
     }
 }
