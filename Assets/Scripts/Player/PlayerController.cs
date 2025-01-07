@@ -157,4 +157,9 @@ public class PlayerController : MonoBehaviour
 
         Debug.Log("Current HP: " + HP + "/" + maxHP);
     }
+
+    public void TakeDamage(int damage)
+    {
+        ChangeHealth(-damage);
+    }
 }
