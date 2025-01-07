@@ -12,8 +12,14 @@ public class PlayerAnimation : MonoBehaviour
         animator.SetBool(IS_WALKING, false);
     }
 
+    private void Start()
+    {
+        animator.ResetTrigger("Dead");
+    }
+
     private void Update()
     {
         animator.SetBool(IS_WALKING, playerMovement.IsWalking());
+
     }
 }
