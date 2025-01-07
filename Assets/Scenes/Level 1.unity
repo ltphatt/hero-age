@@ -1099,7 +1099,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1434114181990213324, guid: 6df832122741d894b921d8ae6a4e9313, type: 3}
       propertyPath: targetingRange
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1434114181990213324, guid: 6df832122741d894b921d8ae6a4e9313, type: 3}
       propertyPath: enemyDeathPrefab
@@ -30622,7 +30622,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.3100047, y: -0.004930258, z: 0}
+  m_LocalPosition: {x: 12.75, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30750,7 +30750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 513d1a578b0e17b47ab7a2d894608bf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamerOverScreen: {fileID: 733846869}
+  gamerOverScreen: {fileID: 1078737748}
   survivedText: {fileID: 927513794}
   currentLevel: 1
   survivedLevelsCount: 0
@@ -32749,7 +32749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 600}
@@ -33906,7 +33906,7 @@ Transform:
   m_GameObject: {fileID: 1309079147}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 12.75, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -52117,6 +52117,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3671794411708251651, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
+      propertyPath: HP
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3671794411708251651, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
+      propertyPath: maxHP
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3671794411708251651, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
       propertyPath: healBar
       value: 
       objectReference: {fileID: 1183903869}
@@ -52134,7 +52142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8339744794210354204, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.96
+      value: 6.79
       objectReference: {fileID: 0}
     - target: {fileID: 8339744794210354204, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
       propertyPath: m_LocalPosition.y

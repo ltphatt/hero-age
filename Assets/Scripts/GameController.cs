@@ -15,15 +15,18 @@ public class GameController : MonoBehaviour
 
         survivedLevelsCount = currentLevel - 1;
         gamerOverScreen.SetActive(false);
+
+        Debug.Log("Reset game over screen");
     }
 
     void GameOverScreen()
     {
         gamerOverScreen.SetActive(true);
+
         survivedText.text = "You survived " + survivedLevelsCount + " level";
         if (survivedLevelsCount > 1) survivedText.text += "s";
 
-        Time.timeScale = 0;
+        Time.timeScale = 0f;
     }
 
     public void ResetGame()
@@ -31,7 +34,7 @@ public class GameController : MonoBehaviour
         currentLevel = 1;
         survivedLevelsCount = 0;
 
-        Time.timeScale = 1;
+        Time.timeScale = 1f;
         SceneManager.LoadScene(currentLevel - 1);
     }
 }

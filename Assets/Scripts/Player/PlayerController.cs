@@ -102,12 +102,13 @@ public class PlayerController : MonoBehaviour
     {
         HP = Mathf.Clamp(HP + value, 0, maxHP);
         Debug.Log("Current HP: " + HP + "/" + maxHP);
+        UpdateHealthBarUI();
 
         if (HP <= 0)
         {
             Debug.Log("Player is dead");
 
-            OnPlayerDied?.Invoke();
+            Die();
 
             if (gameObject != null)
             {
@@ -118,6 +119,12 @@ public class PlayerController : MonoBehaviour
                 gameInput.Disable();
             }
         }
+    }
+
+    private void Die()
+    {
+        OnPlayerDied?.Invoke();
+        OnPlayerDied = null;
     }
 
     public void ChangeCoin(int value)
