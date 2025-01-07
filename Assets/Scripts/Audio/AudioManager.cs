@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    [Header("Audio Sources")]
-    [SerializeField] AudioSource musicSource;
-    [SerializeField] AudioSource SFXSource;
-    [Header("Audio Player Sources")]
-    [SerializeField] AudioSource playerMovementSource;
-    [SerializeField] AudioSource playerAttackSource;
-    [SerializeField] AudioSource playerSource;
+    [Header(">>>>> Audio Source Music")]
+    [SerializeField] AudioSource musicSource; // Background music
+    [Header(">>>>> Audio Source SFX")]
+    [SerializeField] AudioSource SFXSource; // Jerry, Gem, Amulet, BigGem, Checkpoint
+    [Header(">>>>> Audio Player Sources")]
+    [SerializeField] AudioSource playerMovementSource; // Movement, Jump, Dash
+    [SerializeField] AudioSource playerAttackSource; // Attack
+    [SerializeField] AudioSource playerSource; // Hit
+    [Header(">>>>> Audio Enemy Sources")]
+    [SerializeField] AudioSource enemySource; // Enemy hit
 
 
-    [Header("Audio Clips Background Music")]
+    [Header(">>>>> Audio Clips Background Music")]
     public AudioClip background;
-    [Header("Audio Player SFX")]
+    [Header(">>>>> Audio Player SFX")]
     public AudioClip death;
     public AudioClip jump;
     public AudioClip dash;
@@ -24,13 +27,13 @@ public class AudioManager : MonoBehaviour
     public AudioClip hit;
     public AudioClip wallTouch;
     public AudioClip playerArchery;
-    [Header("Audio Item SFX")]
+    [Header(">>>>> Audio Item SFX")]
     public AudioClip checkpoint;
     public AudioClip jerry;
     public AudioClip gem;
     public AudioClip amulet;
     public AudioClip bigGem;
-    [Header("Audio Enemy Hit")]
+    [Header(">>>>> Audio Enemy Hit")]
     [SerializeField] public List<EnemyAudio> enemyAudios;
     private Dictionary<string, AudioClip> enemyAudioDictionary;
     public float masterVolume = 1f;
@@ -69,9 +72,9 @@ public class AudioManager : MonoBehaviour
     {
         if (enemyAudioDictionary.TryGetValue(enemyType, out AudioClip audioClip))
         {
-            if (!SFXSource.isPlaying)
+            if (!enemySource.isPlaying)
             {
-                SFXSource.PlayOneShot(audioClip);
+                enemySource.PlayOneShot(audioClip);
             }
         }
         else
@@ -84,10 +87,7 @@ public class AudioManager : MonoBehaviour
     public void PlayPlayerMovementSFX(AudioClip clip)
     {
         playerMovementSource.PlayOneShot(clip);
-        // if (!playerMovementSource.isPlaying)
-        // {
 
-        // }
     }
 
     // Play the player sound when getting hit
