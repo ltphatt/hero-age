@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -22,7 +23,6 @@ public class GameController : MonoBehaviour
     void GameOverScreen()
     {
         gamerOverScreen.SetActive(true);
-
         survivedText.text = "You survived " + survivedLevelsCount + " level";
         if (survivedLevelsCount > 1) survivedText.text += "s";
 

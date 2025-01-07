@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour
     private static string FIRE = "Fire";
 
     [Header("Player Properties")]
-    [SerializeField] private int HP = 5;
-    [SerializeField] private int maxHP = 5;
+    public int HP = 5;
+    public int maxHP = 5;
     [SerializeField] private int coin = 0;
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] Transform firePoint;
@@ -106,23 +106,18 @@ public class PlayerController : MonoBehaviour
 
         if (HP <= 0)
         {
-            Debug.Log("Player is dead");
-
             Die();
-
-            if (gameObject != null)
-            {
-                // The game has bug on boss controller when player is null,
-                // I'll just disable the player instead of destroying it
-                // Destroy(gameObject);
-                gameObject.SetActive(false);
-                gameInput.Disable();
-            }
         }
     }
 
     private void Die()
     {
+        if (gameObject != null)
+        {
+            gameObject.SetActive(false);
+            gameInput.Disable();
+        }
+
         OnPlayerDied?.Invoke();
         OnPlayerDied = null;
     }

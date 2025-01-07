@@ -30750,7 +30750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 513d1a578b0e17b47ab7a2d894608bf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamerOverScreen: {fileID: 1078737748}
+  gamerOverScreen: {fileID: 733846869}
   survivedText: {fileID: 927513794}
   currentLevel: 1
   survivedLevelsCount: 0
