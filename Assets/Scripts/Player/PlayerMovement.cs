@@ -48,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
+            audioManager.PlayPlayerMovementSFX(audioManager.dash);
             StartCoroutine(Dash());
         }
     }

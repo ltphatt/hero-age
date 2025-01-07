@@ -18,6 +18,7 @@ public class AudioManager : MonoBehaviour
     [Header("Audio Player SFX")]
     public AudioClip death;
     public AudioClip jump;
+    public AudioClip dash;
     public AudioClip movement;
     public AudioClip attack;
     public AudioClip hit;
@@ -32,6 +33,7 @@ public class AudioManager : MonoBehaviour
     [Header("Audio Enemy Hit")]
     [SerializeField] public List<EnemyAudio> enemyAudios;
     private Dictionary<string, AudioClip> enemyAudioDictionary;
+    public float masterVolume = 1f;
 
     // Awake function to initialize the dictionary
     private void Awake()
@@ -95,5 +97,40 @@ public class AudioManager : MonoBehaviour
         {
             playerSource.PlayOneShot(hit);
         }
+    }
+
+    // Function to change the volume of the player source
+    public void ChangePlayerVolume(float volume)
+    {
+        masterVolume = Mathf.Clamp(volume, 0f, 1f);
+        playerSource.volume = masterVolume;
+    }
+
+    // Function to change the volume of the SFX source
+    public void ChangeSFXVolume(float volume)
+    {
+        masterVolume = Mathf.Clamp(volume, 0f, 1f);
+        SFXSource.volume = masterVolume;
+    }
+
+    // Function to change the volume of the music source
+    public void ChangeMusicVolume(float volume)
+    {
+        masterVolume = Mathf.Clamp(volume, 0f, 1f);
+        musicSource.volume = masterVolume;
+    }
+
+    // Function to change the volume of the player movement source
+    public void ChangePlayerMovementVolume(float volume)
+    {
+        masterVolume = Mathf.Clamp(volume, 0f, 1f);
+        playerMovementSource.volume = masterVolume;
+    }
+
+    // Function to change the volume of the player attack source
+    public void ChangePlayerAttackVolume(float volume)
+    {
+        masterVolume = Mathf.Clamp(volume, 0f, 1f);
+        playerAttackSource.volume = masterVolume;
     }
 }
