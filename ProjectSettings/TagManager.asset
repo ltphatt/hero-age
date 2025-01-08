@@ -8,6 +8,7 @@ TagManager:
   - Coin
   - Heal
   - Amulet
+  - Spike
   layers:
   - Default
   - TransparentFX
