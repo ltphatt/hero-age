@@ -372,7 +372,7 @@ MonoBehaviour:
   enemyMaxHP: 5
   state: 0
   enemyDeathPrefab: {fileID: 4803176320388565606, guid: e063626fc5a40dd4fb3dd407196fabb1, type: 3}
-  hitSound: {fileID: 8300000, guid: 97fda9f643f5d5d43b2a6a26f96366aa, type: 3}
+  enemyType: Pig
 --- !u!82 &-4068300967328546704
 AudioSource:
   m_ObjectHideFlags: 0
@@ -586,7 +586,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 6555417778794985240}
+  boss: {fileID: 0}
   barImage: {fileID: 951313544374192212}
   green: {r: 0, g: 1, b: 0, a: 1}
   yellow: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   red: {r: 1, g: 0, b: 0, a: 1}
+  isBoss: 0

@@ -205,7 +205,7 @@ MonoBehaviour:
   enemyMaxHP: 5
   state: 0
   enemyDeathPrefab: {fileID: 4803176320388565606, guid: e063626fc5a40dd4fb3dd407196fabb1, type: 3}
-  enemyType: 
+  enemyType: Dog
 --- !u!1 &1485323494476218642
 GameObject:
   m_ObjectHideFlags: 0

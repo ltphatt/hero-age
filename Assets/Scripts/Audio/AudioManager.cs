@@ -38,9 +38,21 @@ public class AudioManager : MonoBehaviour
     private Dictionary<string, AudioClip> enemyAudioDictionary;
     public float masterVolume = 1f;
 
+    // Instance
+    public static AudioManager instance;
+
     // Awake function to initialize the dictionary
     private void Awake()
-    {
+    {  // Đảm bảo chỉ có một AudioManager duy nhất
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject); // Giữ lại khi chuyển scene
+        }
+        else
+        {
+            Destroy(gameObject); // Hủy các bản sao
+        }
         enemyAudioDictionary = new Dictionary<string, AudioClip>();
         foreach (EnemyAudio enemyAudio in enemyAudios)
         {
