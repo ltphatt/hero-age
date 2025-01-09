@@ -665,7 +665,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8562508583030270770}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -695,7 +695,13 @@ MonoBehaviour:
   playerAttackSource: {fileID: 0}
   playerSource: {fileID: 8264509054963824960}
   enemySource: {fileID: 518909765056201253}
-  background: {fileID: 8300000, guid: b6dc04f2884eb5b46b675390b1e75e84, type: 3}
+  sceneMusicList:
+  - sceneName: Level 1
+    audioClip: {fileID: 8300000, guid: 6979d52fda0579441a2122b95abaf337, type: 3}
+  - sceneName: Level 2
+    audioClip: {fileID: 8300000, guid: 0c2f5e196afe4644d9b1ffb8d644851d, type: 3}
+  - sceneName: Level 3
+    audioClip: {fileID: 8300000, guid: 596e0f53d0760684897f73aa6d85324a, type: 3}
   death: {fileID: 0}
   jump: {fileID: 8300000, guid: 7ed96263bd806764e97a71870aec0a22, type: 3}
   dash: {fileID: 8300000, guid: ab932270cff0aa04187ca54e2d872494, type: 3}

@@ -94,7 +94,7 @@ public class AudioManager : MonoBehaviour
 
     private void OnDisable()
     {
-        // Hủy đăng ký sự kiện khi không cần thiết
+        // Hủy đăng ký sự kiện khi không cần thiếtt
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
