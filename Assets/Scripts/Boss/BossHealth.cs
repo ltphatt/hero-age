@@ -18,6 +18,8 @@ public class BossHealth : MonoBehaviour
     [Header("Enemy Type")]
     [SerializeField] private string enemyType;
 
+    public static bool isBossDefeated = false; // Biến kiểm tra boss đã chết hay chưa để chuyển màn
+
     private void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
@@ -28,6 +30,7 @@ public class BossHealth : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        isBossDefeated = false;
     }
 
     public void TakeDamage(int damage)
@@ -53,6 +56,7 @@ public class BossHealth : MonoBehaviour
     private void Die()
     {
         Instantiate(bossDeathffect, transform.position + Vector3.up, transform.rotation);
+        isBossDefeated = true; // Đánh dấu boss đã chết
         Destroy(gameObject);
     }
 

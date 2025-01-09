@@ -32,10 +32,7 @@ public class EnemyController : MonoBehaviour
 
     [Header("Audio Manager")]
     AudioManager audioManager;
-    // [SerializeField] private AudioClip hitSound;
-    // private AudioSource audioSource;
-    // [SerializeField] public float soundCooldown = 1f;
-    // private float lastHitSoundTime = -1f;
+
     [Header("Enemy Type")]
     [SerializeField] private string enemyType;
 

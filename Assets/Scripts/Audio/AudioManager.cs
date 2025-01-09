@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -17,7 +18,9 @@ public class AudioManager : MonoBehaviour
 
 
     [Header(">>>>> Audio Clips Background Music")]
-    public AudioClip background;
+    [SerializeField] public List<SceneMusic> sceneMusicList;
+
+    private Dictionary<string, AudioClip> sceneMusicDictionary;
     [Header(">>>>> Audio Player SFX")]
     public AudioClip death;
     public AudioClip jump;
@@ -53,6 +56,8 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject); // Hủy các bản sao
         }
+
+        // Tạo một dictionary để lưu trữ các audio clip cho enemy
         enemyAudioDictionary = new Dictionary<string, AudioClip>();
         foreach (EnemyAudio enemyAudio in enemyAudios)
         {
@@ -61,13 +66,59 @@ public class AudioManager : MonoBehaviour
                 enemyAudioDictionary.Add(enemyAudio.enemyType, enemyAudio.audioClip);
             }
         }
+
+        // Tạo một dictionary để lưu trữ các audio clip cho background music
+        sceneMusicDictionary = new Dictionary<string, AudioClip>();
+        foreach (SceneMusic sceneMusic in sceneMusicList)
+        {
+            if (!sceneMusicDictionary.ContainsKey(sceneMusic.sceneName))
+            {
+                sceneMusicDictionary.Add(sceneMusic.sceneName, sceneMusic.audioClip);
+            }
+        }
     }
 
     // Start background music when the game starts
     private void Start()
     {
-        musicSource.clip = background;
-        musicSource.Play();
+        Debug.Log(">>>> Start Background Music: " + SceneManager.GetActiveScene().name);
+        PlayMusicForScene(SceneManager.GetActiveScene().name);
+    }
+
+
+    private void OnEnable()
+    {
+        // Đăng ký lắng nghe sự kiện khi Scene được load
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        // Hủy đăng ký sự kiện khi không cần thiết
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Phát nhạc nền khi Scene mới được load
+        PlayMusicForScene(scene.name);
+    }
+
+    // Play the background music for the scene
+    private void PlayMusicForScene(string sceneName)
+    {
+        if (sceneMusicDictionary.TryGetValue(sceneName, out AudioClip clip))
+        {
+            if (musicSource.clip != clip)
+            {
+                musicSource.clip = clip;
+                musicSource.Play();
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"No music found for scene: {sceneName}");
+        }
     }
 
     // Play the SFX function
@@ -111,38 +162,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // Function to change the volume of the player source
-    public void ChangePlayerVolume(float volume)
-    {
-        masterVolume = Mathf.Clamp(volume, 0f, 1f);
-        playerSource.volume = masterVolume;
-    }
 
-    // Function to change the volume of the SFX source
-    public void ChangeSFXVolume(float volume)
-    {
-        masterVolume = Mathf.Clamp(volume, 0f, 1f);
-        SFXSource.volume = masterVolume;
-    }
 
-    // Function to change the volume of the music source
-    public void ChangeMusicVolume(float volume)
-    {
-        masterVolume = Mathf.Clamp(volume, 0f, 1f);
-        musicSource.volume = masterVolume;
-    }
 
-    // Function to change the volume of the player movement source
-    public void ChangePlayerMovementVolume(float volume)
-    {
-        masterVolume = Mathf.Clamp(volume, 0f, 1f);
-        playerMovementSource.volume = masterVolume;
-    }
-
-    // Function to change the volume of the player attack source
-    public void ChangePlayerAttackVolume(float volume)
-    {
-        masterVolume = Mathf.Clamp(volume, 0f, 1f);
-        playerAttackSource.volume = masterVolume;
-    }
 }

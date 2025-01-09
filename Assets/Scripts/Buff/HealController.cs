@@ -18,6 +18,7 @@ public class HealController : MonoBehaviour
     {
         // Play SFX when collecting health
         audioManager.PlaySFX(audioManager.jerry);
+
         player.ChangeHealth(healValue);
     }
 
