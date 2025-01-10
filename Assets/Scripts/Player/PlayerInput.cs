@@ -34,4 +34,10 @@ public class PlayerInput : MonoBehaviour
     {
         playerInputActions.Player.Disable();
     }
+
+    public bool GetDash()
+    {
+        bool dash = playerInputActions.Player.Dash.triggered;
+        return dash;
+    }
 }
