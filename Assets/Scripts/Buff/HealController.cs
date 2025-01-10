@@ -7,15 +7,18 @@ public class HealController : MonoBehaviour
 
     public int healValue = 1;
     [SerializeField] GameObject itemFeedbackPrefab;
-    [Header("Item Sound")]
-    [SerializeField] private AudioClip hitSound;
-    private AudioSource audioSource;
-    private void Start()
+    [Header("Audio Manager")]
+    AudioManager audioManager;
+
+    private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
     public void HealPlayer(PlayerController player)
     {
+        // Play SFX when collecting health
+        audioManager.PlaySFX(audioManager.jerry);
+
         player.ChangeHealth(healValue);
     }
 
@@ -23,17 +26,6 @@ public class HealController : MonoBehaviour
     {
         Instantiate(itemFeedbackPrefab, transform.position, transform.rotation);
         Destroy(gameObject, 1f);
-    }
-    public void PlayHitSound()
-    {
-        if (audioSource != null && !audioSource.isPlaying)
-        {
-            if (hitSound != null)
-            {
-                audioSource.PlayOneShot(hitSound);
-            }
-        }
-
     }
 
 }

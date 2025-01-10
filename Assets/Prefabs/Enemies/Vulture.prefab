@@ -117,10 +117,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 8160138036445169048}
+  boss: {fileID: 0}
   barImage: {fileID: 364992187456317239}
   green: {r: 0, g: 1, b: 0, a: 1}
   yellow: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   red: {r: 1, g: 0, b: 0, a: 1}
+  isBoss: 0
 --- !u!1 &3985740283767558337
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,7 +495,7 @@ MonoBehaviour:
   enemyMaxHP: 5
   state: 0
   enemyDeathPrefab: {fileID: 4803176320388565606, guid: e063626fc5a40dd4fb3dd407196fabb1, type: 3}
-  hitSound: {fileID: 8300000, guid: f702ff262de210e47b859501c2692bcf, type: 3}
+  enemyType: Vulture
 --- !u!82 &121858237141837280
 AudioSource:
   m_ObjectHideFlags: 0

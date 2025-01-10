@@ -7,15 +7,19 @@ public class AmuletController : MonoBehaviour
     [SerializeField] private float buffDuration = 5f;
     [SerializeField] private int buffMultiplier = 2;
     [SerializeField] GameObject itemFeedbackPrefab;
-    [Header("Item Sound")]
-    [SerializeField] private AudioClip hitSound;
-    private AudioSource audioSource;
-    private void Start()
+    [Header("Audio Manager")]
+    AudioManager audioManager;
+
+    private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
+
     public void CollectBuff(PlayerController player)
     {
+        // Play SFX when collecting amulet
+        audioManager.PlaySFX(audioManager.amulet);
+
         player.ApplyAmuletBuff(buffDuration, buffMultiplier);
     }
 
@@ -24,12 +28,5 @@ public class AmuletController : MonoBehaviour
 
         Instantiate(itemFeedbackPrefab, transform.position, transform.rotation);
         Destroy(gameObject, 0.7f);
-    }
-    public void PlayHitSound()
-    {
-        if (hitSound != null && audioSource != null)
-        {
-            audioSource.PlayOneShot(hitSound);
-        }
     }
 }

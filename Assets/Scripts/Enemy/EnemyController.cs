@@ -30,11 +30,12 @@ public class EnemyController : MonoBehaviour
     [Header("Effects")]
     [SerializeField] GameObject enemyDeathPrefab;
 
-    [Header("Enemy Sounds")]
-    [SerializeField] private AudioClip hitSound;
-    private AudioSource audioSource;
-    [SerializeField] public float soundCooldown = 1f;
-    private float lastHitSoundTime = -1f;
+    [Header("Audio Manager")]
+    AudioManager audioManager;
+
+    [Header("Enemy Type")]
+    [SerializeField] private string enemyType;
+
 
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
@@ -48,6 +49,10 @@ public class EnemyController : MonoBehaviour
     private float timeUntilFire;
     float inCombatTimer = 0f;
 
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     private void OnDrawGizmosSelected()
     {
@@ -60,7 +65,7 @@ public class EnemyController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        audioSource = GetComponent<AudioSource>();
+        // audioSource = GetComponent<AudioSource>();
 
         isWalking = true;
         idleTimer = idleDuration;
@@ -186,7 +191,8 @@ public class EnemyController : MonoBehaviour
 
     public void ChangeHealth(int value)
     {
-        PlayHitSound();
+        // PlayHitSound();
+        audioManager.PlayEnemySFX(enemyType);
 
         enemyHP = Mathf.Clamp(enemyHP + value, 0, enemyMaxHP);
     }
@@ -235,16 +241,16 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    void PlayHitSound()
-    {
-        if (Time.time - lastHitSoundTime >= soundCooldown && !audioSource.isPlaying)
-        {
-            lastHitSoundTime = Time.time;
-            if (hitSound != null)
-            {
-                audioSource.PlayOneShot(hitSound);
-            }
-        }
+    // void PlayHitSound()
+    // {
+    //     if (Time.time - lastHitSoundTime >= soundCooldown && !audioSource.isPlaying)
+    //     {
+    //         lastHitSoundTime = Time.time;
+    //         if (hitSound != null)
+    //         {
+    //             audioSource.PlayOneShot(hitSound);
+    //         }
+    //     }
 
-    }
+    // }
 }
