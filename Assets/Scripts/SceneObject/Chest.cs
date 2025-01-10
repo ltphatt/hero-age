@@ -15,6 +15,8 @@ public class Chest : MonoBehaviour
     [SerializeField] ChestType chestType;
     Animator animator;
 
+    private bool isOpened = false;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -22,6 +24,8 @@ public class Chest : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (isOpened) return;
+
         var player = other.GetComponent<PlayerController>();
         if (player != null)
         {
@@ -41,6 +45,7 @@ public class Chest : MonoBehaviour
                     break;
             }
             animator.SetTrigger("Open");
+            isOpened = true;
         }
     }
 }
