@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
         HandleMovement();
         HandleJump();
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        if (gameInput.GetDash() && canDash)
         {
             audioManager.PlayPlayerMovementSFX(audioManager.dash);
             StartCoroutine(Dash());
@@ -120,13 +120,24 @@ public class PlayerMovement : MonoBehaviour
     {
         canDash = false;
         isDashing = true;
+
+        // Save original gravity
         float originGravity = rb.gravityScale;
+
+        // Dash
         rb.gravityScale = 0f;
-        rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
+        float direction = transform.rotation.y == 0 ? 1 : -1;
+        rb.velocity = new Vector2(direction * dashingPower, 0f);
+
+        // Dash trail
         trailRenderer.emitting = true;
         yield return new WaitForSeconds(dashDuration);
         trailRenderer.emitting = false;
+
+        // Reset velocity
         rb.gravityScale = originGravity;
+
+        // Cooldown
         isDashing = false;
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
