@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
@@ -161,8 +160,4 @@ public class AudioManager : MonoBehaviour
             playerSource.PlayOneShot(hit);
         }
     }
-
-
-
-
 }

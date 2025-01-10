@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -31,6 +29,7 @@ public class VolumeSetting : MonoBehaviour
             SetSFXVolume();
         }
     }
+
     public void SetMusicVolume()
     {
         // Get the value of the slider
@@ -38,6 +37,7 @@ public class VolumeSetting : MonoBehaviour
         audioMixer.SetFloat("music", Mathf.Log10(volume) * 20);
         PlayerPrefs.SetFloat("musicVolume", volume);
     }
+
     public void SetSFXVolume()
     {
         // Get the value of the slider

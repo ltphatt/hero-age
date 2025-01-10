@@ -4,7 +4,6 @@ public class SettingsController : MonoBehaviour
 {
     public GameObject StartScreen;
 
-
     public void OnSaveClick()
     {
         Debug.Log("Save settings");
