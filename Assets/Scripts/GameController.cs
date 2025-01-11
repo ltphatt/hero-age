@@ -9,6 +9,21 @@ public class GameController : MonoBehaviour
     public int currentLevel = 1;
     public int survivedLevelsCount;
 
+    public static GameController instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void OnDisable()
     {
         PlayerController.OnPlayerDied -= GameOverScreen;
@@ -38,5 +53,13 @@ public class GameController : MonoBehaviour
 
         Time.timeScale = 1f;
         SceneManager.LoadScene(currentLevel - 1);
+    }
+
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+        Application.Quit();
     }
 }
