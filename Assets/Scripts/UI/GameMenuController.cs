@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,7 @@ public class GameMenuController : MonoBehaviour
     {
         HideGameMenu();
         ShowGameMenuButton();
+        UnfreezeBackground();
     }
 
     public void FreezeBackground()
@@ -26,11 +28,13 @@ public class GameMenuController : MonoBehaviour
     public void ShowGameMenu()
     {
         gameMenuScreen.SetActive(true);
+        FreezeBackground();
     }
 
     public void HideGameMenu()
     {
         gameMenuScreen.SetActive(false);
+        UnfreezeBackground();
     }
 
     public void HideGameMenuButton()
@@ -51,6 +55,7 @@ public class GameMenuController : MonoBehaviour
     public void ShowSettingsScreen()
     {
         settingsScreen.SetActive(true);
+        FreezeBackground();
     }
 
     public void OnGameMenuButtonClick()
