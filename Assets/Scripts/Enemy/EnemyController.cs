@@ -115,13 +115,7 @@ public class EnemyController : MonoBehaviour
     {
         if (state == State.BeStunned)
         {
-            stunTimer += Time.deltaTime;
-            if (stunTimer >= stunDuration)
-            {
-                iceStunObject.SetActive(false);
-                state = State.InCombat;
-                stunTimer = 0f;
-            }
+            HandleEnemyBeStunned();
         }
 
         HandleEnemyMovement();
@@ -266,5 +260,24 @@ public class EnemyController : MonoBehaviour
         stunDuration = duration;
         iceStunObject.SetActive(true);
         state = State.BeStunned;
+    }
+
+    private void HandleEnemyBeStunned()
+    {
+        IceBroken iceBroken = iceStunObject.GetComponent<IceBroken>();
+
+        if (stunTimer >= stunDuration - 0.5f)
+        {
+            iceBroken.Broken();
+        }
+
+        stunTimer += Time.deltaTime;
+        if (stunTimer >= stunDuration)
+        {
+            iceStunObject.SetActive(false);
+            state = State.InCombat;
+            stunTimer = 0f;
+            iceBroken.ResetBroken();
+        }
     }
 }
