@@ -35,6 +35,12 @@ public class PlayerSkill : MonoBehaviour
     public float tigerCooldown = 5f;
     [SerializeField] private GameObject tigerPrefab;
 
+    [Header("Dragon")]
+    public int dragonCost = 30;
+    public bool canUseDragon = true;
+    public float dragonCooldown = 5f;
+    [SerializeField] private GameObject dragonPrefab;
+
 
     [Header("Preferences")]
     PlayerInput gameInput;
@@ -97,7 +103,22 @@ public class PlayerSkill : MonoBehaviour
         {
             // Cost
             playerController.MP -= tigerCost;
+
+            //TODO: Play sound effect for tiger skill, loop: once
+
+            // Tiger skill
             StartCoroutine(Tiger());
+        }
+
+        if (gameInput.GetInputSkill(SkillType.DRAGON) && canUseDragon && playerController.MP >= dragonCost)
+        {
+            // Cost
+            playerController.MP -= dragonCost;
+
+            // TODO: Play sound effect for dragon skill, loop: once
+
+            // Use dragon skill
+            StartCoroutine(Dragon());
         }
     }
     private IEnumerator AutoAim()
@@ -162,5 +183,15 @@ public class PlayerSkill : MonoBehaviour
 
         yield return new WaitForSeconds(tigerCooldown);
         canUseTiger = true;
+    }
+
+    private IEnumerator Dragon()
+    {
+        canUseDragon = false;
+
+        GameObject dragonObject = Instantiate(dragonPrefab, transform.position + new Vector3(0, 1.25f, 0), Quaternion.identity);
+
+        yield return new WaitForSeconds(dragonCooldown);
+        canUseDragon = true;
     }
 }

@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Dragon",
+                    "type": "Button",
+                    "id": "d1ac4382-a68c-47f6-9ba7-cbd5f3ff6787",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -287,6 +296,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Tiger",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "787b16cd-253a-483f-afd4-78cf3d403511",
+                    "path": "<Keyboard>/5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dragon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

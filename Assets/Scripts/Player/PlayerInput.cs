@@ -5,7 +5,8 @@ public enum SkillType
     DASH,
     AUTO_AIM,
     TORNADO,
-    TIGER
+    TIGER,
+    DRAGON,
 }
 
 public class PlayerInput : MonoBehaviour
@@ -74,6 +75,9 @@ public class PlayerInput : MonoBehaviour
                 break;
             case SkillType.TIGER:
                 result = playerInputActions.Player.Tiger.triggered;
+                break;
+            case SkillType.DRAGON:
+                result = playerInputActions.Player.Dragon.triggered;
                 break;
             default:
                 return false;
