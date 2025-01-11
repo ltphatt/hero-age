@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +12,22 @@ public class GameMenuController : MonoBehaviour
         HideGameMenu();
         ShowGameMenuButton();
         UnfreezeBackground();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (settingsScreen.activeSelf)
+            {
+                HideSettingsScreen();
+                ShowGameMenu();
+            }
+            else
+            {
+                OnGameMenuButtonClick();
+            }
+        }
     }
 
     public void FreezeBackground()
