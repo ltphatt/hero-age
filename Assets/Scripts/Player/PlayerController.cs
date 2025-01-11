@@ -10,6 +10,12 @@ public class PlayerController : MonoBehaviour
     [Header("Player Properties")]
     public int HP = 5;
     public int maxHP = 5;
+    public int MP = 5;
+    public int maxMP = 5;
+
+    [Tooltip("MP regeneration rate per 5 seconds")]
+    public int MPRegenRate = 1;
+
     [SerializeField] private int coin = 0;
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] Transform firePoint;
@@ -26,10 +32,14 @@ public class PlayerController : MonoBehaviour
 
     [Header("Player HUD")]
     [SerializeField] private Image healBar;
+    [SerializeField] private Image manaBar;
+
     [Header("Player Sounds")]
     AudioManager audioManager;
 
     public static event Action OnPlayerDied;
+
+    private float regenManaTimer = 0f;
 
     private void Awake()
     {
@@ -37,7 +47,6 @@ public class PlayerController : MonoBehaviour
         animator.SetBool(IS_WALKING, false);
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
-
     private void Update()
     {
         if (gameInput.GetFire())
@@ -56,6 +65,13 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Buff duration has ended");
                 RemoveAmuletBuff();
             }
+        }
+
+        regenManaTimer += Time.deltaTime;
+        if (regenManaTimer >= 5f)
+        {
+            RegenerateMana();
+            regenManaTimer = 0f;
         }
 
         UpdateHealthBarUI();
@@ -89,6 +105,7 @@ public class PlayerController : MonoBehaviour
     void UpdateHealthBarUI()
     {
         healBar.fillAmount = (float)HP / maxHP;
+        manaBar.fillAmount = (float)MP / maxMP;
     }
 
     void Fire()
@@ -163,8 +180,18 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Current HP: " + HP + "/" + maxHP);
     }
 
+    // Take damage from enemy
     public void TakeDamage(int damage)
     {
         ChangeHealth(-damage);
+    }
+
+    // Increase player's mana per second
+    public void RegenerateMana()
+    {
+        if (MP < maxMP)
+        {
+            MP += MPRegenRate;
+        }
     }
 }

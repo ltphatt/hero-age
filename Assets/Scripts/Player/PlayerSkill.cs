@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,15 +6,18 @@ using UnityEngine;
 public class PlayerSkill : MonoBehaviour
 {
     [Header("Dashing")]
+    public int dashCost = 10;
     public bool canDash = true;
     public bool isDashing;
     public float dashingPower = 24f;
     public float dashCooldown = 1f;
     public float dashDuration = 0.2f;
-    public TrailRenderer trailRenderer;
+    TrailRenderer trailRenderer;
 
-    [Header("Player Properties")]
-    [SerializeField] PlayerInput gameInput;
+    [Header("Preferences")]
+    PlayerInput gameInput;
+    PlayerController playerController;
+
     Rigidbody2D rb;
 
     [Header("Audio Manager")]
@@ -23,23 +27,29 @@ public class PlayerSkill : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+
+        gameInput = FindObjectOfType<PlayerInput>();
+        playerController = GetComponent<PlayerController>();
+        trailRenderer = GetComponent<TrailRenderer>();
     }
 
     private void Update()
     {
+        if (playerController.MP < dashCost)
+        {
+            canDash = false;
+        }
 
         if (gameInput.GetDash() && canDash)
         {
-            audioManager.PlayPlayerMovementSFX(audioManager.dash);
-            StartCoroutine(Dash());
-        }
-    }
+            // Cost
+            playerController.MP -= dashCost;
 
-    private void FixedUpdate()
-    {
-        if (isDashing)
-        {
-            return;
+            // Play sound effect
+            audioManager.PlayPlayerMovementSFX(audioManager.dash);
+
+            // Dash
+            StartCoroutine(Dash());
         }
     }
 
