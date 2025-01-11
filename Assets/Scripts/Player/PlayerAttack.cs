@@ -8,30 +8,60 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("Player Attack")]
     [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private GameObject skillProjectilePrefab;
     [SerializeField] Transform firePoint;
     PlayerInput gameInput;
-    private PlayerMovement playerMovement;
-
     private Animator animator;
+    PlayerSkill playerSkill;
+    public Transform target = null;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         gameInput = FindObjectOfType<PlayerInput>();
-        playerMovement = GetComponent<PlayerMovement>();
+        playerSkill = GetComponent<PlayerSkill>();
     }
 
     private void Update()
     {
+        FindTarget(transform.position, playerSkill.autoAimRange);
+
         if (gameInput.GetFire())
         {
             animator.SetTrigger(FIRE);
-            Fire();
+
+            var isAutoAiming = playerSkill.isAutoAiming;
+            if (isAutoAiming)
+            {
+                // Fire skill projectile
+                FireSkillProjectile();
+            }
+            else
+            {
+                // Normal fire
+                Fire();
+            }
         }
     }
 
     void Fire()
     {
         GameObject projectileObject = Instantiate(projectilePrefab, firePoint.position, transform.rotation);
+    }
+
+    void FireSkillProjectile()
+    {
+        GameObject skillProjectileObject = Instantiate(skillProjectilePrefab, firePoint.position, transform.rotation);
+        HoodSkillProjectile skillProjectile = skillProjectileObject.GetComponent<HoodSkillProjectile>();
+        skillProjectile.SetTarget(target);
+    }
+
+    public void FindTarget(Vector2 center, float radius)
+    {
+        Collider2D hit = Physics2D.OverlapCircle(center, radius, LayerMask.GetMask("Enemy"));
+        if (hit != null)
+        {
+            target = hit.transform;
+        }
     }
 }

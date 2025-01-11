@@ -27,6 +27,8 @@ public class PlayerSkill : MonoBehaviour
     PlayerInput gameInput;
     PlayerController playerController;
 
+    Animator animator;
+
     Rigidbody2D rb;
 
     [Header("Audio Manager")]
@@ -40,6 +42,8 @@ public class PlayerSkill : MonoBehaviour
         gameInput = FindObjectOfType<PlayerInput>();
         playerController = GetComponent<PlayerController>();
         trailRenderer = GetComponent<TrailRenderer>();
+
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -72,10 +76,12 @@ public class PlayerSkill : MonoBehaviour
     {
         canAutoAim = false;
         isAutoAiming = true;
+        animator.SetBool("IsUsingSkill", true);
         Debug.Log("Auto-aiming has started");
 
         yield return new WaitForSeconds(autoAimDuration);
         isAutoAiming = false;
+        animator.SetBool("IsUsingSkill", false);
         Debug.Log("Auto-aiming has ended");
 
         yield return new WaitForSeconds(autoAimCooldown);
