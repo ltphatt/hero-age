@@ -34810,6 +34810,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 751a60c45ad4e4a82b57f4e8bd7d8b32, type: 3}
+--- !u!114 &1334767695 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5768012473724605267, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
+  m_PrefabInstance: {fileID: 2059594077}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a09f28cb0de3d864283c368a6c3ea383, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1346521674
 GameObject:
   m_ObjectHideFlags: 0
@@ -53137,11 +53148,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3671794411708251651, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
       propertyPath: HP
-      value: 5
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3671794411708251651, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
       propertyPath: maxHP
-      value: 5
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3671794411708251651, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
       propertyPath: healBar
@@ -53155,6 +53166,10 @@ PrefabInstance:
       propertyPath: gameInput
       value: 
       objectReference: {fileID: 670267773}
+    - target: {fileID: 3719675932938903092, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
+      propertyPath: playerSkill
+      value: 
+      objectReference: {fileID: 1334767695}
     - target: {fileID: 3719675932938903092, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
       propertyPath: dashCooldown
       value: 1
@@ -53174,6 +53189,22 @@ PrefabInstance:
     - target: {fileID: 4682239186536881534, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5768012473724605267, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
+      propertyPath: gameInput
+      value: 
+      objectReference: {fileID: 670267773}
+    - target: {fileID: 5768012473724605267, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
+      propertyPath: dashCooldown
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5768012473724605267, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
+      propertyPath: dashDuration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5768012473724605267, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
+      propertyPath: dashingPower
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7217669774514812025, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
       propertyPath: m_Name
