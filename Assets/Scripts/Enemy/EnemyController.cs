@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour
     {
         InCombat,
         OutCombat,
+        BeStunned,
     }
 
     [Header("Enemy movement")]
@@ -29,6 +30,9 @@ public class EnemyController : MonoBehaviour
 
     [Header("Effects")]
     [SerializeField] GameObject enemyDeathPrefab;
+    [SerializeField] GameObject iceStunObject;
+    private float stunDuration = 1f;
+    private float stunTimer = 0f;
 
     [Header("Audio Manager")]
     AudioManager audioManager;
@@ -76,6 +80,11 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
+        if (state == State.BeStunned)
+        {
+            return;
+        }
+
         HandleEnemyDirection();
 
         animator.SetBool("IsWalking", isWalking);
@@ -92,7 +101,6 @@ public class EnemyController : MonoBehaviour
         else
         {
             timeUntilFire += Time.deltaTime;
-
             if (timeUntilFire >= (1f / bulletPerSec))
             {
                 AttackPlayer();
@@ -105,13 +113,27 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (state == State.BeStunned)
+        {
+            stunTimer += Time.deltaTime;
+            if (stunTimer >= stunDuration)
+            {
+                iceStunObject.SetActive(false);
+                state = State.InCombat;
+                stunTimer = 0f;
+            }
+        }
+
         HandleEnemyMovement();
         HandleEnemyState();
     }
 
     void HandleEnemyMovement()
     {
-        if (!isWalking) return;
+        if (!isWalking || state == State.BeStunned)
+        {
+            return;
+        }
 
         Vector2 pos = rb.position;
         if (veritcalMovement)
@@ -239,16 +261,10 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    // void PlayHitSound()
-    // {
-    //     if (Time.time - lastHitSoundTime >= soundCooldown && !audioSource.isPlaying)
-    //     {
-    //         lastHitSoundTime = Time.time;
-    //         if (hitSound != null)
-    //         {
-    //             audioSource.PlayOneShot(hitSound);
-    //         }
-    //     }
-
-    // }
+    public void Stunned(float duration)
+    {
+        stunDuration = duration;
+        iceStunObject.SetActive(true);
+        state = State.BeStunned;
+    }
 }

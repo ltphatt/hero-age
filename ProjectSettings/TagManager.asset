@@ -53,6 +53,9 @@ TagManager:
   - name: Prop
     uniqueID: 3679682657
     locked: 0
+  - name: Skill
+    uniqueID: 22977809
+    locked: 0
   - name: Player
     uniqueID: 4225781181
     locked: 0
