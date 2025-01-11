@@ -40,4 +40,10 @@ public class PlayerInput : MonoBehaviour
         bool dash = playerInputActions.Player.Dash.triggered;
         return dash;
     }
+
+    public bool GetAutoAim()
+    {
+        bool autoAim = playerInputActions.Player.AutoAim.triggered;
+        return autoAim;
+    }
 }

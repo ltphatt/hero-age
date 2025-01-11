@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     private static string IS_WALKING = "IsWalking";
-    private static string FIRE = "Fire";
 
     [Header("Player Properties")]
     public int HP = 5;
@@ -15,12 +14,11 @@ public class PlayerController : MonoBehaviour
 
     [Tooltip("MP regeneration rate per 5 seconds")]
     public int MPRegenRate = 1;
-
     [SerializeField] private int coin = 0;
-    [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] Transform firePoint;
-    [SerializeField] PlayerInput gameInput;
-    [SerializeField] private PlayerMovement playerMovement;
+
+    [Header("Preferences")]
+    PlayerInput gameInput;
+    private PlayerMovement playerMovement;
 
     private bool isBuffed = false;
     private float buffDuration = 0f;
@@ -46,15 +44,12 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         animator.SetBool(IS_WALKING, false);
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+
+        gameInput = FindObjectOfType<PlayerInput>();
+        playerMovement = GetComponent<PlayerMovement>();
     }
     private void Update()
     {
-        if (gameInput.GetFire())
-        {
-            animator.SetTrigger(FIRE);
-            Fire();
-        }
-
         animator.SetBool(IS_WALKING, playerMovement.IsWalking());
 
         if (isBuffed)
@@ -108,11 +103,6 @@ public class PlayerController : MonoBehaviour
         manaBar.fillAmount = (float)MP / maxMP;
     }
 
-    void Fire()
-    {
-        GameObject projectileObject = Instantiate(projectilePrefab, firePoint.position, transform.rotation);
-    }
-
     public void ChangeHealth(int value)
     {
         // Play SFX when taking damage
@@ -121,7 +111,6 @@ public class PlayerController : MonoBehaviour
             audioManager.PlayPlayerSFX(audioManager.hit);
         }
         HP = Mathf.Clamp(HP + value, 0, maxHP);
-        Debug.Log("Current HP: " + HP + "/" + maxHP);
         UpdateHealthBarUI();
 
         if (HP <= 0)
@@ -145,7 +134,6 @@ public class PlayerController : MonoBehaviour
     public void ChangeCoin(int value)
     {
         coin += value;
-        Debug.Log("Current Coin: " + coin);
     }
 
     public void ApplyAmuletBuff(float duration, int multiplier)

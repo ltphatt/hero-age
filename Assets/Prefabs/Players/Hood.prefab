@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6029457434833557520}
   - component: {fileID: 3719675932938903092}
   - component: {fileID: 3671794411708251651}
+  - component: {fileID: 3447646332635552014}
   - component: {fileID: 5768012473724605267}
   - component: {fileID: 5680419246065038565}
   m_Layer: 6
@@ -311,17 +312,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f9b581888faa0429c91c836ff5fe09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 100
-  maxHP: 100
-  MP: 5
-  maxMP: 5
+  HP: 200
+  maxHP: 200
+  MP: 100
+  maxMP: 100
+  MPRegenRate: 1
   coin: 0
-  projectilePrefab: {fileID: 3441420115609852525, guid: c356398c75943524082e80e449f38839, type: 3}
-  firePoint: {fileID: 3869559404219195935}
-  gameInput: {fileID: 0}
-  playerMovement: {fileID: 3719675932938903092}
   healBar: {fileID: 0}
   manaBar: {fileID: 0}
+--- !u!114 &3447646332635552014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7217669774514812025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6e6b2bbe222ba14e833ddfa324fc249, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 3441420115609852525, guid: c356398c75943524082e80e449f38839, type: 3}
+  firePoint: {fileID: 3869559404219195935}
 --- !u!114 &5768012473724605267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,12 +346,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a09f28cb0de3d864283c368a6c3ea383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashCost: 1
+  dashCost: 10
   canDash: 1
   isDashing: 0
   dashingPower: 12
   dashCooldown: 3
   dashDuration: 0.1
+  autoAimCost: 20
+  isAutoAiming: 0
+  canAutoAim: 1
+  autoAimCooldown: 3
+  autoAimDuration: 3
+  autoAimRange: 6
 --- !u!96 &5680419246065038565
 TrailRenderer:
   serializedVersion: 3

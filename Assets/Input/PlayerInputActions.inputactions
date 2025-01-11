@@ -40,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "AutoAim",
+                    "type": "Button",
+                    "id": "b9282bfb-5662-4b1a-8773-eedb6ab744de",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -211,7 +220,7 @@
                 {
                     "name": "",
                     "id": "3a9532ad-850e-45e0-abbb-a87fdd95424a",
-                    "path": "<Keyboard>/c",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -222,11 +231,22 @@
                 {
                     "name": "",
                     "id": "c4ebbf14-e276-4a38-913d-bb0b52c612e4",
-                    "path": "<Keyboard>/leftShift",
+                    "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6ce29085-f000-4d18-9cca-11561dfe0e36",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AutoAim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
