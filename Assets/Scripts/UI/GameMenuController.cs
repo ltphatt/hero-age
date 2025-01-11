@@ -70,4 +70,15 @@ public class GameMenuController : MonoBehaviour
         HideGameMenu();
         ShowGameMenuButton();
     }
+    public void OnHomeButtonClick()
+    {
+        HideGameMenu();
+        ShowGameMenuButton();
+
+        // This code is not available in the current context
+        // SceneController.instance.LoadStartScene();
+
+        SceneManager.LoadScene("Start Scene");
+    }
+
 }
