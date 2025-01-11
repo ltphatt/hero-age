@@ -1,4 +1,3 @@
-using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,14 +9,17 @@ public class GameController : MonoBehaviour
     public int currentLevel = 1;
     public int survivedLevelsCount;
 
+    void OnDisable()
+    {
+        PlayerController.OnPlayerDied -= GameOverScreen;
+    }
+
     void Start()
     {
         PlayerController.OnPlayerDied += GameOverScreen;
 
         survivedLevelsCount = currentLevel - 1;
         gamerOverScreen.SetActive(false);
-
-        Debug.Log("Reset game over screen");
     }
 
     void GameOverScreen()
