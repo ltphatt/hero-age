@@ -52,6 +52,7 @@ public class GameMenuController : MonoBehaviour
     {
         settingsScreen.SetActive(true);
     }
+
     public void OnGameMenuButtonClick()
     {
         if (gameMenuScreen.activeSelf)
@@ -65,11 +66,13 @@ public class GameMenuController : MonoBehaviour
             HideGameMenuButton();
         }
     }
+
     public void OnCloseButtonClick()
     {
         HideGameMenu();
         ShowGameMenuButton();
     }
+
     public void OnHomeButtonClick()
     {
         HideGameMenu();
@@ -87,4 +90,9 @@ public class GameMenuController : MonoBehaviour
         ShowGameMenuButton();
     }
 
+    public void OnSettingsButtonClick()
+    {
+        HideGameMenu();
+        ShowSettingsScreen();
+    }
 }
