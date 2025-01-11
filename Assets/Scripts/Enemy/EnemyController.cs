@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour
     {
         InCombat,
         OutCombat,
+        BeStunned,
     }
 
     [Header("Enemy movement")]
@@ -29,13 +30,16 @@ public class EnemyController : MonoBehaviour
 
     [Header("Effects")]
     [SerializeField] GameObject enemyDeathPrefab;
+    [SerializeField] GameObject iceStunObject;
+    private float stunDuration = 1f;
+    private float stunTimer = 0f;
+    ParticleSystem burnEffect;
 
     [Header("Audio Manager")]
     AudioManager audioManager;
 
     [Header("Enemy Type")]
     [SerializeField] private string enemyType;
-
 
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
@@ -52,6 +56,10 @@ public class EnemyController : MonoBehaviour
     private void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+
+        iceStunObject.SetActive(false);
+
+        burnEffect = GetComponentInChildren<ParticleSystem>();
     }
 
     private void OnDrawGizmosSelected()
@@ -62,6 +70,8 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
+        burnEffect.Stop();
+
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -76,6 +86,11 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
+        if (state == State.BeStunned)
+        {
+            return;
+        }
+
         HandleEnemyDirection();
 
         animator.SetBool("IsWalking", isWalking);
@@ -92,7 +107,6 @@ public class EnemyController : MonoBehaviour
         else
         {
             timeUntilFire += Time.deltaTime;
-
             if (timeUntilFire >= (1f / bulletPerSec))
             {
                 AttackPlayer();
@@ -105,13 +119,21 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (state == State.BeStunned)
+        {
+            HandleEnemyBeStunned();
+        }
+
         HandleEnemyMovement();
         HandleEnemyState();
     }
 
     void HandleEnemyMovement()
     {
-        if (!isWalking) return;
+        if (!isWalking || state == State.BeStunned)
+        {
+            return;
+        }
 
         Vector2 pos = rb.position;
         if (veritcalMovement)
@@ -239,16 +261,39 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    // void PlayHitSound()
-    // {
-    //     if (Time.time - lastHitSoundTime >= soundCooldown && !audioSource.isPlaying)
-    //     {
-    //         lastHitSoundTime = Time.time;
-    //         if (hitSound != null)
-    //         {
-    //             audioSource.PlayOneShot(hitSound);
-    //         }
-    //     }
+    public void Stunned(float duration)
+    {
+        stunDuration = duration;
+        iceStunObject.SetActive(true);
+        state = State.BeStunned;
+    }
 
-    // }
+    private void HandleEnemyBeStunned()
+    {
+        IceBroken iceBroken = iceStunObject.GetComponent<IceBroken>();
+
+        if (stunTimer >= stunDuration - 0.5f)
+        {
+            iceBroken.Broken();
+        }
+
+        stunTimer += Time.deltaTime;
+        if (stunTimer >= stunDuration)
+        {
+            iceStunObject.SetActive(false);
+            state = State.InCombat;
+            stunTimer = 0f;
+            iceBroken.ResetBroken();
+        }
+    }
+
+    public void Burn(float damage)
+    {
+        if (burnEffect != null)
+        {
+            burnEffect.Play();
+        }
+
+        ChangeHealth((int)-damage);
+    }
 }

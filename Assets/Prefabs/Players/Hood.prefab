@@ -333,6 +333,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 3441420115609852525, guid: c356398c75943524082e80e449f38839, type: 3}
   skillProjectilePrefab: {fileID: 5527087150107835527, guid: bc41d51ee0d0d0f4caa25658fb86bd63, type: 3}
   firePoint: {fileID: 3869559404219195935}
+  target: {fileID: 0}
 --- !u!114 &5768012473724605267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,6 +358,18 @@ MonoBehaviour:
   autoAimCooldown: 3
   autoAimDuration: 5
   autoAimRange: 6
+  tornadoCost: 30
+  canUseTornado: 1
+  tornadoCooldown: 5
+  tornadoPrefab: {fileID: 1810574362916459213, guid: a63918e9b6cf8244f8432aecd4f0e73b, type: 3}
+  tigerCost: 20
+  canUseTiger: 1
+  tigerCooldown: 5
+  tigerPrefab: {fileID: 5392962386767277007, guid: a7a7b8e4feaddc943aabe38e742d4d5e, type: 3}
+  dragonCost: 30
+  canUseDragon: 1
+  dragonCooldown: 5
+  dragonPrefab: {fileID: 1810574362916459213, guid: 6a24dcdef0f772f47b8c78acc47043e7, type: 3}
 --- !u!96 &5680419246065038565
 TrailRenderer:
   serializedVersion: 3

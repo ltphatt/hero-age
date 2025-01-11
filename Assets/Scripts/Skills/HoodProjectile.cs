@@ -7,7 +7,6 @@ public class HoodProjectile : MonoBehaviour
     [SerializeField] float speed = 5f;
     [SerializeField] float timeLife = 5f;
     [SerializeField] int damage = 1;
-
     PlayerController player;
 
     private void Awake()

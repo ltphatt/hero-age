@@ -1,5 +1,14 @@
 using UnityEngine;
 
+public enum SkillType
+{
+    DASH,
+    AUTO_AIM,
+    TORNADO,
+    TIGER,
+    DRAGON,
+}
+
 public class PlayerInput : MonoBehaviour
 {
     private PlayerInputActions playerInputActions;
@@ -50,15 +59,30 @@ public class PlayerInput : MonoBehaviour
         playerInputActions.Player.Disable();
     }
 
-    public bool GetDash()
+    public bool GetInputSkill(SkillType skillType)
     {
-        bool dash = playerInputActions.Player.Dash.triggered;
-        return dash;
-    }
+        bool result = false;
+        switch (skillType)
+        {
+            case SkillType.DASH:
+                result = playerInputActions.Player.Dash.triggered;
+                break;
+            case SkillType.AUTO_AIM:
+                result = playerInputActions.Player.AutoAim.triggered;
+                break;
+            case SkillType.TORNADO:
+                result = playerInputActions.Player.Tornado.triggered;
+                break;
+            case SkillType.TIGER:
+                result = playerInputActions.Player.Tiger.triggered;
+                break;
+            case SkillType.DRAGON:
+                result = playerInputActions.Player.Dragon.triggered;
+                break;
+            default:
+                return false;
+        }
 
-    public bool GetAutoAim()
-    {
-        bool autoAim = playerInputActions.Player.AutoAim.triggered;
-        return autoAim;
+        return result;
     }
 }
