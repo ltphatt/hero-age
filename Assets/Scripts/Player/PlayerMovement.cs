@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] PlayerInput gameInput;
+
     [Header("Movement")]
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float jumpSpeed = 5f;
@@ -12,17 +13,15 @@ public class PlayerMovement : MonoBehaviour
     private bool isWalking = false;
     Rigidbody2D rb;
 
-    [Header("Dashing")]
-    [SerializeField] bool canDash = true;
-    [SerializeField] bool isDashing;
-    [SerializeField] float dashingPower = 24f;
-    [SerializeField] float dashCooldown = 1f;
-    [SerializeField] float dashDuration = 0.2f;
-    [SerializeField] TrailRenderer trailRenderer;
+
     [Header("Audio Manager")]
     AudioManager audioManager;
     private float countDownTime;
     private float lastMovementTime = -1;
+
+    [Header("Preferences")]
+    [SerializeField] PlayerSkill playerSkill;
+
 
     private void Awake()
     {
@@ -38,27 +37,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (isDashing)
+        if (playerSkill.isDashing)
         {
             return;
         }
 
         HandleMovement();
         HandleJump();
-
-        if (gameInput.GetDash() && canDash)
-        {
-            audioManager.PlayPlayerMovementSFX(audioManager.dash);
-            StartCoroutine(Dash());
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        if (isDashing)
-        {
-            return;
-        }
     }
 
     private void HandleJump()
@@ -114,32 +99,5 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
-    }
-
-    private IEnumerator Dash()
-    {
-        canDash = false;
-        isDashing = true;
-
-        // Save original gravity
-        float originGravity = rb.gravityScale;
-
-        // Dash
-        rb.gravityScale = 0f;
-        float direction = transform.rotation.y == 0 ? 1 : -1;
-        rb.velocity = new Vector2(direction * dashingPower, 0f);
-
-        // Dash trail
-        trailRenderer.emitting = true;
-        yield return new WaitForSeconds(dashDuration);
-        trailRenderer.emitting = false;
-
-        // Reset velocity
-        rb.gravityScale = originGravity;
-
-        // Cooldown
-        isDashing = false;
-        yield return new WaitForSeconds(dashCooldown);
-        canDash = true;
     }
 }

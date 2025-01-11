@@ -51988,17 +51988,29 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3671794411708251651, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
       propertyPath: HP
-      value: 5
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3671794411708251651, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
+      propertyPath: MP
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3671794411708251651, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
       propertyPath: maxHP
-      value: 5
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3671794411708251651, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
+      propertyPath: maxMP
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3671794411708251651, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
       propertyPath: healBar
       value:
       objectReference: {fileID: 1183903869}
     - target: {fileID: 3671794411708251651, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
+      propertyPath: manaBar
+      value: 
+      objectReference: {fileID: 1158742520}
+    - target: {fileID: 3671794411708251651, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
       propertyPath: gameInput
       value:
       objectReference: {fileID: 670267773}
@@ -52006,25 +52018,9 @@ PrefabInstance:
       propertyPath: gameInput
       value:
       objectReference: {fileID: 670267773}
-    - target: {fileID: 3719675932938903092, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
-      propertyPath: dashCooldown
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3719675932938903092, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
-      propertyPath: dashDuration
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3719675932938903092, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
-      propertyPath: dashingPower
+    - target: {fileID: 5768012473724605267, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
+      propertyPath: dashCost
       value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3719675932938903092, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
-      propertyPath: slowWhenJump
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682239186536881534, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7217669774514812025, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
       propertyPath: m_Name
