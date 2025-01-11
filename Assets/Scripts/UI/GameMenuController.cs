@@ -81,4 +81,10 @@ public class GameMenuController : MonoBehaviour
         SceneManager.LoadScene("Start Scene");
     }
 
+    public void OnContinueButtonClick()
+    {
+        HideGameMenu();
+        ShowGameMenuButton();
+    }
+
 }
