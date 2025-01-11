@@ -33,13 +33,13 @@ public class EnemyController : MonoBehaviour
     [SerializeField] GameObject iceStunObject;
     private float stunDuration = 1f;
     private float stunTimer = 0f;
+    ParticleSystem burnEffect;
 
     [Header("Audio Manager")]
     AudioManager audioManager;
 
     [Header("Enemy Type")]
     [SerializeField] private string enemyType;
-
 
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
@@ -56,6 +56,10 @@ public class EnemyController : MonoBehaviour
     private void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+
+        iceStunObject.SetActive(false);
+
+        burnEffect = GetComponentInChildren<ParticleSystem>();
     }
 
     private void OnDrawGizmosSelected()
@@ -66,6 +70,8 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
+        burnEffect.Stop();
+
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -279,5 +285,15 @@ public class EnemyController : MonoBehaviour
             stunTimer = 0f;
             iceBroken.ResetBroken();
         }
+    }
+
+    public void Burn(float damage)
+    {
+        if (burnEffect != null)
+        {
+            burnEffect.Play();
+        }
+
+        ChangeHealth((int)-damage);
     }
 }
