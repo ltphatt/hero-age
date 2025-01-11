@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SettingsController : MonoBehaviour
 {
-    public GameObject StartScreen;
+    public GameObject OriginScreen;
     private VolumeSettings volumeSetting;
 
     private void Start()
@@ -13,14 +13,14 @@ public class SettingsController : MonoBehaviour
     public void OnSaveClick()
     {
         volumeSetting.SaveSettings();
-        StartScreen.SetActive(true);
+        OriginScreen.SetActive(true);
         gameObject.SetActive(false);
     }
 
     public void OnCancelClick()
     {
         volumeSetting.LoadSettings();
-        StartScreen.SetActive(true);
+        OriginScreen.SetActive(true);
         gameObject.SetActive(false);
     }
 }
