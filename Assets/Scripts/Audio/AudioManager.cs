@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
@@ -41,20 +40,18 @@ public class AudioManager : MonoBehaviour
     private Dictionary<string, AudioClip> enemyAudioDictionary;
     public float masterVolume = 1f;
 
-    // Instance
     public static AudioManager instance;
 
-    // Awake function to initialize the dictionary
     private void Awake()
-    {  // Đảm bảo chỉ có một AudioManager duy nhất
+    {
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // Giữ lại khi chuyển scene
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(gameObject); // Hủy các bản sao
+            Destroy(gameObject);
         }
 
         // Tạo một dictionary để lưu trữ các audio clip cho enemy
@@ -78,7 +75,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // Start background music when the game starts
     private void Start()
     {
         Debug.Log(">>>> Start Background Music: " + SceneManager.GetActiveScene().name);
@@ -88,23 +84,19 @@ public class AudioManager : MonoBehaviour
 
     private void OnEnable()
     {
-        // Đăng ký lắng nghe sự kiện khi Scene được load
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable()
     {
-        // Hủy đăng ký sự kiện khi không cần thiếtt
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Phát nhạc nền khi Scene mới được load
         PlayMusicForScene(scene.name);
     }
 
-    // Play the background music for the scene
     private void PlayMusicForScene(string sceneName)
     {
         if (sceneMusicDictionary.TryGetValue(sceneName, out AudioClip clip))
@@ -121,7 +113,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // Play the SFX function
     public void PlaySFX(AudioClip clip)
     {
         if (!SFXSource.isPlaying)
@@ -130,7 +121,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // Play the SFX function with the enemy type
     public void PlayEnemySFX(string enemyType)
     {
         if (enemyAudioDictionary.TryGetValue(enemyType, out AudioClip audioClip))
@@ -161,8 +151,4 @@ public class AudioManager : MonoBehaviour
             playerSource.PlayOneShot(hit);
         }
     }
-
-
-
-
 }
