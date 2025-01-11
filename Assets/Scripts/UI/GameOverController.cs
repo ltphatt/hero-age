@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameController : MonoBehaviour
+public class GameOverController : MonoBehaviour
 {
     public GameObject gamerOverScreen;
     public TMP_Text survivedText;
@@ -16,9 +16,6 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        // reset time scale to normal
-        Time.timeScale = 1f;
-
         PlayerController.OnPlayerDied += ShowGameOverScreen;
 
         survivedLevelsCount = currentLevel - 1;
@@ -27,6 +24,7 @@ public class GameController : MonoBehaviour
 
     public void HideGameOverScreen()
     {
+        Time.timeScale = 1f;
         gamerOverScreen.SetActive(false);
     }
 
@@ -45,13 +43,12 @@ public class GameController : MonoBehaviour
         currentLevel = 1;
         survivedLevelsCount = 0;
 
-        Time.timeScale = 1f;
+        HideGameOverScreen();
         SceneManager.LoadScene("Level " + currentLevel);
     }
 
     public void ExitGamePlaying()
     {
-        Time.timeScale = 1f;
         SceneManager.LoadScene("Start Scene");
     }
 }
