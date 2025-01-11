@@ -1,12 +1,14 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class HoodProjectile : MonoBehaviour
+public class Tornado : MonoBehaviour
 {
     Rigidbody2D rb;
     float timer = 0f;
     [SerializeField] float speed = 5f;
-    [SerializeField] float timeLife = 5f;
-    [SerializeField] int damage = 1;
+    [SerializeField] float timeLife = 1f;
+    [SerializeField] int damage = 5;
     PlayerController player;
 
     private void Awake()
@@ -29,7 +31,6 @@ public class HoodProjectile : MonoBehaviour
         }
     }
 
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         EnemyController enemy = other.GetComponent<EnemyController>();
@@ -37,20 +38,12 @@ public class HoodProjectile : MonoBehaviour
         {
             enemy.ChangeHealth(-damage);
             enemy.ChangeToInCombatState();
-
-            Destroy(gameObject);
         }
 
         BossHealth boss = other.GetComponent<BossHealth>();
         if (boss != null)
         {
             boss.TakeDamage(damage);
-            Destroy(gameObject);
         }
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        Destroy(gameObject);
     }
 }

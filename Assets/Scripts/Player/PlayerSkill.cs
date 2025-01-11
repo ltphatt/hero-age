@@ -23,6 +23,13 @@ public class PlayerSkill : MonoBehaviour
     public float autoAimDuration = 3f;
     public float autoAimRange = 5f;
 
+    [Header("Tornado")]
+    public int tornadoCost = 30;
+    public bool canUseTornado = true;
+    public float tornadoCooldown = 5f;
+    [SerializeField] private GameObject tornadoPrefab;
+
+
     [Header("Preferences")]
     PlayerInput gameInput;
     PlayerController playerController;
@@ -65,11 +72,23 @@ public class PlayerSkill : MonoBehaviour
             // Cost
             playerController.MP -= autoAimCost;
 
-            // TODO: Play sound effect for auto aim skill
+            // TODO: Play sound effect for auto aim skill, loop: once
 
             // Auto-aim
             StartCoroutine(AutoAim());
         }
+
+        if (gameInput.GetTornado() && canUseTornado && playerController.MP >= tornadoCost)
+        {
+            // Cost
+            playerController.MP -= tornadoCost;
+
+            // TODO: Play sound effect for tornado skill, loop: once
+
+            // Tornado
+            StartCoroutine(Tornado());
+        }
+
     }
 
     private IEnumerator AutoAim()
@@ -114,5 +133,15 @@ public class PlayerSkill : MonoBehaviour
         isDashing = false;
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
+    }
+
+    private IEnumerator Tornado()
+    {
+        canUseTornado = false;
+
+        GameObject tornadoObject = Instantiate(tornadoPrefab, transform.position + new Vector3(0, 1.75f, 0), Quaternion.identity);
+
+        yield return new WaitForSeconds(tornadoCooldown);
+        canUseTornado = true;
     }
 }

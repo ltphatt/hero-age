@@ -71,6 +71,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Tornado"",
+                    ""type"": ""Button"",
+                    ""id"": ""6e679b98-6744-4237-b2ef-880af294704c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -271,6 +280,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""AutoAim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2c96ff14-29a2-4f47-838a-c73b76a2e04d"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tornado"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -284,6 +304,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_AutoAim = m_Player.FindAction("AutoAim", throwIfNotFound: true);
+        m_Player_Tornado = m_Player.FindAction("Tornado", throwIfNotFound: true);
     }
 
     ~@PlayerInputActions()
@@ -355,6 +376,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_AutoAim;
+    private readonly InputAction m_Player_Tornado;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -364,6 +386,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @AutoAim => m_Wrapper.m_Player_AutoAim;
+        public InputAction @Tornado => m_Wrapper.m_Player_Tornado;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -388,6 +411,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @AutoAim.started += instance.OnAutoAim;
             @AutoAim.performed += instance.OnAutoAim;
             @AutoAim.canceled += instance.OnAutoAim;
+            @Tornado.started += instance.OnTornado;
+            @Tornado.performed += instance.OnTornado;
+            @Tornado.canceled += instance.OnTornado;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -407,6 +433,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @AutoAim.started -= instance.OnAutoAim;
             @AutoAim.performed -= instance.OnAutoAim;
             @AutoAim.canceled -= instance.OnAutoAim;
+            @Tornado.started -= instance.OnTornado;
+            @Tornado.performed -= instance.OnTornado;
+            @Tornado.canceled -= instance.OnTornado;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -431,5 +460,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnAutoAim(InputAction.CallbackContext context);
+        void OnTornado(InputAction.CallbackContext context);
     }
 }

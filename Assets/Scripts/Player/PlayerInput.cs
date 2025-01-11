@@ -61,4 +61,10 @@ public class PlayerInput : MonoBehaviour
         bool autoAim = playerInputActions.Player.AutoAim.triggered;
         return autoAim;
     }
+
+    public bool GetTornado()
+    {
+        bool tornado = playerInputActions.Player.Tornado.triggered;
+        return tornado;
+    }
 }
