@@ -10,6 +10,21 @@ public class PlayerInput : MonoBehaviour
         playerInputActions.Player.Enable();
     }
 
+    private void OnDisable()
+    {
+        playerInputActions.Player.Disable();
+    }
+
+    private void OnEnable()
+    {
+        playerInputActions.Player.Enable();
+    }
+
+    private void OnDestroy()
+    {
+        playerInputActions.Player.Disable();
+    }
+
     public Vector2 GetMovementVector()
     {
         Vector2 inputVector = new Vector2(0, 0);
