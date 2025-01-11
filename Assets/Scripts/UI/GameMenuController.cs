@@ -65,4 +65,9 @@ public class GameMenuController : MonoBehaviour
             HideGameMenuButton();
         }
     }
+    public void OnCloseButtonClick()
+    {
+        HideGameMenu();
+        ShowGameMenuButton();
+    }
 }
