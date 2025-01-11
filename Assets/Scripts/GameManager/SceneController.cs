@@ -26,4 +26,9 @@ public class SceneController : MonoBehaviour
   {
     SceneManager.LoadScene(sceneName);
   }
+
+  public void LoadStartScene()
+  {
+    SceneManager.LoadScene("Start Scene");
+  }
 }
