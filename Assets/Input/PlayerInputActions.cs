@@ -80,6 +80,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Tiger"",
+                    ""type"": ""Button"",
+                    ""id"": ""89497082-213e-4f58-9999-c245bcee6cb9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -291,6 +300,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Tornado"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4a277dc0-b88b-4642-977c-2d1e34eef36d"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tiger"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -305,6 +325,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_AutoAim = m_Player.FindAction("AutoAim", throwIfNotFound: true);
         m_Player_Tornado = m_Player.FindAction("Tornado", throwIfNotFound: true);
+        m_Player_Tiger = m_Player.FindAction("Tiger", throwIfNotFound: true);
     }
 
     ~@PlayerInputActions()
@@ -377,6 +398,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_AutoAim;
     private readonly InputAction m_Player_Tornado;
+    private readonly InputAction m_Player_Tiger;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -387,6 +409,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @AutoAim => m_Wrapper.m_Player_AutoAim;
         public InputAction @Tornado => m_Wrapper.m_Player_Tornado;
+        public InputAction @Tiger => m_Wrapper.m_Player_Tiger;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -414,6 +437,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Tornado.started += instance.OnTornado;
             @Tornado.performed += instance.OnTornado;
             @Tornado.canceled += instance.OnTornado;
+            @Tiger.started += instance.OnTiger;
+            @Tiger.performed += instance.OnTiger;
+            @Tiger.canceled += instance.OnTiger;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -436,6 +462,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Tornado.started -= instance.OnTornado;
             @Tornado.performed -= instance.OnTornado;
             @Tornado.canceled -= instance.OnTornado;
+            @Tiger.started -= instance.OnTiger;
+            @Tiger.performed -= instance.OnTiger;
+            @Tiger.canceled -= instance.OnTiger;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -461,5 +490,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnAutoAim(InputAction.CallbackContext context);
         void OnTornado(InputAction.CallbackContext context);
+        void OnTiger(InputAction.CallbackContext context);
     }
 }

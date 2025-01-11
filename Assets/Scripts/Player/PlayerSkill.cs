@@ -29,13 +29,17 @@ public class PlayerSkill : MonoBehaviour
     public float tornadoCooldown = 5f;
     [SerializeField] private GameObject tornadoPrefab;
 
+    [Header("Tiger")]
+    public int tigerCost = 20;
+    public bool canUseTiger = true;
+    public float tigerCooldown = 5f;
+    [SerializeField] private GameObject tigerPrefab;
+
 
     [Header("Preferences")]
     PlayerInput gameInput;
     PlayerController playerController;
-
     Animator animator;
-
     Rigidbody2D rb;
 
     [Header("Audio Manager")]
@@ -55,7 +59,7 @@ public class PlayerSkill : MonoBehaviour
 
     private void Update()
     {
-        if (gameInput.GetDash() && canDash && playerController.MP >= dashCost)
+        if (gameInput.GetInputSkill(SkillType.DASH) && canDash && playerController.MP >= dashCost)
         {
             // Cost
             playerController.MP -= dashCost;
@@ -67,7 +71,7 @@ public class PlayerSkill : MonoBehaviour
             StartCoroutine(Dash());
         }
 
-        if (gameInput.GetAutoAim() && canAutoAim && playerController.MP >= autoAimCost)
+        if (gameInput.GetInputSkill(SkillType.AUTO_AIM) && canAutoAim && playerController.MP >= autoAimCost)
         {
             // Cost
             playerController.MP -= autoAimCost;
@@ -78,7 +82,7 @@ public class PlayerSkill : MonoBehaviour
             StartCoroutine(AutoAim());
         }
 
-        if (gameInput.GetTornado() && canUseTornado && playerController.MP >= tornadoCost)
+        if (gameInput.GetInputSkill(SkillType.TORNADO) && canUseTornado && playerController.MP >= tornadoCost)
         {
             // Cost
             playerController.MP -= tornadoCost;
@@ -89,8 +93,13 @@ public class PlayerSkill : MonoBehaviour
             StartCoroutine(Tornado());
         }
 
+        if (gameInput.GetInputSkill(SkillType.TIGER) && canUseTiger && playerController.MP >= tigerCost)
+        {
+            // Cost
+            playerController.MP -= tigerCost;
+            StartCoroutine(Tiger());
+        }
     }
-
     private IEnumerator AutoAim()
     {
         canAutoAim = false;
@@ -143,5 +152,15 @@ public class PlayerSkill : MonoBehaviour
 
         yield return new WaitForSeconds(tornadoCooldown);
         canUseTornado = true;
+    }
+
+    private IEnumerator Tiger()
+    {
+        canUseTiger = false;
+
+        GameObject tigerObject = Instantiate(tigerPrefab, transform.position + new Vector3(0, 1.25f, 0), Quaternion.identity);
+
+        yield return new WaitForSeconds(tigerCooldown);
+        canUseTiger = true;
     }
 }

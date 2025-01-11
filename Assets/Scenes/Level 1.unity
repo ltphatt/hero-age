@@ -53143,6 +53143,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1158742520}
     - target: {fileID: 5768012473724605267, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
+      propertyPath: tigerPrefab
+      value: 
+      objectReference: {fileID: 5392962386767277007, guid: a7a7b8e4feaddc943aabe38e742d4d5e, type: 3}
+    - target: {fileID: 5768012473724605267, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
       propertyPath: tornadoPrefab
       value: 
       objectReference: {fileID: 1810574362916459213, guid: a63918e9b6cf8244f8432aecd4f0e73b, type: 3}

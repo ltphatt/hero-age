@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tornado : MonoBehaviour
+public class SpecialSkill : MonoBehaviour
 {
     Rigidbody2D rb;
     float timer = 0f;
@@ -11,12 +11,18 @@ public class Tornado : MonoBehaviour
     [SerializeField] int damage = 5;
     PlayerController player;
 
+    SpriteRenderer spriteRenderer;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         timer = 0f;
         player = FindObjectOfType<PlayerController>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
         speed = player.transform.forward.z * speed;
+
+        FlipSprite();
     }
 
     private void Update()
@@ -44,6 +50,18 @@ public class Tornado : MonoBehaviour
         if (boss != null)
         {
             boss.TakeDamage(damage);
+        }
+    }
+
+    private void FlipSprite()
+    {
+        if (speed < 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else
+        {
+            spriteRenderer.flipX = false;
         }
     }
 }

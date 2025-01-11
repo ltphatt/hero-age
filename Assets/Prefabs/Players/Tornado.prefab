@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5871599809715918638}
   - component: {fileID: 8016257658374747882}
   - component: {fileID: 8810351634785269600}
-  - component: {fileID: 2563673744420310310}
+  - component: {fileID: -7940261930317563426}
   m_Layer: 9
   m_Name: Tornado
   m_TagString: Untagged
@@ -181,7 +181,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2563673744420310310
+--- !u!114 &-7940261930317563426
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
