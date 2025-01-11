@@ -9,35 +9,28 @@ public class GameController : MonoBehaviour
     public int currentLevel = 1;
     public int survivedLevelsCount;
 
-    public static GameController instance;
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
     void OnDisable()
     {
-        PlayerController.OnPlayerDied -= GameOverScreen;
+        PlayerController.OnPlayerDied -= ShowGameOverScreen;
     }
 
     void Start()
     {
-        PlayerController.OnPlayerDied += GameOverScreen;
+        // reset time scale to normal
+        Time.timeScale = 1f;
+
+        PlayerController.OnPlayerDied += ShowGameOverScreen;
 
         survivedLevelsCount = currentLevel - 1;
+        HideGameOverScreen();
+    }
+
+    public void HideGameOverScreen()
+    {
         gamerOverScreen.SetActive(false);
     }
 
-    void GameOverScreen()
+    public void ShowGameOverScreen()
     {
         gamerOverScreen.SetActive(true);
         survivedText.text = "You survived " + survivedLevelsCount + " level";
@@ -46,20 +39,19 @@ public class GameController : MonoBehaviour
         Time.timeScale = 0f;
     }
 
+
     public void ResetGame()
     {
         currentLevel = 1;
         survivedLevelsCount = 0;
 
         Time.timeScale = 1f;
-        SceneManager.LoadScene(currentLevel - 1);
+        SceneManager.LoadScene("Level " + currentLevel);
     }
 
-    public void QuitGame()
+    public void ExitGamePlaying()
     {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
-        Application.Quit();
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Start Scene");
     }
 }
