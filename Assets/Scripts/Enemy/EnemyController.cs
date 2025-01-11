@@ -164,8 +164,6 @@ public class EnemyController : MonoBehaviour
         GameObject bulletObj = Instantiate(bulletPrefab, transform.position, transform.rotation);
         Bullet bullet = bulletObj.GetComponent<Bullet>();
         bullet.SetTarget(target);
-
-        Debug.Log("Attacking player");
     }
 
     public void FindPlayer(Vector2 center, float radius)

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2229221643881665382}
   - component: {fileID: 1794888748094637283}
   - component: {fileID: 7044624240618426833}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 1113802125232742598}
   - component: {fileID: 8118148757226679331}
   - component: {fileID: 5421542884522606006}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: 2332845006482640412}
   - component: {fileID: 6505688491896340099}
   - component: {fileID: 2675773128550689325}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -385,7 +385,7 @@ GameObject:
   - component: {fileID: 7975442658548878079}
   - component: {fileID: 2113480211403063640}
   - component: {fileID: 7312306813923359852}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: HealthbarUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}

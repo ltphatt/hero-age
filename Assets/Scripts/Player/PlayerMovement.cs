@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] PlayerInput gameInput;
+    PlayerInput gameInput;
 
     [Header("Movement")]
     [SerializeField] float moveSpeed = 10f;
@@ -20,13 +20,15 @@ public class PlayerMovement : MonoBehaviour
     private float lastMovementTime = -1;
 
     [Header("Preferences")]
-    [SerializeField] PlayerSkill playerSkill;
+    PlayerSkill playerSkill;
 
 
     private void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         countDownTime = audioManager.movement.length;
+        gameInput = FindObjectOfType<PlayerInput>();
+        playerSkill = GetComponent<PlayerSkill>();
     }
 
     private void Start()

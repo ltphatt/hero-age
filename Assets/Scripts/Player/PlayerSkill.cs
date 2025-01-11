@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerSkill : MonoBehaviour
@@ -14,9 +15,19 @@ public class PlayerSkill : MonoBehaviour
     public float dashDuration = 0.2f;
     TrailRenderer trailRenderer;
 
+    [Header("Auto-Aim")]
+    public int autoAimCost = 20;
+    public bool isAutoAiming = false;
+    public bool canAutoAim = true;
+    public float autoAimCooldown = 3f;
+    public float autoAimDuration = 3f;
+    public float autoAimRange = 5f;
+
     [Header("Preferences")]
     PlayerInput gameInput;
     PlayerController playerController;
+
+    Animator animator;
 
     Rigidbody2D rb;
 
@@ -31,16 +42,13 @@ public class PlayerSkill : MonoBehaviour
         gameInput = FindObjectOfType<PlayerInput>();
         playerController = GetComponent<PlayerController>();
         trailRenderer = GetComponent<TrailRenderer>();
+
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        if (playerController.MP < dashCost)
-        {
-            canDash = false;
-        }
-
-        if (gameInput.GetDash() && canDash)
+        if (gameInput.GetDash() && canDash && playerController.MP >= dashCost)
         {
             // Cost
             playerController.MP -= dashCost;
@@ -51,6 +59,34 @@ public class PlayerSkill : MonoBehaviour
             // Dash
             StartCoroutine(Dash());
         }
+
+        if (gameInput.GetAutoAim() && canAutoAim && playerController.MP >= autoAimCost)
+        {
+            // Cost
+            playerController.MP -= autoAimCost;
+
+            // TODO: Play sound effect for auto aim skill
+
+            // Auto-aim
+            StartCoroutine(AutoAim());
+        }
+    }
+
+    private IEnumerator AutoAim()
+    {
+        canAutoAim = false;
+        isAutoAiming = true;
+        animator.SetBool("IsUsingSkill", true);
+        Debug.Log("Auto-aiming has started");
+
+        yield return new WaitForSeconds(autoAimDuration);
+        isAutoAiming = false;
+        animator.SetBool("IsUsingSkill", false);
+        Debug.Log("Auto-aiming has ended");
+
+        yield return new WaitForSeconds(autoAimCooldown);
+        canAutoAim = true;
+        Debug.Log("Auto-aiming is available");
     }
 
     private IEnumerator Dash()

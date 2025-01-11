@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2828405295358119450}
   - component: {fileID: 442180324325168496}
   - component: {fileID: 2697466618277711473}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Dog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 788322608451768005}
   - component: {fileID: 2786764567765107402}
   - component: {fileID: 670478276663847162}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 4017690169508528099}
   - component: {fileID: 3037784874016926242}
   - component: {fileID: 4986022345569487557}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -385,7 +385,7 @@ GameObject:
   - component: {fileID: 2200509535872539016}
   - component: {fileID: 8273286375521646691}
   - component: {fileID: 2480513895721489762}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: HealthbarUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
