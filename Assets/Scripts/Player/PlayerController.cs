@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
 
     public static event Action OnPlayerDied;
 
+    public static event Action<int> OnPlayerRespawn;
+
     private float regenManaTimer = 0f;
 
     private void Awake()
