@@ -197,12 +197,13 @@ public class PlayerController : MonoBehaviour
 
     public void ResetStats()
     {
-        maxHP = originalHP;
+        Debug.Log("Player stats reset");
+        if(isBuffed)
+        {
+            RemoveAmuletBuff();
+        }
+
         HP = maxHP;
         MP = maxMP;
-        isBuffed = false;
-        buffDuration = 0f;
-        buffMultiplier = 1f;
-
     }
 }
