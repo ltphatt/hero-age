@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class PlayerSkill : MonoBehaviour
 {
+    public delegate void SkillEventHandler(SkillType skillType);
+    public static event SkillEventHandler OnSkillUsed;
+
     [Header("Dashing")]
     public int dashCost = 10;
     public bool canDash = true;
@@ -126,16 +129,15 @@ public class PlayerSkill : MonoBehaviour
         canAutoAim = false;
         isAutoAiming = true;
         animator.SetBool("IsUsingSkill", true);
-        Debug.Log("Auto-aiming has started");
 
         yield return new WaitForSeconds(autoAimDuration);
         isAutoAiming = false;
         animator.SetBool("IsUsingSkill", false);
-        Debug.Log("Auto-aiming has ended");
+
+        OnSkillUsed?.Invoke(SkillType.AUTO_AIM);
 
         yield return new WaitForSeconds(autoAimCooldown);
         canAutoAim = true;
-        Debug.Log("Auto-aiming is available");
     }
 
     private IEnumerator Dash()
@@ -159,6 +161,9 @@ public class PlayerSkill : MonoBehaviour
         // Reset velocity
         rb.gravityScale = originGravity;
 
+        // Dispatch event
+        OnSkillUsed?.Invoke(SkillType.DASH);
+
         // Cooldown
         isDashing = false;
         yield return new WaitForSeconds(dashCooldown);
@@ -171,6 +176,7 @@ public class PlayerSkill : MonoBehaviour
 
         GameObject tornadoObject = Instantiate(tornadoPrefab, transform.position + new Vector3(0, 1.75f, 0), Quaternion.identity);
 
+        OnSkillUsed?.Invoke(SkillType.TORNADO);
         yield return new WaitForSeconds(tornadoCooldown);
         canUseTornado = true;
     }
@@ -181,6 +187,7 @@ public class PlayerSkill : MonoBehaviour
 
         GameObject tigerObject = Instantiate(tigerPrefab, transform.position + new Vector3(0, 1.25f, 0), Quaternion.identity);
 
+        OnSkillUsed?.Invoke(SkillType.TIGER);
         yield return new WaitForSeconds(tigerCooldown);
         canUseTiger = true;
     }
@@ -191,6 +198,7 @@ public class PlayerSkill : MonoBehaviour
 
         GameObject dragonObject = Instantiate(dragonPrefab, transform.position + new Vector3(0, 1.25f, 0), Quaternion.identity);
 
+        OnSkillUsed?.Invoke(SkillType.DRAGON);
         yield return new WaitForSeconds(dragonCooldown);
         canUseDragon = true;
     }
