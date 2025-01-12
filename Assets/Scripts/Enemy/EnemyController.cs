@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
         InCombat,
         OutCombat,
         BeStunned,
+        BeBurned,
     }
 
     [Header("Enemy movement")]
@@ -34,6 +35,10 @@ public class EnemyController : MonoBehaviour
     private float stunDuration = 1f;
     private float stunTimer = 0f;
     ParticleSystem burnEffect;
+    private float burnTimer = 0f;
+    private float subTimer = 0f;
+    private int burnDamage = 1;
+    private float burnDuration = 5f;
 
     [Header("Audio Manager")]
     AudioManager audioManager;
@@ -122,6 +127,11 @@ public class EnemyController : MonoBehaviour
         if (state == State.BeStunned)
         {
             HandleEnemyBeStunned();
+        }
+
+        if (state == State.BeBurned)
+        {
+            HandleEnemyBeBurned();
         }
 
         HandleEnemyMovement();
@@ -213,7 +223,6 @@ public class EnemyController : MonoBehaviour
     {
         // PlayHitSound();
         audioManager.PlayEnemySFX(enemyType);
-
         enemyHP = Mathf.Clamp(enemyHP + value, 0, enemyMaxHP);
     }
 
@@ -287,13 +296,39 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    public void Burn(float damage)
+    public void Burn(int damage, float duration)
     {
+        Debug.Log("Start Burn");
         if (burnEffect != null)
         {
             burnEffect.Play();
         }
 
-        ChangeHealth((int)-damage);
+        burnDamage = damage;
+        burnDuration = duration;
+
+        state = State.BeBurned;
+    }
+
+    private void HandleEnemyBeBurned()
+    {
+        burnTimer += Time.deltaTime;
+        subTimer += Time.deltaTime;
+
+        if (subTimer >= 1f)
+        {
+            ChangeHealth(-burnDamage);
+            Debug.Log("Burned");
+            subTimer = 0f;
+        }
+
+        if (burnTimer >= burnDuration)
+        {
+            burnEffect.Stop();
+            state = State.InCombat;
+            burnTimer = 0f;
+
+            Debug.Log("End Burn");
+        }
     }
 }

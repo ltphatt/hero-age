@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class Dragon : SpecialSkill
 {
-    [SerializeField] private float burnDamage = 1f;
+    [SerializeField] private int burnDamage = 1;
+    [SerializeField] private float burnDuration = 5f;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         EnemyController enemy = other.GetComponent<EnemyController>();
-        if (enemy != null)
-        {
-            enemy.Burn(burnDamage);
-        }
+        enemy?.Burn(burnDamage, burnDuration);
     }
 }
