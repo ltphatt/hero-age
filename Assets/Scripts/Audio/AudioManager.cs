@@ -6,20 +6,23 @@ public class AudioManager : MonoBehaviour
 {
     [Header(">>>>> Audio Source Music")]
     [SerializeField] AudioSource musicSource; // Background music
+
     [Header(">>>>> Audio Source SFX")]
     [SerializeField] AudioSource SFXSource; // Jerry, Gem, Amulet, BigGem, Checkpoint
+
     [Header(">>>>> Audio Player Sources")]
     [SerializeField] AudioSource playerMovementSource; // Movement, Jump, Dash
     [SerializeField] AudioSource playerAttackSource; // Attack
     [SerializeField] AudioSource playerSource; // Hit
+
     [Header(">>>>> Audio Enemy Sources")]
     [SerializeField] AudioSource enemySource; // Enemy hit
 
 
     [Header(">>>>> Audio Clips Background Music")]
     [SerializeField] public List<SceneMusic> sceneMusicList;
-
     private Dictionary<string, AudioClip> sceneMusicDictionary;
+
     [Header(">>>>> Audio Player SFX")]
     public AudioClip death;
     public AudioClip jump;
@@ -29,12 +32,14 @@ public class AudioManager : MonoBehaviour
     public AudioClip hit;
     public AudioClip wallTouch;
     public AudioClip playerArchery;
+
     [Header(">>>>> Audio Item SFX")]
     public AudioClip checkpoint;
     public AudioClip jerry;
     public AudioClip gem;
     public AudioClip amulet;
     public AudioClip bigGem;
+
     [Header(">>>>> Audio Enemy Hit")]
     [SerializeField] public List<EnemyAudio> enemyAudios;
     private Dictionary<string, AudioClip> enemyAudioDictionary;

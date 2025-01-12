@@ -310,8 +310,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f9b581888faa0429c91c836ff5fe09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 200
-  maxHP: 200
+  HP: 10
+  maxHP: 10
   MP: 100
   maxMP: 100
   MPRegenRate: 1
