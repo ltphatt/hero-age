@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [Tooltip("MP regeneration rate per 5 seconds")]
     public int MPRegenRate = 1;
     [SerializeField] private int coin = 0;
+    public int lives = 2;
 
     [Header("Preferences")]
     PlayerInput gameInput;
