@@ -346,27 +346,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a09f28cb0de3d864283c368a6c3ea383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashCost: 1
+  dashCost: 5
   canDash: 1
   isDashing: 0
   dashingPower: 12
   dashCooldown: 1
   dashDuration: 0.1
-  autoAimCost: 20
+  autoAimCost: 5
   isAutoAiming: 0
   canAutoAim: 1
   autoAimCooldown: 3
   autoAimDuration: 5
   autoAimRange: 6
-  tornadoCost: 30
+  tornadoCost: 5
   canUseTornado: 1
   tornadoCooldown: 5
   tornadoPrefab: {fileID: 1810574362916459213, guid: a63918e9b6cf8244f8432aecd4f0e73b, type: 3}
-  tigerCost: 20
+  tigerCost: 5
   canUseTiger: 1
   tigerCooldown: 5
   tigerPrefab: {fileID: 5392962386767277007, guid: a7a7b8e4feaddc943aabe38e742d4d5e, type: 3}
-  dragonCost: 30
+  dragonCost: 5
   canUseDragon: 1
   dragonCooldown: 5
   dragonPrefab: {fileID: 1810574362916459213, guid: 6a24dcdef0f772f47b8c78acc47043e7, type: 3}
