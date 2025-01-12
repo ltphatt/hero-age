@@ -11,11 +11,11 @@ public class PlayerController : MonoBehaviour
     public int maxHP = 5;
     public int MP = 5;
     public int maxMP = 5;
+    public int lives = 2;
 
     [Tooltip("MP regeneration rate per 5 seconds")]
     public int MPRegenRate = 1;
     [SerializeField] private int coin = 0;
-    public int lives = 2;
 
     [Header("Preferences")]
     PlayerInput gameInput;
@@ -124,14 +124,23 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
-        if (gameObject != null)
+        if(lives > 0)
         {
-            gameObject.SetActive(false);
-            gameInput.Disable();
+            lives--;
+            OnPlayerRespawn?.Invoke(lives);
         }
+        else
+        {
+            Debug.Log("Player is out of lives. Game Over!");
+            if (gameObject != null)
+            {
+                gameObject.SetActive(false);
+                gameInput.Disable();
+            }
 
-        OnPlayerDied?.Invoke();
-        OnPlayerDied = null;
+            OnPlayerDied?.Invoke();
+            OnPlayerDied = null;
+        }
     }
 
     public void ChangeCoin(int value)
@@ -184,5 +193,16 @@ public class PlayerController : MonoBehaviour
         {
             MP += MPRegenRate;
         }
+    }
+
+    public void ResetStats()
+    {
+        maxHP = originalHP;
+        HP = maxHP;
+        MP = maxMP;
+        isBuffed = false;
+        buffDuration = 0f;
+        buffMultiplier = 1f;
+
     }
 }
