@@ -35,17 +35,10 @@ public class PlayerCheckpoint : MonoBehaviour
 
     private void HandleRespawn(int remainingLives)
     {
-        if (remainingLives > 0)
-        {
-            transform.position = currentCheckpoint;
+        transform.position = currentCheckpoint;
 
-            playerController.ResetStats();
+        playerController.ResetStats();
 
-            Debug.Log($"Player respawned at checkpoint: {currentCheckpoint}, Lives left: {remainingLives}");
-        }
-        else
-        {
-            Debug.Log("Player is out of lives. No respawn available.");
-        }
+        Debug.Log($"Player respawned at checkpoint: {currentCheckpoint}, Lives left: {remainingLives}");
     }
 }
