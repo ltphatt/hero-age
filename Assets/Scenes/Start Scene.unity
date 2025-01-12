@@ -1996,6 +1996,10 @@ PrefabInstance:
       propertyPath: StartScreen
       value: 
       objectReference: {fileID: 1477212888}
+    - target: {fileID: 2317773569002702988, guid: cdf4c3e28be013242a1b53857a82e508, type: 3}
+      propertyPath: OriginScreen
+      value: 
+      objectReference: {fileID: 1477212888}
     - target: {fileID: 3522873000611538269, guid: cdf4c3e28be013242a1b53857a82e508, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.81
