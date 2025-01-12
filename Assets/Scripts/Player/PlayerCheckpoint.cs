@@ -10,6 +10,8 @@ public class PlayerCheckpoint : MonoBehaviour
     private void Awake()
     {
         playerController = GetComponent<PlayerController>();
+        currentCheckpoint = transform.position;
+        Debug.Log("Default checkpoint set to player start position: " + currentCheckpoint);
     }
 
     private void OnEnable()
