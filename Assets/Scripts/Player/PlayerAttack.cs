@@ -13,7 +13,7 @@ public class PlayerAttack : MonoBehaviour
     PlayerInput gameInput;
     private Animator animator;
     PlayerSkill playerSkill;
-    public Transform target = null;
+    private Transform target = null;
 
     private void Awake()
     {
