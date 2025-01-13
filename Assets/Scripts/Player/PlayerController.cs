@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public int maxHP = 5;
     public int MP = 5;
     public int maxMP = 5;
+    public int lives = 2;
 
     [Tooltip("MP regeneration rate per 5 seconds")]
     public int MPRegenRate = 1;
@@ -36,6 +37,8 @@ public class PlayerController : MonoBehaviour
     AudioManager audioManager;
 
     public static event Action OnPlayerDied;
+
+    public static event Action<int> OnPlayerRespawn;
 
     private float regenManaTimer = 0f;
 
@@ -121,14 +124,23 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
-        if (gameObject != null)
+        if (lives > 0)
         {
-            gameObject.SetActive(false);
-            gameInput.Disable();
+            lives--;
+            OnPlayerRespawn?.Invoke(lives);
         }
+        else
+        {
+            Debug.Log("Player is out of lives. Game Over!");
+            if (gameObject != null)
+            {
+                gameObject.SetActive(false);
+                gameInput.Disable();
+            }
 
-        OnPlayerDied?.Invoke();
-        OnPlayerDied = null;
+            OnPlayerDied?.Invoke();
+            OnPlayerDied = null;
+        }
     }
 
     public void ChangeCoin(int value)
@@ -181,5 +193,17 @@ public class PlayerController : MonoBehaviour
         {
             MP += MPRegenRate;
         }
+    }
+
+    public void ResetStats()
+    {
+        Debug.Log("Player stats reset");
+        if (isBuffed)
+        {
+            RemoveAmuletBuff();
+        }
+
+        HP = maxHP;
+        MP = maxMP;
     }
 }

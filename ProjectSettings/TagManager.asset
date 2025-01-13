@@ -10,6 +10,7 @@ TagManager:
   - Amulet
   - Audio
   - Spike
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
