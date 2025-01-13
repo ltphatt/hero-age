@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
-        if(lives >= 0)
+        if (lives > 0)
         {
             lives--;
             OnPlayerRespawn?.Invoke(lives);
@@ -198,7 +198,7 @@ public class PlayerController : MonoBehaviour
     public void ResetStats()
     {
         Debug.Log("Player stats reset");
-        if(isBuffed)
+        if (isBuffed)
         {
             RemoveAmuletBuff();
         }
