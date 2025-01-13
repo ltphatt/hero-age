@@ -200,7 +200,7 @@ MonoBehaviour:
   veritcalMovement: 0
   idleDuration: 3
   moveDuration: 3
-  bulletPrefab: {fileID: 709218619336874982, guid: 9994e384cd4b81f469361bcce9fca550, type: 3}
+  bulletPrefab: {fileID: 709218619336874982, guid: 234caee5372586c4e82964912f16298b, type: 3}
   targetingRange: 5
   bulletPerSec: 2
   enemyHP: 5
