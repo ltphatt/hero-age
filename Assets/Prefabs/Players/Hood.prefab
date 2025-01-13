@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 3447646332635552014}
   - component: {fileID: 5768012473724605267}
   - component: {fileID: 5680419246065038565}
+  - component: {fileID: 4518839818111759541}
   m_Layer: 6
   m_Name: Hood
   m_TagString: Player
@@ -314,6 +315,7 @@ MonoBehaviour:
   maxHP: 10
   MP: 100
   maxMP: 100
+  lives: 2
   MPRegenRate: 1
   coin: 0
   healBar: {fileID: 0}
@@ -333,7 +335,6 @@ MonoBehaviour:
   projectilePrefab: {fileID: 3441420115609852525, guid: c356398c75943524082e80e449f38839, type: 3}
   skillProjectilePrefab: {fileID: 5527087150107835527, guid: bc41d51ee0d0d0f4caa25658fb86bd63, type: 3}
   firePoint: {fileID: 3869559404219195935}
-  target: {fileID: 0}
 --- !u!114 &5768012473724605267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -483,6 +484,18 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &4518839818111759541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7217669774514812025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 593b47e08b9734453a40c1dc4a16cbc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7706953638781912702
 GameObject:
   m_ObjectHideFlags: 0
