@@ -26,7 +26,7 @@ public class Chest : MonoBehaviour
     {
         if (isOpened) return;
 
-        var player = other.GetComponent<PlayerController>();
+        var player = other.GetComponent<PlayerChat>();
         if (player != null)
         {
             switch (chestType)
@@ -46,6 +46,8 @@ public class Chest : MonoBehaviour
             }
             animator.SetTrigger("Open");
             isOpened = true;
+
+            player.DisplayOpenChestMessage(chestType.ToString());
         }
     }
 }
