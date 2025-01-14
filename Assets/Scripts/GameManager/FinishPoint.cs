@@ -6,6 +6,7 @@ public class FinishPoint : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            Debug.Log("Player đã đến Finish Point!");
             if (BossHealth.isBossDefeated)
             {
                 SceneController.instance.NextLevel();
