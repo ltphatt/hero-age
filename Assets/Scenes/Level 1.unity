@@ -30687,7 +30687,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.083289, y: -0.2558303, z: 0}
+  m_LocalPosition: {x: 3.6993186, y: -0.25446033, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -32618,6 +32618,11 @@ RectTransform:
 --- !u!95 &912638927 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1836730394609224907, guid: c4fc898b640c78d459df3a83a645b8e4, type: 3}
+  m_PrefabInstance: {fileID: 7883552925689521518}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &912638928 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3379107953871674400, guid: c4fc898b640c78d459df3a83a645b8e4, type: 3}
   m_PrefabInstance: {fileID: 7883552925689521518}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &918743824 stripped
@@ -36370,11 +36375,6 @@ Transform:
   - {fileID: 715025699}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1713827459 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3379107953871674400, guid: c4fc898b640c78d459df3a83a645b8e4, type: 3}
-  m_PrefabInstance: {fileID: 7883552925689521518}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1713923250
 GameObject:
   m_ObjectHideFlags: 0
@@ -37713,7 +37713,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1713827459}
+  - {fileID: 912638928}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1822932297 stripped
@@ -53812,7 +53812,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1744654561612111335, guid: c4fc898b640c78d459df3a83a645b8e4, type: 3}
       propertyPath: m_Color.a
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379107953871674400, guid: c4fc898b640c78d459df3a83a645b8e4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -53856,7 +53856,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4805250670864679356, guid: c4fc898b640c78d459df3a83a645b8e4, type: 3}
       propertyPath: m_Color.a
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5455604184632094877, guid: c4fc898b640c78d459df3a83a645b8e4, type: 3}
       propertyPath: m_Alpha
