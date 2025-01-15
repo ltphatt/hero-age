@@ -30687,7 +30687,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.1799998, y: -0.25, z: 0}
+  m_LocalPosition: {x: 2.1595204, y: -0.25213027, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -53402,6 +53402,10 @@ PrefabInstance:
       propertyPath: manaBar
       value: 
       objectReference: {fileID: 1158742520}
+    - target: {fileID: 4682239186536881534, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7217669774514812025, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
       propertyPath: m_Name
       value: Player
@@ -53446,7 +53450,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4682239186536881534, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

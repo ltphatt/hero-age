@@ -19,6 +19,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource playerMovementSource; // Movement, Jump, Dash
     [SerializeField] AudioSource playerAttackSource; // Attack
     [SerializeField] AudioSource playerSource; // Hit
+    [SerializeField] AudioSource playerSkillSource; // Skill
 
     [Header(">>>>> Audio Enemy Sources")]
     // Source for enemy hit sound
@@ -44,6 +45,13 @@ public class AudioManager : MonoBehaviour
     public AudioClip hit;
     public AudioClip wallTouch;
     public AudioClip playerArchery;
+    public AudioClip autoAim;
+    public AudioClip tornado;
+    public AudioClip tiger;
+    public AudioClip dragon;
+    public AudioClip hoodProjectile;
+    public AudioClip hoodSkillProjectile;
+
 
     [Header(">>>>> Audio Item SFX")]
     public AudioClip checkpoint;
@@ -233,7 +241,16 @@ public class AudioManager : MonoBehaviour
     public void PlayPlayerMovementSFX(AudioClip clip)
     {
         playerMovementSource.PlayOneShot(clip);
+    }
 
+    public void PlayPlayerSkillSFX(AudioClip clip)
+    {
+        playerSkillSource.PlayOneShot(clip);
+    }
+
+    public void PlayPlayerAttackSFX(AudioClip clip)
+    {
+        playerAttackSource.PlayOneShot(clip);
     }
 
     // Play the player sound when getting hit
