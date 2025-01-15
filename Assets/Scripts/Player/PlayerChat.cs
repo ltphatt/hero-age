@@ -22,6 +22,14 @@ public class PlayerChat : MonoBehaviour
         StartCoroutine(HideChat());
     }
 
+    public void DisplayCannotSwitchScene()
+    {
+        chatTxt.text = "Hãy tiêu diệt Boss để qua màn !!";
+        chatPanel.SetActive(true);
+
+        StartCoroutine(HideChat());
+    }
+
     private IEnumerator HideChat()
     {
         yield return new WaitForSeconds(displayTime);
