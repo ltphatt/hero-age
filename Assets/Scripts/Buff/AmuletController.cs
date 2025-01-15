@@ -18,7 +18,7 @@ public class AmuletController : MonoBehaviour
     public void CollectBuff(PlayerController player)
     {
         // Play SFX when collecting amulet
-        audioManager.PlaySFX(audioManager.amulet);
+        audioManager.PlaySFX(audioManager.amulet, gameObject);
 
         player.ApplyAmuletBuff(buffDuration, buffMultiplier);
     }
@@ -27,6 +27,6 @@ public class AmuletController : MonoBehaviour
     {
 
         Instantiate(itemFeedbackPrefab, transform.position, transform.rotation);
-        Destroy(gameObject, 0.7f);
+        Destroy(gameObject);
     }
 }

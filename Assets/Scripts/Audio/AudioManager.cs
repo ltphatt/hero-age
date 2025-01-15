@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using Unity.VisualScripting;
 
 public class AudioManager : MonoBehaviour
 {
@@ -8,15 +9,31 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource musicSource; // Background music
 
     [Header(">>>>> Audio Source SFX")]
-    [SerializeField] AudioSource SFXSource; // Jerry, Gem, Amulet, BigGem, Checkpoint
+    private Dictionary<GameObject, float> itemHitLastTime;
+    [SerializeField] private float itemHitCooldown = 1f;
+    [SerializeField] private int itemAudioSourcePoolSize = 5;
+    private List<AudioSource> itemAudioSourcePool; // Jerry, Gem, Amulet, BigGem, Checkpoint, Chest, FinishPoint
+
 
     [Header(">>>>> Audio Player Sources")]
     [SerializeField] AudioSource playerMovementSource; // Movement, Jump, Dash
     [SerializeField] AudioSource playerAttackSource; // Attack
     [SerializeField] AudioSource playerSource; // Hit
+    [SerializeField] AudioSource playerSkillSource; // Skill
+
+    [Header(">>>>> Audio Boss Sources")]
+    [SerializeField] AudioSource bossAttackSource;
 
     [Header(">>>>> Audio Enemy Sources")]
-    [SerializeField] AudioSource enemySource; // Enemy hit
+
+    // Source for enemy hit sound
+    [SerializeField] private int enemyAudioSourcePoolSize = 5;
+    private List<AudioSource> enemyAudioSourcePool;
+    private Dictionary<GameObject, float> enemyHitLastTime;
+    [SerializeField] private float enemyHitCooldown = 1f;
+    // Source for enemy death sound
+    [SerializeField] private int enemyDeathAudioSourcePoolSize = 5;
+    private List<AudioSource> enemyDeathAudioSourcePool;
 
 
     [Header(">>>>> Audio Clips Background Music")]
@@ -32,18 +49,35 @@ public class AudioManager : MonoBehaviour
     public AudioClip hit;
     public AudioClip wallTouch;
     public AudioClip playerArchery;
+    public AudioClip autoAim;
+    public AudioClip tornado;
+    public AudioClip tiger;
+    public AudioClip dragon;
+    public AudioClip hoodProjectile;
+    public AudioClip hoodSkillProjectile;
+
 
     [Header(">>>>> Audio Item SFX")]
-    public AudioClip checkpoint;
+    public AudioClip finishPoint;
+    public AudioClip checkPoint;
     public AudioClip jerry;
     public AudioClip gem;
     public AudioClip amulet;
     public AudioClip bigGem;
+    public AudioClip chest;
+    public AudioClip crank;
 
-    [Header(">>>>> Audio Enemy Hit")]
+    [Header(">>>>> Audio Enemy SFX")]
+    public AudioClip enemyDie;
     [SerializeField] public List<EnemyAudio> enemyAudios;
     private Dictionary<string, AudioClip> enemyAudioDictionary;
     public float masterVolume = 1f;
+
+    [Header(">>>>> Audio Boss SFX")]
+    public AudioClip axeAttack;
+    public AudioClip swordAttack;
+    public AudioClip malletAttack;
+
 
     public static AudioManager instance;
 
@@ -58,6 +92,35 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        enemyHitLastTime = new Dictionary<GameObject, float>();
+        itemHitLastTime = new Dictionary<GameObject, float>();
+        // Tạo một pool cho item audio source
+        itemAudioSourcePool = new List<AudioSource>();
+        for (int i = 0; i < itemAudioSourcePoolSize; i++)
+        {
+            AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+            itemAudioSourcePool.Add(audioSource);
+        }
+
+        // Tạo một pool cho enemy hit audio source
+        enemyAudioSourcePool = new List<AudioSource>();
+        for (int i = 0; i < enemyAudioSourcePoolSize; i++)
+        {
+            AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+            enemyAudioSourcePool.Add(audioSource);
+        }
+
+        // Tạo một pool cho enemy death audio source
+        enemyDeathAudioSourcePool = new List<AudioSource>();
+        for (int i = 0; i < enemyDeathAudioSourcePoolSize; i++)
+        {
+            AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+            enemyDeathAudioSourcePool.Add(audioSource);
+        }
+
 
         // Tạo một dictionary để lưu trữ các audio clip cho enemy
         enemyAudioDictionary = new Dictionary<string, AudioClip>();
@@ -118,21 +181,51 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlaySFX(AudioClip clip)
+    public void PlaySFX(AudioClip clip, GameObject obj)
     {
-        if (!SFXSource.isPlaying)
+        if (itemHitLastTime.TryGetValue(obj, out float lastTimeHit))
         {
-            SFXSource.PlayOneShot(clip);
+            if (Time.time - lastTimeHit < itemHitCooldown)
+            {
+                return;
+            }
+        }
+
+        itemHitLastTime[obj] = Time.time;
+
+        AudioSource availableAudioSource = itemAudioSourcePool.Find(source => !source.isPlaying);
+        if (availableAudioSource != null)
+        {
+            availableAudioSource.PlayOneShot(clip);
+        }
+        else
+        {
+            Debug.LogWarning("No available audio source for item hit sound");
         }
     }
 
-    public void PlayEnemySFX(string enemyType)
+    public void PlayEnemySFX(string enemyType, GameObject enemy)
     {
         if (enemyAudioDictionary.TryGetValue(enemyType, out AudioClip audioClip))
         {
-            if (!enemySource.isPlaying)
+            if (enemyHitLastTime.TryGetValue(enemy, out float lastTimeHit))
             {
-                enemySource.PlayOneShot(audioClip);
+                if (Time.time - lastTimeHit < enemyHitCooldown)
+                {
+                    return;
+                }
+            }
+
+            enemyHitLastTime[enemy] = Time.time;
+
+            AudioSource availableAudioSource = enemyAudioSourcePool.Find(source => !source.isPlaying);
+            if (availableAudioSource != null)
+            {
+                availableAudioSource.PlayOneShot(audioClip);
+            }
+            else
+            {
+                Debug.LogWarning("No available audio source for enemy hit sound");
             }
         }
         else
@@ -141,11 +234,34 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlayEnemyDeathSFX()
+    {
+        AudioSource availableAudioSource = enemyDeathAudioSourcePool.Find(source => !source.isPlaying);
+        if (availableAudioSource != null)
+        {
+            availableAudioSource.PlayOneShot(enemyDie);
+        }
+        else
+        {
+            Debug.LogWarning("No available audio source for enemy death sound");
+        }
+    }
+
+
     // Play the Player sound effect function
     public void PlayPlayerMovementSFX(AudioClip clip)
     {
         playerMovementSource.PlayOneShot(clip);
+    }
 
+    public void PlayPlayerSkillSFX(AudioClip clip)
+    {
+        playerSkillSource.PlayOneShot(clip);
+    }
+
+    public void PlayPlayerAttackSFX(AudioClip clip)
+    {
+        playerAttackSource.PlayOneShot(clip);
     }
 
     // Play the player sound when getting hit

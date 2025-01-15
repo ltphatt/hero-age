@@ -6,11 +6,13 @@ public class PlayerCheckpoint : MonoBehaviour
 {
     private Vector3 currentCheckpoint;
     private PlayerController playerController;
+    AudioManager audioManager;
 
     private void Awake()
     {
         playerController = GetComponent<PlayerController>();
         currentCheckpoint = transform.position;
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         Debug.Log("Default checkpoint set to player start position: " + currentCheckpoint);
     }
 
@@ -28,6 +30,7 @@ public class PlayerCheckpoint : MonoBehaviour
     {
         if (collision.CompareTag("Checkpoint"))
         {
+            audioManager.PlaySFX(audioManager.checkPoint, gameObject);
             currentCheckpoint = collision.transform.position;
             Debug.Log("Checkpoint updated: " + currentCheckpoint);
         }

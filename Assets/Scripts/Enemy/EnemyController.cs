@@ -222,7 +222,7 @@ public class EnemyController : MonoBehaviour
     public void ChangeHealth(int value)
     {
         // PlayHitSound();
-        audioManager.PlayEnemySFX(enemyType);
+        audioManager.PlayEnemySFX(enemyType, gameObject);
         enemyHP = Mathf.Clamp(enemyHP + value, 0, enemyMaxHP);
     }
 
@@ -265,6 +265,7 @@ public class EnemyController : MonoBehaviour
     {
         if (enemyHP <= 0)
         {
+            audioManager.PlayEnemyDeathSFX();
             Instantiate(enemyDeathPrefab, transform.position, transform.rotation);
             Destroy(gameObject);
         }
