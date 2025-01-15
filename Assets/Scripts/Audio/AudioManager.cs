@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour
     private Dictionary<GameObject, float> itemHitLastTime;
     [SerializeField] private float itemHitCooldown = 1f;
     [SerializeField] private int itemAudioSourcePoolSize = 5;
-    private List<AudioSource> itemAudioSourcePool; // Jerry, Gem, Amulet, BigGem, Checkpoint, Chest
+    private List<AudioSource> itemAudioSourcePool; // Jerry, Gem, Amulet, BigGem, Checkpoint, Chest, FinishPoint
 
 
     [Header(">>>>> Audio Player Sources")]
@@ -54,7 +54,8 @@ public class AudioManager : MonoBehaviour
 
 
     [Header(">>>>> Audio Item SFX")]
-    public AudioClip checkpoint;
+    public AudioClip finishPoint;
+    public AudioClip checkPoint;
     public AudioClip jerry;
     public AudioClip gem;
     public AudioClip amulet;
