@@ -30687,7 +30687,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 42.8717, y: -0.25599027, z: 0}
+  m_LocalPosition: {x: 5.083289, y: -0.2558303, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -37835,6 +37835,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 9219103081353013407, guid: 5cc41564376e27b46bee7e04be7d0d66, type: 3}
+      propertyPath: chest
+      value: 
+      objectReference: {fileID: 8300000, guid: a2350d306b89c914da32f1b216a29c29, type: 3}
     - target: {fileID: 9219103081353013407, guid: 5cc41564376e27b46bee7e04be7d0d66, type: 3}
       propertyPath: enemyDie
       value: 

@@ -14,8 +14,14 @@ public class Chest : MonoBehaviour
 {
     [SerializeField] ChestType chestType;
     Animator animator;
+    AudioManager audioManager;
 
     private bool isOpened = false;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     private void Start()
     {
@@ -44,6 +50,7 @@ public class Chest : MonoBehaviour
                     Debug.Log("You found a wooden chest!");
                     break;
             }
+            audioManager.PlaySFX(audioManager.chest, gameObject);
             animator.SetTrigger("Open");
             isOpened = true;
         }

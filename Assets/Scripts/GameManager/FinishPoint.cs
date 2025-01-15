@@ -15,7 +15,7 @@ public class FinishPoint : MonoBehaviour
             Debug.Log("Player đã đến Finish Point!");
             if (BossHealth.isBossDefeated)
             {
-                audioManager.PlaySFX(audioManager.checkpoint);
+                audioManager.PlaySFX(audioManager.checkpoint, gameObject);
                 SceneController.instance.NextLevel();
             }
             else
