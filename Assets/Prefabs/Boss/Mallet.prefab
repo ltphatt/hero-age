@@ -216,6 +216,7 @@ MonoBehaviour:
   attackMask:
     serializedVersion: 2
     m_Bits: 64
+  bossType: Mallet
 --- !u!114 &6110518672577626416
 MonoBehaviour:
   m_ObjectHideFlags: 0

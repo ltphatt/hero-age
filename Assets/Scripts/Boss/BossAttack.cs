@@ -11,6 +11,14 @@ public class BossAttack : MonoBehaviour
     [SerializeField] float attackRange = 1f;
     public LayerMask attackMask;
     private float attackOffsetX = 0f;
+    [SerializeField] private string bossType;
+
+    AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     private void Start()
     {
@@ -28,10 +36,22 @@ public class BossAttack : MonoBehaviour
         Vector3 pos = transform.position;
         pos += transform.right * attackOffset.x;
         pos += transform.up * attackOffset.y;
-
+        if (bossType == "Mallet")
+        {
+            audioManager.PlaySFX(audioManager.malletAttack, gameObject);
+        }
+        else if (bossType == "Sword")
+        {
+            audioManager.PlaySFX(audioManager.swordAttack, gameObject);
+        }
+        else if (bossType == "Axe")
+        {
+            audioManager.PlaySFX(audioManager.axeAttack, gameObject);
+        }
         Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
         if (colInfo != null)
         {
+
             colInfo.GetComponent<PlayerController>().ChangeHealth(-attackDamage);
         }
     }

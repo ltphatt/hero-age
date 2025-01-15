@@ -433,6 +433,7 @@ MonoBehaviour:
   attackMask:
     serializedVersion: 2
     m_Bits: 64
+  bossType: Axe
 --- !u!114 &466241293382484083
 MonoBehaviour:
   m_ObjectHideFlags: 0

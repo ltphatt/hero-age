@@ -21,7 +21,11 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource playerSource; // Hit
     [SerializeField] AudioSource playerSkillSource; // Skill
 
+    [Header(">>>>> Audio Boss Sources")]
+    [SerializeField] AudioSource bossAttackSource;
+
     [Header(">>>>> Audio Enemy Sources")]
+
     // Source for enemy hit sound
     [SerializeField] private int enemyAudioSourcePoolSize = 5;
     private List<AudioSource> enemyAudioSourcePool;
@@ -68,6 +72,12 @@ public class AudioManager : MonoBehaviour
     [SerializeField] public List<EnemyAudio> enemyAudios;
     private Dictionary<string, AudioClip> enemyAudioDictionary;
     public float masterVolume = 1f;
+
+    [Header(">>>>> Audio Boss SFX")]
+    public AudioClip axeAttack;
+    public AudioClip swordAttack;
+    public AudioClip malletAttack;
+
 
     public static AudioManager instance;
 
