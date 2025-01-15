@@ -30182,8 +30182,8 @@ RectTransform:
   - {fileID: 658417726}
   - {fileID: 908597487}
   - {fileID: 204603309}
-  - {fileID: 658417726}
   - {fileID: 1287368553}
+  - {fileID: 367649348}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -53830,6 +53830,14 @@ PrefabInstance:
       propertyPath: chatPanel
       value: 
       objectReference: {fileID: 1287368552}
+    - target: {fileID: 3671794411708251651, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
+      propertyPath: HP
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3671794411708251651, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
+      propertyPath: maxHP
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3671794411708251651, guid: 30427e5b8ffdac9468c4e07d26696314, type: 3}
       propertyPath: healBar
       value: 
