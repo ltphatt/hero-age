@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public int maxMP = 5;
     public int lives = 2;
 
+    public HeartUI heartUI;
+
     [Tooltip("MP regeneration rate per 5 seconds")]
     public int MPRegenRate = 1;
     [SerializeField] private int coin = 0;
@@ -51,6 +53,13 @@ public class PlayerController : MonoBehaviour
         gameInput = FindObjectOfType<PlayerInput>();
         playerMovement = GetComponent<PlayerMovement>();
     }
+
+    private void Start()
+    {
+        // heartUI.UpdateHearts(lives);
+        OnPlayerRespawn?.Invoke(lives);
+    }
+
     private void Update()
     {
         animator.SetBool(IS_WALKING, playerMovement.IsWalking());
