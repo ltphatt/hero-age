@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class FinishPoint : MonoBehaviour
@@ -10,7 +11,8 @@ public class FinishPoint : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        var player = collision.GetComponent<PlayerChat>();
+        if (player != null)
         {
             Debug.Log("Player đã đến Finish Point!");
             if (BossHealth.isBossDefeated)
@@ -20,7 +22,7 @@ public class FinishPoint : MonoBehaviour
             }
             else
             {
-                Debug.Log("Boss chưa bị tiêu diệt! Không thể qua Level.");
+                player.DisplayCannotSwitchScene();
             }
         }
     }

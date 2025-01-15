@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public int maxMP = 5;
     public int lives = 2;
 
+    public HeartUI heartUI;
+
     [Tooltip("MP regeneration rate per 5 seconds")]
     public int MPRegenRate = 1;
     [SerializeField] private int coin = 0;
@@ -39,6 +41,7 @@ public class PlayerController : MonoBehaviour
     public static event Action OnPlayerDied;
 
     public static event Action<int> OnPlayerRespawn;
+    public static event Action<int> OnPlayerCoinChange;
 
     private float regenManaTimer = 0f;
 
@@ -51,6 +54,13 @@ public class PlayerController : MonoBehaviour
         gameInput = FindObjectOfType<PlayerInput>();
         playerMovement = GetComponent<PlayerMovement>();
     }
+
+    private void Start()
+    {
+        heartUI.UpdateHearts(lives);
+        OnPlayerRespawn?.Invoke(lives);
+    }
+
     private void Update()
     {
         animator.SetBool(IS_WALKING, playerMovement.IsWalking());
@@ -124,7 +134,7 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
-        if (lives > 0)
+        if (lives > 1)
         {
             lives--;
             OnPlayerRespawn?.Invoke(lives);
@@ -146,6 +156,7 @@ public class PlayerController : MonoBehaviour
     public void ChangeCoin(int value)
     {
         coin += value;
+        OnPlayerCoinChange?.Invoke(coin);
     }
 
     public void ApplyAmuletBuff(float duration, int multiplier)

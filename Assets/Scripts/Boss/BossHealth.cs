@@ -25,7 +25,6 @@ public class BossHealth : MonoBehaviour
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
-
     private void Start()
     {
         animator = GetComponent<Animator>();
