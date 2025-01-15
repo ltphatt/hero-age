@@ -52,6 +52,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip amulet;
     public AudioClip bigGem;
     public AudioClip chest;
+    public AudioClip crank;
 
     [Header(">>>>> Audio Enemy SFX")]
     public AudioClip enemyDie;
