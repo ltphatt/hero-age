@@ -640,6 +640,134 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &4771936091713971175
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1325059320828746910}
+  - component: {fileID: 320892921156301851}
+  m_Layer: 0
+  m_Name: BossAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1325059320828746910
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4771936091713971175}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5853231435822043638}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &320892921156301851
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4771936091713971175}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5026146704918476723
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,6 +1061,7 @@ Transform:
   - {fileID: 2022896810386311612}
   - {fileID: 7342891570427175674}
   - {fileID: 7497055224710642330}
+  - {fileID: 1325059320828746910}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9219103081353013407
@@ -954,6 +1083,7 @@ MonoBehaviour:
   playerAttackSource: {fileID: 5806112217859176978}
   playerSource: {fileID: 8264509054963824960}
   playerSkillSource: {fileID: 2316956314903897756}
+  bossAttackSource: {fileID: 320892921156301851}
   enemyAudioSourcePoolSize: 5
   enemyHitCooldown: 1
   enemyDeathAudioSourcePoolSize: 5
@@ -980,7 +1110,8 @@ MonoBehaviour:
   dragon: {fileID: 8300000, guid: 1e60c010524eb774ba082e0d89c62db9, type: 3}
   hoodProjectile: {fileID: 8300000, guid: 1f87f8b95144cb34697ffbb95ce1d86a, type: 3}
   hoodSkillProjectile: {fileID: 8300000, guid: 4082c20d96737884a839b8386a496668, type: 3}
-  checkpoint: {fileID: 8300000, guid: ec2dd7289fb8b654fba1222731eb8a50, type: 3}
+  finishPoint: {fileID: 8300000, guid: ec2dd7289fb8b654fba1222731eb8a50, type: 3}
+  checkPoint: {fileID: 8300000, guid: f6100ac0ff1d5944187543169d673bd3, type: 3}
   jerry: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
   gem: {fileID: 8300000, guid: c5cb2ac29e89dbf43a9b644caaad45e6, type: 3}
   amulet: {fileID: 8300000, guid: e116d38bddeda4676910b2b2a1c6d048, type: 3}
@@ -1016,3 +1147,6 @@ MonoBehaviour:
   - enemyType: Axe
     audioClip: {fileID: 8300000, guid: 911556bd7df696e44a1374066b4d4555, type: 3}
   masterVolume: 1
+  axeAttack: {fileID: 8300000, guid: 11b812f117a785945a860d4efd1dc981, type: 3}
+  swordAttack: {fileID: 8300000, guid: b5c16c74d8bbcd04d8c44a255aadc31d, type: 3}
+  malletAttack: {fileID: 8300000, guid: b85f37fba2edd8c4ea04a475c2508bb3, type: 3}
