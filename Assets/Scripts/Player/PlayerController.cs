@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     public static event Action OnPlayerDied;
 
     public static event Action<int> OnPlayerRespawn;
+    public static event Action<int> OnPlayerCoinChange;
 
     private float regenManaTimer = 0f;
 
@@ -155,6 +156,7 @@ public class PlayerController : MonoBehaviour
     public void ChangeCoin(int value)
     {
         coin += value;
+        OnPlayerCoinChange?.Invoke(coin);
     }
 
     public void ApplyAmuletBuff(float duration, int multiplier)
