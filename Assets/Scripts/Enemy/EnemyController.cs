@@ -222,7 +222,7 @@ public class EnemyController : MonoBehaviour
     public void ChangeHealth(int value)
     {
         // PlayHitSound();
-        audioManager.PlayEnemySFX(enemyType);
+        audioManager.PlayEnemySFX(enemyType, gameObject);
         enemyHP = Mathf.Clamp(enemyHP + value, 0, enemyMaxHP);
     }
 

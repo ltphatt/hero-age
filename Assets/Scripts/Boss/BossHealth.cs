@@ -38,7 +38,7 @@ public class BossHealth : MonoBehaviour
         health -= damage;
         animator.SetTrigger("Hurt");
 
-        audioManager.PlayEnemySFX(enemyType);
+        audioManager.PlayEnemySFX(enemyType, gameObject);
 
         if (health == maxHealth / 2 && !isEnraged)
         {

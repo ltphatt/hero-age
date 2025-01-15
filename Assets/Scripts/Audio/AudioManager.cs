@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using Unity.VisualScripting;
 
 public class AudioManager : MonoBehaviour
 {
@@ -16,7 +17,12 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource playerSource; // Hit
 
     [Header(">>>>> Audio Enemy Sources")]
+    [SerializeField] private int enemyAudioSourcePoolSize = 5; // Kích thước pool
+    private List<AudioSource> enemyAudioSourcePool;
+    private Dictionary<GameObject, float> enemyHitLastTime;
+    [SerializeField] private float enemyHitCooldown = 1f;
     [SerializeField] AudioSource enemySource; // Enemy hit
+
 
 
     [Header(">>>>> Audio Clips Background Music")]
@@ -40,7 +46,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip amulet;
     public AudioClip bigGem;
 
-    [Header(">>>>> Audio Enemy Hit")]
+    [Header(">>>>> Audio Enemy SFX")]
+
     [SerializeField] public List<EnemyAudio> enemyAudios;
     private Dictionary<string, AudioClip> enemyAudioDictionary;
     public float masterVolume = 1f;
@@ -57,6 +64,16 @@ public class AudioManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+        enemyHitLastTime = new Dictionary<GameObject, float>();
+
+        // Tạo một pool cho enemy audio source
+        enemyAudioSourcePool = new List<AudioSource>();
+        for (int i = 0; i < enemyAudioSourcePoolSize; i++)
+        {
+            AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+            enemyAudioSourcePool.Add(audioSource);
         }
 
         // Tạo một dictionary để lưu trữ các audio clip cho enemy
@@ -126,13 +143,33 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlayEnemySFX(string enemyType)
+    public void PlayEnemySFX(string enemyType, GameObject enemy)
     {
         if (enemyAudioDictionary.TryGetValue(enemyType, out AudioClip audioClip))
         {
-            if (!enemySource.isPlaying)
+            if (enemyHitLastTime.TryGetValue(enemy, out float lastTimeHit))
             {
-                enemySource.PlayOneShot(audioClip);
+                if (Time.time - lastTimeHit < enemyHitCooldown)
+                {
+                    return;
+                }
+            }
+
+            enemyHitLastTime[enemy] = Time.time;
+
+            // if (!enemySource.isPlaying)
+            // {
+            //     enemySource.PlayOneShot(audioClip);
+            // }
+
+            AudioSource availableAudioSource = enemyAudioSourcePool.Find(source => !source.isPlaying);
+            if (availableAudioSource != null)
+            {
+                availableAudioSource.PlayOneShot(audioClip);
+            }
+            else
+            {
+                Debug.LogWarning("No available audio source for enemy hit sound");
             }
         }
         else
