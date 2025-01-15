@@ -27,6 +27,6 @@ public class AmuletController : MonoBehaviour
     {
 
         Instantiate(itemFeedbackPrefab, transform.position, transform.rotation);
-        Destroy(gameObject, 0.7f);
+        Destroy(gameObject);
     }
 }

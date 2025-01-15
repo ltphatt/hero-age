@@ -25,7 +25,7 @@ public class HealController : MonoBehaviour
     public void DestroySelf()
     {
         Instantiate(itemFeedbackPrefab, transform.position, transform.rotation);
-        Destroy(gameObject, 1f);
+        Destroy(gameObject);
     }
 
 }
