@@ -712,7 +712,7 @@ MonoBehaviour:
   hit: {fileID: 8300000, guid: 311549205d663fe43ab87355003a9a53, type: 3}
   wallTouch: {fileID: 0}
   playerArchery: {fileID: 8300000, guid: 980b3b1aa3f254c47a4e6ab541a2096a, type: 3}
-  checkpoint: {fileID: 0}
+  checkpoint: {fileID: 8300000, guid: ec2dd7289fb8b654fba1222731eb8a50, type: 3}
   jerry: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
   gem: {fileID: 8300000, guid: c5cb2ac29e89dbf43a9b644caaad45e6, type: 3}
   amulet: {fileID: 8300000, guid: e116d38bddeda4676910b2b2a1c6d048, type: 3}
