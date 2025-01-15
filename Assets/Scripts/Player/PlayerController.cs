@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        // heartUI.UpdateHearts(lives);
+        heartUI.UpdateHearts(lives);
         OnPlayerRespawn?.Invoke(lives);
     }
 
