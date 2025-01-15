@@ -17,7 +17,7 @@ public class HealController : MonoBehaviour
     public void HealPlayer(PlayerController player)
     {
         // Play SFX when collecting health
-        audioManager.PlaySFX(audioManager.jerry);
+        audioManager.PlaySFX(audioManager.jerry, gameObject);
 
         player.ChangeHealth(healValue);
     }
@@ -25,7 +25,7 @@ public class HealController : MonoBehaviour
     public void DestroySelf()
     {
         Instantiate(itemFeedbackPrefab, transform.position, transform.rotation);
-        Destroy(gameObject, 1f);
+        Destroy(gameObject);
     }
 
 }

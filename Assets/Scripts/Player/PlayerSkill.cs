@@ -74,7 +74,7 @@ public class PlayerSkill : MonoBehaviour
             playerController.MP -= dashCost;
 
             // Play sound effect
-            audioManager.PlayPlayerMovementSFX(audioManager.dash);
+            audioManager.PlayPlayerSkillSFX(audioManager.dash);
 
             // Dash
             StartCoroutine(Dash());
@@ -85,7 +85,8 @@ public class PlayerSkill : MonoBehaviour
             // Cost
             playerController.MP -= autoAimCost;
 
-            // TODO: Play sound effect for auto aim skill, loop: once
+            audioManager.PlayPlayerSkillSFX(audioManager.autoAim);
+
 
             // Auto-aim
             StartCoroutine(AutoAim());
@@ -96,7 +97,7 @@ public class PlayerSkill : MonoBehaviour
             // Cost
             playerController.MP -= tornadoCost;
 
-            // TODO: Play sound effect for tornado skill, loop: once
+            audioManager.PlayPlayerSkillSFX(audioManager.tornado);
 
             // Tornado
             StartCoroutine(Tornado());
@@ -107,8 +108,7 @@ public class PlayerSkill : MonoBehaviour
             // Cost
             playerController.MP -= tigerCost;
 
-            //TODO: Play sound effect for tiger skill, loop: once
-
+            audioManager.PlayPlayerSkillSFX(audioManager.tiger);
             // Tiger skill
             StartCoroutine(Tiger());
         }
@@ -118,8 +118,7 @@ public class PlayerSkill : MonoBehaviour
             // Cost
             playerController.MP -= dragonCost;
 
-            // TODO: Play sound effect for dragon skill, loop: once
-
+            audioManager.PlayPlayerMovementSFX(audioManager.dragon);
             // Use dragon skill
             StartCoroutine(Dragon());
         }

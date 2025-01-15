@@ -14,12 +14,14 @@ public class PlayerAttack : MonoBehaviour
     private Animator animator;
     PlayerSkill playerSkill;
     private Transform target = null;
+    AudioManager audioManager;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         gameInput = FindObjectOfType<PlayerInput>();
         playerSkill = GetComponent<PlayerSkill>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     private void Update()
@@ -34,11 +36,13 @@ public class PlayerAttack : MonoBehaviour
             if (isAutoAiming)
             {
                 // Fire skill projectile
+                audioManager.PlayPlayerAttackSFX(audioManager.hoodSkillProjectile);
                 FireSkillProjectile();
             }
             else
             {
                 // Normal fire
+                audioManager.PlayPlayerAttackSFX(audioManager.hoodProjectile);
                 Fire();
             }
         }

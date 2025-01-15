@@ -382,6 +382,7 @@ MonoBehaviour:
   attackMask:
     serializedVersion: 2
     m_Bits: 64
+  bossType: Sword
 --- !u!114 &8174346279205383662
 MonoBehaviour:
   m_ObjectHideFlags: 0

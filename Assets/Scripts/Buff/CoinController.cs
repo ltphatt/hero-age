@@ -18,7 +18,7 @@ public class CoinController : MonoBehaviour
     public void CollectCoin(PlayerController player)
     {
         // Play SFX when collecting coin
-        audioManager.PlaySFX(audioManager.gem);
+        audioManager.PlaySFX(audioManager.gem, gameObject);
         player.ChangeCoin(coinValue);
     }
 
@@ -26,6 +26,6 @@ public class CoinController : MonoBehaviour
     {
 
         Instantiate(itemFeedbackPrefab, transform.position, transform.rotation);
-        Destroy(gameObject, 0.7f);
+        Destroy(gameObject);
     }
 }
