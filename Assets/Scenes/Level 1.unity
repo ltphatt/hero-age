@@ -30687,7 +30687,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.6993186, y: -0.25446033, z: 0}
+  m_LocalPosition: {x: 42.8717, y: -0.25599027, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -37835,10 +37835,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
-    - target: {fileID: 8562508583030270770, guid: 5cc41564376e27b46bee7e04be7d0d66, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 9219103081353013407, guid: 5cc41564376e27b46bee7e04be7d0d66, type: 3}
+      propertyPath: enemyDie
+      value: 
+      objectReference: {fileID: 8300000, guid: 7fa7685160f230241a982397f955ef0c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -53810,9 +53810,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneTransition
       objectReference: {fileID: 0}
-    - target: {fileID: 1744654561612111335, guid: c4fc898b640c78d459df3a83a645b8e4, type: 3}
-      propertyPath: m_Color.a
-      value: 1
+    - target: {fileID: 2577718945604931424, guid: c4fc898b640c78d459df3a83a645b8e4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3379107953871674400, guid: c4fc898b640c78d459df3a83a645b8e4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -53852,14 +53852,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3379107953871674400, guid: c4fc898b640c78d459df3a83a645b8e4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4805250670864679356, guid: c4fc898b640c78d459df3a83a645b8e4, type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5455604184632094877, guid: c4fc898b640c78d459df3a83a645b8e4, type: 3}
-      propertyPath: m_Alpha
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -17,11 +17,14 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource playerSource; // Hit
 
     [Header(">>>>> Audio Enemy Sources")]
-    [SerializeField] private int enemyAudioSourcePoolSize = 5; // Kích thước pool
+    // Source for enemy hit sound
+    [SerializeField] private int enemyAudioSourcePoolSize = 5;
     private List<AudioSource> enemyAudioSourcePool;
     private Dictionary<GameObject, float> enemyHitLastTime;
     [SerializeField] private float enemyHitCooldown = 1f;
-    [SerializeField] AudioSource enemySource; // Enemy hit
+    // Source for enemy death sound
+    [SerializeField] private int enemyDeathAudioSourcePoolSize = 5;
+    private List<AudioSource> enemyDeathAudioSourcePool;
 
 
 
@@ -47,7 +50,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip bigGem;
 
     [Header(">>>>> Audio Enemy SFX")]
-
+    public AudioClip enemyDie;
     [SerializeField] public List<EnemyAudio> enemyAudios;
     private Dictionary<string, AudioClip> enemyAudioDictionary;
     public float masterVolume = 1f;
@@ -67,7 +70,7 @@ public class AudioManager : MonoBehaviour
         }
         enemyHitLastTime = new Dictionary<GameObject, float>();
 
-        // Tạo một pool cho enemy audio source
+        // Tạo một pool cho enemy hit audio source
         enemyAudioSourcePool = new List<AudioSource>();
         for (int i = 0; i < enemyAudioSourcePoolSize; i++)
         {
@@ -75,6 +78,16 @@ public class AudioManager : MonoBehaviour
             audioSource.playOnAwake = false;
             enemyAudioSourcePool.Add(audioSource);
         }
+
+        // Tạo một pool cho enemy death audio source
+        enemyDeathAudioSourcePool = new List<AudioSource>();
+        for (int i = 0; i < enemyDeathAudioSourcePoolSize; i++)
+        {
+            AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+            enemyDeathAudioSourcePool.Add(audioSource);
+        }
+
 
         // Tạo một dictionary để lưu trữ các audio clip cho enemy
         enemyAudioDictionary = new Dictionary<string, AudioClip>();
@@ -157,11 +170,6 @@ public class AudioManager : MonoBehaviour
 
             enemyHitLastTime[enemy] = Time.time;
 
-            // if (!enemySource.isPlaying)
-            // {
-            //     enemySource.PlayOneShot(audioClip);
-            // }
-
             AudioSource availableAudioSource = enemyAudioSourcePool.Find(source => !source.isPlaying);
             if (availableAudioSource != null)
             {
@@ -177,6 +185,20 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning($"No audio found for enemy type: {enemyType}");
         }
     }
+
+    public void PlayEnemyDeathSFX()
+    {
+        AudioSource availableAudioSource = enemyDeathAudioSourcePool.Find(source => !source.isPlaying);
+        if (availableAudioSource != null)
+        {
+            availableAudioSource.PlayOneShot(enemyDie);
+        }
+        else
+        {
+            Debug.LogWarning("No available audio source for enemy death sound");
+        }
+    }
+
 
     // Play the Player sound effect function
     public void PlayPlayerMovementSFX(AudioClip clip)

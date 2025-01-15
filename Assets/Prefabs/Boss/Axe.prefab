@@ -449,6 +449,7 @@ MonoBehaviour:
   maxHealth: 20
   enragedHealth: 10
   bossDeathffect: {fileID: 4502285318911443147, guid: 10467fc07ae02d84bba81d1d68208238, type: 3}
+  enemyType: Axe
 --- !u!50 &2206815967702847128
 Rigidbody2D:
   serializedVersion: 4

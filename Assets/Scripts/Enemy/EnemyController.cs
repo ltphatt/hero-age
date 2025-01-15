@@ -265,6 +265,7 @@ public class EnemyController : MonoBehaviour
     {
         if (enemyHP <= 0)
         {
+            audioManager.PlayEnemyDeathSFX();
             Instantiate(enemyDeathPrefab, transform.position, transform.rotation);
             Destroy(gameObject);
         }

@@ -18,7 +18,7 @@ public class BossHealth : MonoBehaviour
     [Header("Enemy Type")]
     [SerializeField] private string enemyType;
 
-    public static bool isBossDefeated = false; // Biến kiểm tra boss đã chết hay chưa để chuyển màn
+    public static bool isBossDefeated = false;
 
     private void Awake()
     {
@@ -49,6 +49,7 @@ public class BossHealth : MonoBehaviour
 
         if (health <= 0)
         {
+            audioManager.PlayEnemyDeathSFX();
             Die();
         }
     }
@@ -56,7 +57,7 @@ public class BossHealth : MonoBehaviour
     private void Die()
     {
         Instantiate(bossDeathffect, transform.position + Vector3.up, transform.rotation);
-        isBossDefeated = true; // Đánh dấu boss đã chết
+        isBossDefeated = true;
         Destroy(gameObject);
     }
 

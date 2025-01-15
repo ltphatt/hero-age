@@ -694,7 +694,9 @@ MonoBehaviour:
   playerMovementSource: {fileID: 7626525011917220209}
   playerAttackSource: {fileID: 0}
   playerSource: {fileID: 8264509054963824960}
-  enemySource: {fileID: 518909765056201253}
+  enemyAudioSourcePoolSize: 5
+  enemyHitCooldown: 1
+  enemyDeathAudioSourcePoolSize: 5
   sceneMusicList:
   - sceneName: Level 1
     audioClip: {fileID: 8300000, guid: 6979d52fda0579441a2122b95abaf337, type: 3}
@@ -717,6 +719,7 @@ MonoBehaviour:
   gem: {fileID: 8300000, guid: c5cb2ac29e89dbf43a9b644caaad45e6, type: 3}
   amulet: {fileID: 8300000, guid: e116d38bddeda4676910b2b2a1c6d048, type: 3}
   bigGem: {fileID: 8300000, guid: 8b5361d66d2b94851a9aab7a5c2b5475, type: 3}
+  enemyDie: {fileID: 8300000, guid: 94a97001f87758f4b8afc61f889adc5c, type: 3}
   enemyAudios:
   - enemyType: Dino
     audioClip: {fileID: 8300000, guid: 148b342aa1b1edc408354a3f02d2e991, type: 3}
