@@ -30,6 +30,22 @@ public class PlayerChat : MonoBehaviour
         StartCoroutine(HideChat());
     }
 
+    public void DisplayDefeatingBossMessage()
+    {
+        chatTxt.text = "Đã tiêu diệt Boss !!";
+        chatPanel.SetActive(true);
+
+        StartCoroutine(HideChat());
+    }
+
+    public void DisplayCollectingBigGemMessage()
+    {
+        chatTxt.text = "Đã tìm lại 1 viên pha lê !!";
+        chatPanel.SetActive(true);
+
+        StartCoroutine(HideChat());
+    }
+
     private IEnumerator HideChat()
     {
         yield return new WaitForSeconds(displayTime);

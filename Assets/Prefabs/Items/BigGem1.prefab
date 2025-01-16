@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 614825191454922908}
   - component: {fileID: 242453210896268691}
   - component: {fileID: 8626831639540744884}
+  - component: {fileID: -3280886139296508405}
   m_Layer: 0
   m_Name: BigGem1
   m_TagString: Coin
@@ -167,3 +168,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-3280886139296508405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573472048384723257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75d907ad283707644a45d56dd1d343c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
