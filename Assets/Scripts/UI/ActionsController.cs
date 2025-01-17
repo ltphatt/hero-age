@@ -7,7 +7,14 @@ public class ActionsController : MonoBehaviour
 
     public void OnStartClick()
     {
-        SceneManager.LoadScene("Level 1");
+        if (PlayerPrefs.HasKey("Checkpoint"))
+        {
+            SceneManager.LoadScene(PlayerPrefs.GetInt("Checkpoint"));
+        }
+        else
+        {
+            SceneManager.LoadScene("Level 1");
+        }
     }
 
     public void OnExitClick()
