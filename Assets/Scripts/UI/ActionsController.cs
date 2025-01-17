@@ -8,6 +8,13 @@ public class ActionsController : MonoBehaviour
     public void OnStartClick()
     {
         PlayerPrefs.DeleteKey("Checkpoint");
+        PlayerPrefs.DeleteKey("MaxHP");
+        PlayerPrefs.DeleteKey("MaxMP");
+        PlayerPrefs.DeleteKey("Coin");
+        PlayerPrefs.DeleteKey("HP");
+        PlayerPrefs.DeleteKey("MP");
+        PlayerPrefs.DeleteKey("Lives");
+
         SceneManager.LoadScene("Level 1");
     }
 

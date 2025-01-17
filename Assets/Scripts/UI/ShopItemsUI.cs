@@ -19,17 +19,6 @@ public class ShopItemsUI : MonoBehaviour
 
     PlayerController playerController;
 
-    void OnEnable()
-    {
-        Time.timeScale = 0;
-    }
-
-    void OnDisable()
-    {
-        Time.timeScale = 1;
-        playerController.SavePlayerData();
-    }
-
     private void Start()
     {
         playerController = FindObjectOfType<PlayerController>();
