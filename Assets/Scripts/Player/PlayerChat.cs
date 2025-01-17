@@ -46,6 +46,14 @@ public class PlayerChat : MonoBehaviour
         StartCoroutine(HideChat());
     }
 
+    public void DisplayNotEnoughCoinsMessage()
+    {
+        chatTxt.text = "You don't have enough money !!";
+        chatPanel.SetActive(true);
+
+        StartCoroutine(HideChat());
+    }
+
     private IEnumerator HideChat()
     {
         yield return new WaitForSeconds(displayTime);
