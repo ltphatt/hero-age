@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using Unity.VisualScripting;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
@@ -34,6 +35,11 @@ public class AudioManager : MonoBehaviour
     // Source for enemy death sound
     [SerializeField] private int enemyDeathAudioSourcePoolSize = 5;
     private List<AudioSource> enemyDeathAudioSourcePool;
+
+    [Header(">>>>> AudioMixer group")]
+    [SerializeField] private AudioMixerGroup enemyMixerGroup;
+    [SerializeField] private AudioMixerGroup itemMixerGroup;
+    [SerializeField] private AudioMixerGroup enemyDeathMixerGroup;
 
 
     [Header(">>>>> Audio Clips Background Music")]
@@ -99,6 +105,7 @@ public class AudioManager : MonoBehaviour
         for (int i = 0; i < itemAudioSourcePoolSize; i++)
         {
             AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.outputAudioMixerGroup = itemMixerGroup;
             audioSource.playOnAwake = false;
             itemAudioSourcePool.Add(audioSource);
         }
@@ -108,6 +115,7 @@ public class AudioManager : MonoBehaviour
         for (int i = 0; i < enemyAudioSourcePoolSize; i++)
         {
             AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.outputAudioMixerGroup = enemyMixerGroup;
             audioSource.playOnAwake = false;
             enemyAudioSourcePool.Add(audioSource);
         }
@@ -117,6 +125,7 @@ public class AudioManager : MonoBehaviour
         for (int i = 0; i < enemyDeathAudioSourcePoolSize; i++)
         {
             AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.outputAudioMixerGroup = enemyDeathMixerGroup;
             audioSource.playOnAwake = false;
             enemyDeathAudioSourcePool.Add(audioSource);
         }

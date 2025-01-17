@@ -53,6 +53,10 @@ public class VolumeSettings : MonoBehaviour
         audioMixer.SetFloat("player", volume);
         audioMixer.SetFloat("enemy", volume);
         audioMixer.SetFloat("playerMovement", volume);
+        audioMixer.SetFloat("playerSkill", volume);
+        audioMixer.SetFloat("playerAttack", volume);
+        audioMixer.SetFloat("bossAttack", volume);
+
     }
 
     public void LoadMusicVolume()
