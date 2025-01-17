@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,8 @@ public class BossHealth : MonoBehaviour
     [SerializeField] private string enemyType;
 
     public static bool isBossDefeated = false;
+
+    public static event Action<Vector3> OnBossDefeated;
 
     private void Awake()
     {
@@ -58,6 +61,8 @@ public class BossHealth : MonoBehaviour
         Instantiate(bossDeathffect, transform.position + Vector3.up, transform.rotation);
         isBossDefeated = true;
         Destroy(gameObject);
+
+        OnBossDefeated?.Invoke(transform.position + Vector3.up);
     }
 
 }
