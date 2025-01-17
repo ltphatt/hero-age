@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FinishPoint : MonoBehaviour
 {
@@ -9,20 +10,28 @@ public class FinishPoint : MonoBehaviour
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        var player = collision.GetComponent<PlayerChat>();
-        if (player != null)
+        if (collision.TryGetComponent<PlayerChat>(out var playerChat))
         {
-            Debug.Log("Player đã đến Finish Point!");
             if (BossHealth.isBossDefeated)
             {
                 audioManager.PlaySFX(audioManager.finishPoint, gameObject);
                 SceneController.instance.NextLevel();
+
+                if (SceneManager.GetActiveScene().name == "Level 3")
+                {
+                    PlayerPrefs.DeleteKey("Checkpoint");
+                }
+                else
+                {
+                    PlayerPrefs.SetInt("Checkpoint", SceneManager.GetActiveScene().buildIndex + 1);
+                }
             }
             else
             {
-                player.DisplayCannotSwitchScene();
+                playerChat.DisplayCannotSwitchScene();
             }
         }
     }
