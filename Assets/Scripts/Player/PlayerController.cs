@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     [Tooltip("MP regeneration rate per 5 seconds")]
     public int MPRegenRate = 1;
     [SerializeField] private int coin = 0;
+    public int Coin => coin;
+
 
     [Header("Preferences")]
     PlayerInput gameInput;
@@ -53,6 +55,8 @@ public class PlayerController : MonoBehaviour
 
         gameInput = FindObjectOfType<PlayerInput>();
         playerMovement = GetComponent<PlayerMovement>();
+
+        LoadPlayerData();
     }
 
     private void Start()
@@ -159,6 +163,18 @@ public class PlayerController : MonoBehaviour
         OnPlayerCoinChange?.Invoke(coin);
     }
 
+    public void ChangeMaxHP(int value)
+    {
+        maxHP += value;
+        UpdateHealthBarUI();
+    }
+
+    public void ChangeMaxMP(int value)
+    {
+        maxMP += value;
+        UpdateHealthBarUI();
+    }
+
     public void ApplyAmuletBuff(float duration, int multiplier)
     {
         if (isBuffed)
@@ -216,5 +232,27 @@ public class PlayerController : MonoBehaviour
 
         HP = maxHP;
         MP = maxMP;
+    }
+
+    public void SavePlayerData()
+    {
+        PlayerPrefs.SetInt("MaxHP", maxHP);
+        PlayerPrefs.SetInt("MaxMP", maxMP);
+        PlayerPrefs.SetInt("Coin", coin);
+        PlayerPrefs.SetInt("HP", HP);
+        PlayerPrefs.SetInt("MP", MP);
+        PlayerPrefs.SetInt("Lives", lives);
+    }
+
+    public void LoadPlayerData()
+    {
+        maxHP = PlayerPrefs.GetInt("MaxHP", maxHP);
+        // coin = PlayerPrefs.GetInt("Coin", 100);
+        maxMP = PlayerPrefs.GetInt("MaxMP", maxMP);
+        HP = PlayerPrefs.GetInt("HP", maxHP);
+        MP = PlayerPrefs.GetInt("MP", maxMP);
+        lives = PlayerPrefs.GetInt("Lives", lives);
+
+        UpdateHealthBarUI();
     }
 }
