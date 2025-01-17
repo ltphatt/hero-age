@@ -255,4 +255,15 @@ public class PlayerController : MonoBehaviour
 
         UpdateHealthBarUI();
     }
+
+    public void ResetPlayerData()
+    {
+        PlayerPrefs.DeleteKey("MaxHP");
+        PlayerPrefs.DeleteKey("MaxMP");
+        PlayerPrefs.DeleteKey("Coin");
+        PlayerPrefs.DeleteKey("HP");
+        PlayerPrefs.DeleteKey("MP");
+        PlayerPrefs.DeleteKey("Lives");
+        LoadPlayerData();
+    }
 }

@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,13 +19,17 @@ public class FinishPoint : MonoBehaviour
                 audioManager.PlaySFX(audioManager.finishPoint, gameObject);
                 SceneController.instance.NextLevel();
 
+                PlayerController player = collision.GetComponent<PlayerController>();
+
                 if (SceneManager.GetActiveScene().name == "Level 3")
                 {
                     PlayerPrefs.DeleteKey("Checkpoint");
+                    player.ResetPlayerData();
                 }
                 else
                 {
                     PlayerPrefs.SetInt("Checkpoint", SceneManager.GetActiveScene().buildIndex + 1);
+                    player.SavePlayerData();
                 }
             }
             else
