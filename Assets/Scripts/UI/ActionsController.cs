@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class ActionsController : MonoBehaviour
 {
     public GameObject settingsScreen;
+    public GameObject tutorialScreen;
 
     public void OnStartClick()
     {
@@ -42,5 +43,18 @@ public class ActionsController : MonoBehaviour
     {
         settingsScreen.SetActive(true);
         gameObject.SetActive(false);
+    }
+
+    public void OnTutorialClick()
+    {
+        tutorialScreen.SetActive(true);
+        gameObject.SetActive(false);
+    }
+
+    public void OnBackClick()
+    {
+        settingsScreen.SetActive(false);
+        tutorialScreen.SetActive(false);
+        gameObject.SetActive(true);
     }
 }

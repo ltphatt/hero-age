@@ -229,9 +229,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37a1a532a35aabd438d87d17da1b239c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
-  maxHealth: 10
-  enragedHealth: 10
+  health: 30
+  maxHealth: 30
+  enragedHealth: 15
   bossDeathffect: {fileID: 4502285318911443147, guid: 10467fc07ae02d84bba81d1d68208238, type: 3}
   enemyType: Mallet
 --- !u!1 &6545379182394123124

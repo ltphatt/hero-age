@@ -266,4 +266,9 @@ public class PlayerController : MonoBehaviour
         PlayerPrefs.DeleteKey("Lives");
         LoadPlayerData();
     }
+
+    public void GetCoin(int value)
+    {
+        coin += value;
+    }
 }
