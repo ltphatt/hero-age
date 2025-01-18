@@ -11,7 +11,6 @@ public class Boss_Run : StateMachineBehaviour
     public float attackRange = 2f;
     public float foundPlayerRange = 3f;
     Boss boss;
-    private bool isFight = false;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -27,12 +26,8 @@ public class Boss_Run : StateMachineBehaviour
         Vector2 target = new Vector2(player.position.x, rb.position.y);
 
         Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
-        if (Vector2.Distance(player.position, rb.position) <= foundPlayerRange)
-        {
-            isFight = true;
-        }
 
-        if (isFight)
+        if (Vector2.Distance(player.position, rb.position) <= foundPlayerRange)
         {
             rb.MovePosition(newPos);
         }

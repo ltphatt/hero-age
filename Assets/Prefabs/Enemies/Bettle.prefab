@@ -492,8 +492,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 709218619336874982, guid: b60ee5a3b48d995448937380189921ac, type: 3}
   targetingRange: 5
   bulletPerSec: 2
-  enemyHP: 5
-  enemyMaxHP: 5
+  enemyHP: 15
+  enemyMaxHP: 15
   state: 0
   enemyDeathPrefab: {fileID: 4803176320388565606, guid: e063626fc5a40dd4fb3dd407196fabb1, type: 3}
   iceStunObject: {fileID: 3686223267838980401}

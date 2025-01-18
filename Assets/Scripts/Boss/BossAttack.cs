@@ -25,11 +25,11 @@ public class BossAttack : MonoBehaviour
         attackOffsetX = attackOffset.x;
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        Handles.color = Color.red;
-        Handles.DrawWireDisc(transform.position + attackOffset, transform.forward, attackRange);
-    }
+    // private void OnDrawGizmosSelected()
+    // {
+    //     Handles.color = Color.red;
+    //     Handles.DrawWireDisc(transform.position + attackOffset, transform.forward, attackRange);
+    // }
 
     public void Attack()
     {

@@ -26,14 +26,11 @@ public class PlayerCheckpoint : MonoBehaviour
         PlayerController.OnPlayerRespawn -= HandleRespawn;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void UpdateCheckpoint(Vector3 newCheckpoint)
     {
-        if (collision.CompareTag("Checkpoint"))
-        {
-            audioManager.PlaySFX(audioManager.checkPoint, gameObject);
-            currentCheckpoint = collision.transform.position;
-            Debug.Log("Checkpoint updated: " + currentCheckpoint);
-        }
+        audioManager.PlaySFX(audioManager.checkPoint, gameObject);
+        currentCheckpoint = newCheckpoint;
+        Debug.Log("Checkpoint updated: " + currentCheckpoint);
     }
 
     private void HandleRespawn(int remainingLives)
