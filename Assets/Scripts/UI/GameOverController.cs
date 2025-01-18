@@ -30,8 +30,11 @@ public class GameOverController : MonoBehaviour
 
     public void ShowGameOverScreen()
     {
+        survivedLevelsCount = SceneManager.GetActiveScene().buildIndex - 1;
+
         gamerOverScreen.SetActive(true);
         survivedText.text = "You survived " + survivedLevelsCount + " level";
+
         if (survivedLevelsCount > 1) survivedText.text += "s";
 
         Time.timeScale = 0f;
@@ -44,6 +47,8 @@ public class GameOverController : MonoBehaviour
 
         HideGameOverScreen();
         SceneManager.LoadScene("Level " + currentLevel);
+
+        // Reset player live
     }
 
     public void ExitGamePlaying()

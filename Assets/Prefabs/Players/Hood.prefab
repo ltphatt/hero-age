@@ -316,7 +316,8 @@ MonoBehaviour:
   maxHP: 50
   MP: 100
   maxMP: 100
-  lives: 2
+  lives: 3
+  heartUI: {fileID: 0}
   MPRegenRate: 1
   coin: 0
   healBar: {fileID: 0}
