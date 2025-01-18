@@ -37,7 +37,6 @@ public class GameOverController : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-
     public void ResetGame()
     {
         currentLevel = 1;
