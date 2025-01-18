@@ -67,11 +67,11 @@ public class EnemyController : MonoBehaviour
         burnEffect = GetComponentInChildren<ParticleSystem>();
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        Handles.color = Color.green;
-        Handles.DrawWireDisc(transform.position, transform.forward, targetingRange);
-    }
+    // private void OnDrawGizmosSelected()
+    // {
+    //     Handles.color = Color.green;
+    //     Handles.DrawWireDisc(transform.position, transform.forward, targetingRange);
+    // }
 
     private void Start()
     {

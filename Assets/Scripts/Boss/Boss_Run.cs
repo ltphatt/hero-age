@@ -11,7 +11,6 @@ public class Boss_Run : StateMachineBehaviour
     public float attackRange = 2f;
     public float foundPlayerRange = 3f;
     Boss boss;
-    private bool isFight = false;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
