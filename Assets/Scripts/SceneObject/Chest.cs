@@ -42,19 +42,19 @@ public class Chest : MonoBehaviour
             {
                 case ChestType.Golden:
                     Debug.Log("You found a golden chest!");
-                    playerController.GetCoin(10);
+                    playerController.ChangeCoin(10);
                     break;
                 case ChestType.Silver:
                     Debug.Log("You found a silver chest!");
-                    playerController.GetCoin(5);
+                    playerController.ChangeCoin(5);
                     break;
                 case ChestType.Bronze:
                     Debug.Log("You found a bronze chest!");
-                    playerController.GetCoin(3);
+                    playerController.ChangeCoin(3);
                     break;
                 case ChestType.Wooden:
                     Debug.Log("You found a wooden chest!");
-                    playerController.GetCoin(2);
+                    playerController.ChangeCoin(2);
                     break;
             }
             audioManager.PlaySFX(audioManager.chest, gameObject);
