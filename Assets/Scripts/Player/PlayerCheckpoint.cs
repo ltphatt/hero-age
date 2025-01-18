@@ -26,16 +26,6 @@ public class PlayerCheckpoint : MonoBehaviour
         PlayerController.OnPlayerRespawn -= HandleRespawn;
     }
 
-    // private void OnTriggerEnter2D(Collider2D collision)
-    // {
-    //     if (collision.CompareTag("Checkpoint"))
-    //     {
-    //         audioManager.PlaySFX(audioManager.checkPoint, gameObject);
-    //         currentCheckpoint = collision.transform.position;
-    //         Debug.Log("Checkpoint updated: " + currentCheckpoint);
-    //     }
-    // }
-
     public void UpdateCheckpoint(Vector3 newCheckpoint)
     {
         audioManager.PlaySFX(audioManager.checkPoint, gameObject);
