@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac3375c6b9ae541a5a67e9fd17586c5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healValue: 1
+  healValue: 5
   itemFeedbackPrefab: {fileID: 470213316410217550, guid: c4fac06ce109e264eaa5812d134e87d8, type: 3}
 --- !u!95 &-3275661767396817157
 Animator:

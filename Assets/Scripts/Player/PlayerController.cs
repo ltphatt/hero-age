@@ -247,7 +247,7 @@ public class PlayerController : MonoBehaviour
     public void LoadPlayerData()
     {
         maxHP = PlayerPrefs.GetInt("MaxHP", maxHP);
-        // coin = PlayerPrefs.GetInt("Coin", 100);
+        coin = PlayerPrefs.GetInt("Coin", 0);
         maxMP = PlayerPrefs.GetInt("MaxMP", maxMP);
         HP = PlayerPrefs.GetInt("HP", maxHP);
         MP = PlayerPrefs.GetInt("MP", maxMP);
