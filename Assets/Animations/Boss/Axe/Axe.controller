@@ -36,7 +36,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   attackRange: 2
-  foundPlayerRange: 6
+  foundPlayerRange: 10
 --- !u!1102 &-6653788191554539634
 AnimatorState:
   serializedVersion: 6
