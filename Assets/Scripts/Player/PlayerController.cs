@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public int maxHP = 5;
     public int MP = 5;
     public int maxMP = 5;
-    public int lives = 2;
+    public int lives = 3;
 
     public HeartUI heartUI;
 
