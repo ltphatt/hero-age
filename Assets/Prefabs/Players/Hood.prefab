@@ -352,7 +352,7 @@ MonoBehaviour:
   dashCost: 5
   canDash: 1
   isDashing: 0
-  dashingPower: 12
+  dashingPower: 10
   dashCooldown: 3
   dashDuration: 0.1
   autoAimCost: 5
@@ -361,17 +361,17 @@ MonoBehaviour:
   autoAimCooldown: 3
   autoAimDuration: 5
   autoAimRange: 6
-  tornadoCost: 5
+  tornadoCost: 10
   canUseTornado: 1
   tornadoCooldown: 10
   tornadoPrefab: {fileID: 1810574362916459213, guid: a63918e9b6cf8244f8432aecd4f0e73b, type: 3}
-  tigerCost: 5
+  tigerCost: 10
   canUseTiger: 1
-  tigerCooldown: 15
+  tigerCooldown: 10
   tigerPrefab: {fileID: 5392962386767277007, guid: a7a7b8e4feaddc943aabe38e742d4d5e, type: 3}
-  dragonCost: 5
+  dragonCost: 10
   canUseDragon: 1
-  dragonCooldown: 20
+  dragonCooldown: 10
   dragonPrefab: {fileID: 1810574362916459213, guid: 6a24dcdef0f772f47b8c78acc47043e7, type: 3}
 --- !u!96 &5680419246065038565
 TrailRenderer:
